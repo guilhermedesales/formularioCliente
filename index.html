@@ -70,7 +70,7 @@
     </div>
 
     <script>
-      // Função para validar campos vazios
+      // validar campos vazios
       function validarCampos() {
         let camposValidos = true
 
@@ -97,7 +97,7 @@
                 camposValidos = false
               }
       */
-        // Verificando se os campos estão vazios
+        // Verificar se os campos estão vazios
         if (!nome.value.trim()) {
           nome.classList.add('input-erro')
           camposValidos = false
@@ -136,19 +136,19 @@
         return camposValidos
       }
 
-      // Envio do formulário
+      // Envio do formulario
       document
         .getElementById('contact-form')
         .addEventListener('submit', function (e) {
           e.preventDefault()
 
-          // Validação de campos
+          // Validar campos
           if (!validarCampos()) {
             alert('Por favor, preencha todos os campos corretamente.')
             return
           }
 
-          // Pegando os valores dos campos
+          // Pegar os valores dos campos
           var nome = document.getElementById('nome').value
           var email = document.getElementById('email').value
           var mensagem = document.getElementById('mensagem').value
@@ -165,14 +165,14 @@
                   }
                 }
       */
-          // Formatação da mensagem para WhatsApp
+          // formatação da mensagem para WhatsApp
           var texto = `Nome: ${nome}%0AEmail: ${email}%0APergunta 1: ${pergunta1}%0APergunta 2: ${pergunta2}%0AMensagem: ${mensagem}`
 
           var numeroWhatsApp = '5521971765131'
 
           var urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`
 
-          window.open(urlWhatsApp, '_blank') // Abre o WhatsApp com a mensagem pré-preenchida
+          window.open(urlWhatsApp, '_blank')
 
           // Envio para o Google Sheets
           var form = document.getElementById('contact-form')
@@ -184,11 +184,9 @@
             .then(response => {
               if (response.ok) {
                 setTimeout(function () {
-                  // Enviar para o WhatsApp
                   window.location.href = 'https://www.google.com/'
                 })
 
-                // Limpar o formulário (opcional)
                 //form.reset()
               } else {
                 alert('Erro ao enviar dados para o Google Sheets')
