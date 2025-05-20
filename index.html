@@ -24,13 +24,13 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label>Nome:</label>
-                    <input type="text" name="Nome" required/>
+                    <input type="text" name="Nome" required />
                 </div>
 
                 <div class="form-group-grouped">
                     <div class="form-group">
                         <label>Data de Nascimento:</label>
-                        <input type="date" id="dataNascimento" name="data_nascimento" required/>
+                        <input type="date" id="dataNascimento" name="data_nascimento" required />
                     </div>
                     <div class="form-group">
                         <label>Idade:</label>
@@ -42,7 +42,7 @@
                 <div class="form-group-grouped phone-wrapper">
                     <div class="form-group phone-field">
                         <label>Telefone para contato:</label>
-                        <input type="tel" class="telefone" name="telefone" required/>
+                        <input type="tel" class="telefone" name="telefone" required />
                     </div>
                     <button type="button" class="btn-add-phone">+</button>
                 </div>
@@ -51,11 +51,11 @@
 
                 <div class="form-group">
                     <label>Convênio:</label>
-                    <input type="text" name="convênio" required/>
+                    <input type="text" name="convênio" required />
                 </div>
                 <div class="form-group">
                     <label>Data:</label>
-                    <input type="date" name="data" required/>
+                    <input type="date" name="data" required />
                 </div>
             </div>
 
@@ -66,27 +66,28 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label>Data da última menstruação:</label>
-                    <input type="date" name="data_menstruação" required/>
+                    <input type="date" name="data_menstruação" required />
                 </div>
 
                 <div class="form-group">
                     <label>Já esteve grávida?</label>
                     <div class="radio-group">
-                        <label><input type="radio" name="gravida" required/> Sim</label>
-                        <label><input type="radio" name="gravida" required/> Não</label>
+                        <label><input type="radio" name="gravida" required /> Sim</label>
+                        <label><input type="radio" name="gravida" required /> Não</label>
                     </div>
                 </div>
 
                 <div id="gravidez-info" style="display: none;" class="form-group full-width">
                     <label>QUANTAS VEZES?</label>
-                    <input type="number" id="qtd-gravidez" min="1" name="qtde_gravidez" />
+                    <input type="number" id="qtd-gravidez" min="1" name="qtde_gravidez" value="1" />
 
                     <div class="radio-group grouped-radios">
                         <label>Parto Normal? <input type="number" id="parto-normal" value="0" min="0" placeholder="0"
                                 name="parto_normal" /></label>
                         <label>Cesariana? <input type="number" id="cesariana" value="0" min="0" placeholder="0"
                                 name="cesariana" /></label>
-                        <label>Aborto? <input type="number" id="aborto" value="0" min="0" placeholder="0" name="aborto" /></label>
+                        <label>Aborto? <input type="number" id="aborto" value="0" min="0" placeholder="0"
+                                name="aborto" /></label>
                     </div>
                 </div>
 
@@ -171,7 +172,10 @@
             });
         }
 
-        const telefonePrincipal = document.querySelector(".telefone");
+        const telefones = Array.from(document.querySelectorAll(".telefone"))
+            .map((input, index) => `(${index + 1}) ${input.value}`)
+            .join(" / ");
+
         telefonePrincipal.placeholder = "(99) 99999-9999";
         aplicarMascaraTelefone(telefonePrincipal);
 
@@ -254,7 +258,7 @@
 👤 Nome: ${nome}%0A
 🎂 Data de Nascimento: ${dataNasc}%0A
 📆 Idade: ${idade}%0A
-📞 Telefone: ${telefone}%0A
+📞 Telefones: ${telefones}%0A
 🏥 Convênio: ${convenio}%0A
 🗓️ Data da Consulta: ${data}%0A
 🩸 Última menstruação: ${ultimaMenstruacao}%0A
