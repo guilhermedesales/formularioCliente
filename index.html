@@ -24,7 +24,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label>Nome:</label>
-                    <input type="text" name="Nome" required />
+                    <input type="text" id="nome" name="Nome" required />
                 </div>
 
                 <div class="form-group-grouped">
@@ -51,7 +51,7 @@
 
                 <div class="form-group">
                     <label>Convênio:</label>
-                    <input type="text" name="convênio" required />
+                    <input type="text" name="convênio" id="convenio" required />
                 </div>
                 <div class="form-group">
                     <label>Data:</label>
@@ -248,7 +248,7 @@
             const form = this;
             const formData = new FormData(form);
 
-            const nome = formData.get("nome") || document.querySelector("input[type='text']").value;
+            const nome = document.getElementById("nome").value;
             const idade = document.getElementById("idade").value;
             const dataNasc = document.getElementById("dataNascimento").value;
 
@@ -256,7 +256,7 @@
                 .map((input, index) => `(${index + 1}) ${input.value}`)
                 .join(" / ");
 
-            const convenio = document.querySelectorAll("input[type='text']")[1].value;
+           const convenio = document.getElementById("convenio").value;
             const data = document.querySelectorAll("input[type='date']")[1].value;
             const ultimaMenstruacao = document.querySelectorAll("input[type='date']")[2].value;
 
