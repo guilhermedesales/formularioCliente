@@ -166,44 +166,55 @@
 
 
         // Máscara de telefone
-        function aplicarMascaraTelefone(input) {
-            IMask(input, {
-                mask: '(00) 00000-0000'
-            });
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para aplicar máscara no input de telefone
+            function aplicarMascaraTelefone(input) {
+                if (input) {
+                    IMask(input, {
+                        mask: '(00) 00000-0000'
+                    });
+                }
+            }
 
-        const telefones = Array.from(document.querySelectorAll(".telefone"))
-            .map((input, index) => `(${index + 1}) ${input.value}`)
-            .join(" / ");
+            // Aplica máscara no telefone principal
+            const telefonePrincipal = document.querySelector(".telefone");
+            if (telefonePrincipal) {
+                telefonePrincipal.placeholder = "(99) 99999-9999";
+                aplicarMascaraTelefone(telefonePrincipal);
+            }
 
-        telefonePrincipal.placeholder = "(99) 99999-9999";
-        aplicarMascaraTelefone(telefonePrincipal);
+            // Adicionar novo campo de telefone com máscara
+            const btnAddPhone = document.querySelector(".btn-add-phone");
+            if (btnAddPhone) {
+                btnAddPhone.addEventListener("click", function () {
+                    const div = document.createElement("div");
+                    div.className = "extra-phone-group";
 
-        // Adicionar novo campo de telefone
-        document.querySelector(".btn-add-phone").addEventListener("click", function () {
-            const div = document.createElement("div");
-            div.className = "extra-phone-group";
+                    const input = document.createElement("input");
+                    input.type = "tel";
+                    input.className = "telefone";
+                    input.placeholder = "(99) 99999-9999";
 
-            const input = document.createElement("input");
-            input.type = "tel";
-            input.className = "telefone";
-            input.placeholder = "(99) 99999-9999";
+                    aplicarMascaraTelefone(input);
 
-            aplicarMascaraTelefone(input);
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "btn-remove-phone";
+                    btn.textContent = "−";
 
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "btn-remove-phone";
-            btn.textContent = "−";
+                    btn.addEventListener("click", function () {
+                        div.remove();
+                    });
 
-            btn.addEventListener("click", function () {
-                div.remove();
-            });
+                    div.appendChild(input);
+                    div.appendChild(btn);
 
-            div.appendChild(input);
-            div.appendChild(btn);
-
-            document.getElementById("extraPhones").appendChild(div);
+                    const extraPhonesDiv = document.getElementById("extraPhones");
+                    if (extraPhonesDiv) {
+                        extraPhonesDiv.appendChild(div);
+                    }
+                });
+            }
         });
 
         // Gravidez info
@@ -240,7 +251,11 @@
             const nome = formData.get("nome") || document.querySelector("input[type='text']").value;
             const idade = document.getElementById("idade").value;
             const dataNasc = document.getElementById("dataNascimento").value;
-            const telefone = document.querySelector(".telefone").value;
+
+            const telefones = Array.from(document.querySelectorAll(".telefone"))
+                .map((input, index) => `(${index + 1}) ${input.value}`)
+                .join(" / ");
+
             const convenio = document.querySelectorAll("input[type='text']")[1].value;
             const data = document.querySelectorAll("input[type='date']")[1].value;
             const ultimaMenstruacao = document.querySelectorAll("input[type='date']")[2].value;
