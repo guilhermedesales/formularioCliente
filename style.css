@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   display:flex;
@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #f8f9fa;
 }
 
 .header{
@@ -32,31 +32,144 @@ body {
 
 /* Container do formulário */
 .container {
-  background: white;
-  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 95%;
   max-width: 600px;
   text-align: center;
 }
 
-h4{
+.titulo {
+  background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+  color: white;
+  padding: 20px 10px;
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-  font-size: 30px;
+.titulo-topo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-icon {
+  width: 30px;  /* ajuste conforme o tamanho ideal */
+  height: auto;
+}
+
+
+h4, h3 {
+  color: white;
+  margin: 0;
+  padding: 5px;
 
 }
 
+.data-idade {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap; /* Permite quebrar linha se precisar */
+  width: 90%; /* Igual aos inputs */
+  max-width: 500px;
+  margin: 0 auto 15px auto; /* centraliza e dá margem inferior */
+  box-sizing: border-box;
+  gap: 80px;
+}
+
+
+.data-container label,
+.idade-container label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.data-container,
+.idade-container {
+  flex: 1;
+}
+
+.idade-container {
+
+  margin-right: 0px;
+
+}
+
+.data-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.data-inputs input {
+  width: 50px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.idade-container input {
+  
+  padding: 8px;
+  width: 50%;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  
+}
+
+
 input, textarea {
-  width: 95%;
+
+  width: 90%;
   padding: 10px;
-  margin: 8px 0;
+  margin: 15px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   padding-right: 0px;
   resize: none;
 }
+
+.telefone-input-group {
+  
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.telefone-input-group input {
+  flex: 1;
+}
+
+.telefone-input-group label {
+  min-width: 80px; /* Largura fixa para alinhar */
+  text-align: left;
+}
+
+.add-telefone {
+  padding: 6px;
+  font-size: 25px;
+  border: none;
+  background-color: #25D366;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 100%;
+  width: 40px;
+}
+
 
 .checkbox input {
   
@@ -84,13 +197,6 @@ input, textarea {
 
 #submit:hover {
   background: #1ebe5d;
-}
-
-h3{
-
-  text-align: left;
-  margin-left: 6px;
-
 }
 
 /* campos vazios */
