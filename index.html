@@ -11,6 +11,10 @@
 </head>
 
 <body>
+
+    <div class="icone-flutuante"><img src="img/logo_medico.png" class="icone-img" alt=""></div>
+
+
     <div class="container">
         <div class="form-title">
             <h2>📄 Informações Pré–Operatórias</h2>
@@ -240,6 +244,14 @@
             });
         });
 
+
+        function formatarDataBrasileira(dataISO) {
+            if (!dataISO) return "";
+            const partes = dataISO.split("-");
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+
         // Envio de formulário para WhatsApp e Google Sheets
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -250,15 +262,15 @@
 
             const nome = document.getElementById("nome").value;
             const idade = document.getElementById("idade").value;
-            const dataNasc = document.getElementById("dataNascimento").value;
+            const dataNascISO = document.getElementById("dataNascimento").value;
 
             const telefones = Array.from(document.querySelectorAll(".telefone"))
                 .map((input, index) => `(${index + 1}) ${input.value}`)
                 .join(" / ");
 
-           const convenio = document.getElementById("convenio").value;
-            const data = document.querySelectorAll("input[type='date']")[1].value;
-            const ultimaMenstruacao = document.querySelectorAll("input[type='date']")[2].value;
+            const convenio = document.getElementById("convenio").value;
+            const dataConsultaISO = document.querySelectorAll("input[type='date']")[1].value;
+            const ultimaMenstruacaoISO = document.querySelectorAll("input[type='date']")[2].value;
 
             const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
             const gravidezes = gravidaSim ? `Grávida: Sim (%0A- Gravidezes: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})` : "Grávida: Não";
@@ -267,6 +279,10 @@
             const alergias = document.querySelectorAll("textarea")[1].value;
             const medicacao = document.querySelectorAll("textarea")[2].value;
             const infoAdicional = document.querySelectorAll("textarea")[3].value;
+
+            const dataNasc = formatarDataBrasileira(dataNascISO);
+            const data = formatarDataBrasileira(dataConsultaISO);
+            const ultimaMenstruacao = formatarDataBrasileira(ultimaMenstruacaoISO);
 
             // Formatar para WhatsApp
             const texto = `📄 *Informações Pré–Operatórias*%0A

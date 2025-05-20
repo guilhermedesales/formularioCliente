@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+.icone-flutuante {
+  animation: flutuar 2s ease-in-out infinite;
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.icone-img {
+  width: 80px;
+  height: auto;
+}
+
+@keyframes flutuar {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
