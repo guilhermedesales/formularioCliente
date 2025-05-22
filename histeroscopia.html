@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informações Pré-Operatórias</title>
+    <link rel="stylesheet" href="style/styleHistero.css" />
+    <script src="https://unpkg.com/imask"></script>
+    <link rel="icon" href="img/logo_medico.png" type="image/png">
+
+
+</head>
+
+<body>
+
+    <div class="icone-flutuante"><img src="img/logo_medico.png" class="icone-img" alt=""></div>
+
+
+    <div class="container">
+        <div class="form-title">
+            <h2>📄 Informações Pré–Operatórias</h2>
+            <p>Histeroscopia</p>
+        </div>
+
+        <form method="post"
+            action="https://script.google.com/macros/s/AKfycbz5q0IFiGlB9pCK1Bh79mTTjp9iuFA9nhVYV81Av5JS_4wQVLifc7FwQ3Sbp24jzaPR/exec"
+            name="contact-form" id="contact-form">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="nome" name="Nome" required />
+                </div>
+
+                <div class="form-group-grouped">
+                    <div class="form-group">
+                        <label>Data de Nascimento:</label>
+                        <input type="date" id="dataNascimento" name="data_nascimento" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Idade:</label>
+                        <input type="text" id="idade" readonly name="idade" />
+                    </div>
+                </div>
+
+
+                <div class="form-group-grouped phone-wrapper">
+                    <div class="form-group phone-field">
+                        <label>Telefone para contato:</label>
+                        <input type="tel" class="telefone" name="telefone" required />
+                    </div>
+                    <button type="button" class="btn-add-phone">+</button>
+                </div>
+                <div id="extraPhones"></div>
+
+
+                <div class="form-group">
+                    <label>Convênio:</label>
+                    <input type="text" name="convênio" id="convenio" required />
+                </div>
+                <div class="form-group">
+                    <label>Data:</label>
+                    <input type="date" name="data" required />
+                </div>
+            </div>
+
+            <hr />
+
+            <h3 class="section-title">💙 Informações Médicas</h3>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Data da última menstruação:</label>
+                    <input type="date" name="data_menstruação" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Já esteve grávida?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gravida" required /> Sim</label>
+                        <label><input type="radio" name="gravida" required /> Não</label>
+                    </div>
+                </div>
+
+                <div id="gravidez-info" style="display: none;" class="form-group full-width">
+                    <label>QUANTAS VEZES?</label>
+                    <input type="number" id="qtd-gravidez" min="1" name="qtde_gravidez" value="1" />
+
+                    <div class="radio-group grouped-radios">
+                        <label>Parto Normal? <input type="number" id="parto-normal" value="0" min="0" placeholder="0"
+                                name="parto_normal" /></label>
+                        <label>Cesariana? <input type="number" id="cesariana" value="0" min="0" placeholder="0"
+                                name="cesariana" /></label>
+                        <label>Aborto? <input type="number" id="aborto" value="0" min="0" placeholder="0"
+                                name="aborto" /></label>
+                    </div>
+                </div>
+
+
+                <div class="form-group full-width">
+                    <label>Já foi submetida à alguma cirurgia?</label>
+                    <textarea rows="2" name="cirurgias" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label>Portadora de alergias?</label>
+                    <textarea rows="2" name="alergias" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label>Faz uso de alguma medicação?</label>
+                    <textarea rows="2" name="medicacao" required></textarea>
+                </div>
+            </div>
+
+            <hr />
+
+            <h3 class="section-title">ℹ️ Informações Adicionais</h3>
+            <div class="form-group full-width">
+                <label>Deseja acrescentar alguma informação que julgue importante?</label>
+                <textarea rows="3" name="informacao_adicional"></textarea>
+            </div>
+
+            <input type="submit" value="Enviar" id="submit" />
+
+        </form>
+    </div>
+
+    <script>
+        // Cálculo de idade
+        document.getElementById("dataNascimento").addEventListener("change", function () {
+            const input = this.value;
+            const idadeInput = document.getElementById("idade");
+
+            if (input) {
+                const nascimento = new Date(input);
+                const hoje = new Date();
+                const anoNascimento = nascimento.getFullYear();
+                const anoAtual = hoje.getFullYear();
+
+                if (anoNascimento < 1900 || nascimento > hoje) {
+                    idadeInput.value = "--";
+                    return;
+                }
+
+                let anos = anoAtual - anoNascimento;
+                let meses = hoje.getMonth() - nascimento.getMonth();
+                let dias = hoje.getDate() - nascimento.getDate();
+
+                if (dias < 0) {
+                    meses--;
+                    const mesAnterior = new Date(hoje.getFullYear(), hoje.getMonth(), 0);
+                    dias += mesAnterior.getDate(); // Ajusta os dias com o número correto do mês anterior
+                }
+
+                if (meses < 0) {
+                    anos--;
+                    meses += 12;
+                }
+
+                if (anos < 0) {
+                    idadeInput.value = "--";
+                    return;
+                }
+
+                idadeInput.value = `${anos} ano${anos !== 1 ? 's' : ''}, ` +
+                    `${meses} mês${meses !== 1 ? 'es' : ''} e ` +
+                    `${dias} dia${dias !== 1 ? 's' : ''}`;
+            } else {
+                idadeInput.value = "--";
+            }
+        });
+
+
+        // Máscara de telefone
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para aplicar máscara no input de telefone
+            function aplicarMascaraTelefone(input) {
+                if (input) {
+                    IMask(input, {
+                        mask: '(00) 00000-0000'
+                    });
+                }
+            }
+
+            // Aplica máscara no telefone principal
+            const telefonePrincipal = document.querySelector(".telefone");
+            if (telefonePrincipal) {
+                telefonePrincipal.placeholder = "(99) 99999-9999";
+                aplicarMascaraTelefone(telefonePrincipal);
+            }
+
+            // Adicionar novo campo de telefone com máscara
+            const btnAddPhone = document.querySelector(".btn-add-phone");
+            if (btnAddPhone) {
+                btnAddPhone.addEventListener("click", function () {
+                    const div = document.createElement("div");
+                    div.className = "extra-phone-group";
+
+                    const input = document.createElement("input");
+                    input.type = "tel";
+                    input.className = "telefone";
+                    input.placeholder = "(99) 99999-9999";
+
+                    aplicarMascaraTelefone(input);
+
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "btn-remove-phone";
+                    btn.textContent = "−";
+
+                    btn.addEventListener("click", function () {
+                        div.remove();
+                    });
+
+                    div.appendChild(input);
+                    div.appendChild(btn);
+
+                    const extraPhonesDiv = document.getElementById("extraPhones");
+                    if (extraPhonesDiv) {
+                        extraPhonesDiv.appendChild(div);
+                    }
+                });
+            }
+        });
+
+        // Gravidez info
+        const radiosGravidez = document.querySelectorAll('input[name="gravida"]');
+        const divGravidezInfo = document.getElementById("gravidez-info");
+
+        const qtdGravidez = document.getElementById("qtd-gravidez");
+        const partoNormal = document.getElementById("parto-normal");
+        const cesariana = document.getElementById("cesariana");
+        const aborto = document.getElementById("aborto");
+
+        radiosGravidez.forEach(radio => {
+            radio.addEventListener("change", () => {
+                if (radio.checked && radio.nextSibling.nodeValue.trim() === "Sim") {
+                    divGravidezInfo.style.display = "block";
+                } else if (radio.checked && radio.nextSibling.nodeValue.trim() === "Não") {
+                    divGravidezInfo.style.display = "none";
+                    qtdGravidez.value = "";
+                    partoNormal.value = "";
+                    cesariana.value = "";
+                    aborto.value = "";
+                }
+            });
+        });
+
+
+        function formatarDataBrasileira(dataISO) {
+            if (!dataISO) return "";
+            const partes = dataISO.split("-");
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+
+        // Envio de formulário para WhatsApp e Google Sheets
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Coletar os dados preenchidos
+            const form = this;
+            const formData = new FormData(form);
+
+            const nome = document.getElementById("nome").value;
+            const idade = document.getElementById("idade").value;
+            const dataNascISO = document.getElementById("dataNascimento").value;
+
+            const telefones = Array.from(document.querySelectorAll(".telefone"))
+                .map((input, index) => `(${index + 1}) ${input.value}`)
+                .join(" / ");
+
+            const convenio = document.getElementById("convenio").value;
+            const dataConsultaISO = document.querySelectorAll("input[type='date']")[1].value;
+            const ultimaMenstruacaoISO = document.querySelectorAll("input[type='date']")[2].value;
+
+            const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
+            const gravidezes = gravidaSim ? `Grávida: Sim (%0A- Gravidezes: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})` : "Grávida: Não";
+
+            const cirurgia = document.querySelectorAll("textarea")[0].value;
+            const alergias = document.querySelectorAll("textarea")[1].value;
+            const medicacao = document.querySelectorAll("textarea")[2].value;
+            const infoAdicional = document.querySelectorAll("textarea")[3].value;
+
+            const dataNasc = formatarDataBrasileira(dataNascISO);
+            const data = formatarDataBrasileira(dataConsultaISO);
+            const ultimaMenstruacao = formatarDataBrasileira(ultimaMenstruacaoISO);
+
+            // Formatar para WhatsApp
+            const texto = `📄 *Informações Pré–Operatórias*%0A
+👤 Nome: ${nome}%0A
+🎂 Data de Nascimento: ${dataNasc}%0A
+📆 Idade: ${idade}%0A
+📞 Telefones: ${telefones}%0A
+🏥 Convênio: ${convenio}%0A
+🗓️ Data da Consulta: ${data}%0A
+🩸 Última menstruação: ${ultimaMenstruacao}%0A
+🤰 ${gravidezes}%0A
+🩺 Cirurgias anteriores: ${cirurgia}%0A
+⚠️ Alergias: ${alergias}%0A
+💊 Medicações: ${medicacao}%0A
+📝 Informações adicionais: ${infoAdicional}`
+
+            // Número de destino
+            const numeroWhatsApp = "5521971765131";
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
+
+            // Abrir o WhatsApp
+            window.open(urlWhatsApp, '_blank');
+
+            // Enviar para o Google Sheets
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Formulário enviado com sucesso!");
+                        form.reset();
+                        document.getElementById("idade").value = "";
+                        divGravidezInfo.style.display = "none";
+                    } else {
+                        alert("Erro ao enviar dados para o Google Sheets");
+                    }
+                })
+                .catch(error => {
+                    alert("Erro de conexão com o Google Sheets");
+                });
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
