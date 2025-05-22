@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario de Contato</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <form
-        method="post"
-        action="https://script.google.com/macros/s/AKfycbz5q0IFiGlB9pCK1Bh79mTTjp9iuFA9nhVYV81Av5JS_4wQVLifc7FwQ3Sbp24jzaPR/exec"
-        name="contact-form"
-        id="contact-form"
-      >
-        <h4>Formulário</h4>
-        <input type="text" id="nome" name="Nome" placeholder="Nome" required />
-        <input
-          type="email"
-          id="email"
-          name="Email"
-          placeholder="Email"
-          required
-        />
 
-        <input
-          type="text"
-          id="pergunta1"
-          name="1° Pergunta"
-          placeholder="Pergunta 1"
-          required
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Contato</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-        <input
-          type="text"
-          id="pergunta2"
-          name="2° Pergunta"
-          placeholder="Pergunta 2"
-          required
-        />
-        <!--
+<body>
+  <div class="container">
+    <form method="post"
+      action="https://script.google.com/macros/s/AKfycbz5q0IFiGlB9pCK1Bh79mTTjp9iuFA9nhVYV81Av5JS_4wQVLifc7FwQ3Sbp24jzaPR/exec"
+      name="contact-form" id="contact-form">
+      <h4>Formulário</h4>
+      <input type="text" id="nome" name="Nome" placeholder="Nome" required />
+      <input type="email" id="email" name="Email" placeholder="Email" required />
+
+      <input type="text" id="pergunta1" name="1° Pergunta" placeholder="Pergunta 1" required />
+
+      <input type="text" id="pergunta2" name="2° Pergunta" placeholder="Pergunta 2" required />
+      <!--
         <h3>Opções Teste:</h3>
 
         <div class="checkbox">
@@ -54,148 +35,143 @@
           >
         </div>
 -->
-        <textarea
-          id="mensagem"
-          name="Mensagem"
-          rows="4"
-          placeholder="Mensagem"
-          required
-        ></textarea>
-        <input type="submit" value="Enviar" id="submit" />
-      </form>
-    </div>
+      <textarea id="mensagem" name="Mensagem" rows="4" placeholder="Mensagem" required></textarea>
+      <input type="submit" value="Enviar" id="submit" />
+    </form>
+  </div>
 
-    <div>
-      <h2></h2>
-    </div>
+  <div>
+    <h2></h2>
+  </div>
 
-    <script>
-      // validar campos vazios
-      function validarCampos() {
-        let camposValidos = true
+  <script>
+    // validar campos vazios
+    function validarCampos() {
+      let camposValidos = true
 
-        // Validando cada campo
-        let nome = document.getElementById('nome')
-        let email = document.getElementById('email')
-        let mensagem = document.getElementById('mensagem')
-        let pergunta1 = document.getElementById('pergunta1')
-        let pergunta2 = document.getElementById('pergunta2')
+      // Validando cada campo
+      let nome = document.getElementById('nome')
+      let email = document.getElementById('email')
+      let mensagem = document.getElementById('mensagem')
+      let pergunta1 = document.getElementById('pergunta1')
+      let pergunta2 = document.getElementById('pergunta2')
+      /*
+            let opcoes = document.querySelectorAll('input[name="Opção Teste"]')
+
+            let opcaoSelecionada = ''
+
+            for (var i = 0; i < opcoes.length; i++) {
+              if (opcoes[i].checked) {
+                opcaoSelecionada = opcoes[i].nextElementSibling.innerText
+                break
+              }
+            }
+
+            if (!opcaoSelecionada) {
+              //alert('Por favor, selecione uma opção.')
+              camposValidos = false
+            }
+    */
+      // Verificar se os campos estão vazios
+      if (!nome.value.trim()) {
+        nome.classList.add('input-erro')
+        camposValidos = false
+      } else {
+        nome.classList.remove('input-erro')
+      }
+
+      if (!email.value.trim()) {
+        email.classList.add('input-erro')
+        camposValidos = false
+      } else {
+        email.classList.remove('input-erro')
+      }
+
+      if (!mensagem.value.trim()) {
+        mensagem.classList.add('input-erro')
+        camposValidos = false
+      } else {
+        mensagem.classList.remove('input-erro')
+      }
+
+      if (!pergunta1.value.trim()) {
+        pergunta1.classList.add('input-erro')
+        camposValidos = false
+      } else {
+        pergunta1.classList.remove('input-erro')
+      }
+
+      if (!pergunta2.value.trim()) {
+        pergunta2.classList.add('input-erro')
+        camposValidos = false
+      } else {
+        pergunta2.classList.remove('input-erro')
+      }
+
+      return camposValidos
+    }
+
+    // Envio do formulario
+    document
+      .getElementById('contact-form')
+      .addEventListener('submit', function (e) {
+        e.preventDefault()
+
+        // Validar campos
+        if (!validarCampos()) {
+          alert('Por favor, preencha todos os campos corretamente.')
+          return
+        }
+
+        // Pegar os valores dos campos
+        var nome = document.getElementById('nome').value
+        var email = document.getElementById('email').value
+        var mensagem = document.getElementById('mensagem').value
+        var pergunta1 = document.getElementById('pergunta1').value
+        var pergunta2 = document.getElementById('pergunta2').value
         /*
-              let opcoes = document.querySelectorAll('input[name="Opção Teste"]')
-
-              let opcaoSelecionada = ''
+              var opcoes = document.getElementsByName('Opção Teste')
+              var opcaoSelecionada = ''
 
               for (var i = 0; i < opcoes.length; i++) {
                 if (opcoes[i].checked) {
-                  opcaoSelecionada = opcoes[i].nextElementSibling.innerText
+                  opcaoSelecionada = opcoes[i].nextElementSibling.innerText // Pega o texto da opção
                   break
                 }
               }
+    */
+        // formatação da mensagem para WhatsApp
+        var texto = `Nome: ${nome}%0AEmail: ${email}%0APergunta 1: ${pergunta1}%0APergunta 2: ${pergunta2}%0AMensagem: ${mensagem}`
 
-              if (!opcaoSelecionada) {
-                //alert('Por favor, selecione uma opção.')
-                camposValidos = false
-              }
-      */
-        // Verificar se os campos estão vazios
-        if (!nome.value.trim()) {
-          nome.classList.add('input-erro')
-          camposValidos = false
-        } else {
-          nome.classList.remove('input-erro')
-        }
+        var numeroWhatsApp = '5521971765131'
 
-        if (!email.value.trim()) {
-          email.classList.add('input-erro')
-          camposValidos = false
-        } else {
-          email.classList.remove('input-erro')
-        }
+        var urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`
 
-        if (!mensagem.value.trim()) {
-          mensagem.classList.add('input-erro')
-          camposValidos = false
-        } else {
-          mensagem.classList.remove('input-erro')
-        }
+        window.open(urlWhatsApp, '_blank')
 
-        if (!pergunta1.value.trim()) {
-          pergunta1.classList.add('input-erro')
-          camposValidos = false
-        } else {
-          pergunta1.classList.remove('input-erro')
-        }
-
-        if (!pergunta2.value.trim()) {
-          pergunta2.classList.add('input-erro')
-          camposValidos = false
-        } else {
-          pergunta2.classList.remove('input-erro')
-        }
-
-        return camposValidos
-      }
-
-      // Envio do formulario
-      document
-        .getElementById('contact-form')
-        .addEventListener('submit', function (e) {
-          e.preventDefault()
-
-          // Validar campos
-          if (!validarCampos()) {
-            alert('Por favor, preencha todos os campos corretamente.')
-            return
-          }
-
-          // Pegar os valores dos campos
-          var nome = document.getElementById('nome').value
-          var email = document.getElementById('email').value
-          var mensagem = document.getElementById('mensagem').value
-          var pergunta1 = document.getElementById('pergunta1').value
-          var pergunta2 = document.getElementById('pergunta2').value
-          /*
-                var opcoes = document.getElementsByName('Opção Teste')
-                var opcaoSelecionada = ''
-
-                for (var i = 0; i < opcoes.length; i++) {
-                  if (opcoes[i].checked) {
-                    opcaoSelecionada = opcoes[i].nextElementSibling.innerText // Pega o texto da opção
-                    break
-                  }
-                }
-      */
-          // formatação da mensagem para WhatsApp
-          var texto = `Nome: ${nome}%0AEmail: ${email}%0APergunta 1: ${pergunta1}%0APergunta 2: ${pergunta2}%0AMensagem: ${mensagem}`
-
-          var numeroWhatsApp = '5521971765131'
-
-          var urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`
-
-          window.open(urlWhatsApp, '_blank')
-
-          // Envio para o Google Sheets
-          var form = document.getElementById('contact-form')
-          var formData = new FormData(form)
-          fetch(form.action, {
-            method: 'POST',
-            body: formData
-          })
-            .then(response => {
-              if (response.ok) {
-                setTimeout(function () {
-                  window.location.href = 'https://www.google.com/'
-                })
-
-                //form.reset()
-              } else {
-                alert('Erro ao enviar dados para o Google Sheets')
-              }
-            })
-            .catch(error => {
-              alert('Erro de conexão com o Google Sheets')
-            })
+        // Envio para o Google Sheets
+        var form = document.getElementById('contact-form')
+        var formData = new FormData(form)
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
         })
-    </script>
-  </body>
+          .then(response => {
+            if (response.ok) {
+              setTimeout(function () {
+                window.location.href = 'https://www.google.com/'
+              })
+
+              //form.reset()
+            } else {
+              alert('Erro ao enviar dados para o Google Sheets')
+            }
+          })
+          .catch(error => {
+            alert('Erro de conexão com o Google Sheets')
+          })
+      })
+  </script>
+</body>
+
 </html>
