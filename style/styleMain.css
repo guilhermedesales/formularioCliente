@@ -28,12 +28,11 @@ body {
 
 .container {
     max-width: 900px;
-
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     margin: auto;
     padding: 30px;
     border-radius: 10px;
-    height: 75vh;
+    height: 85vh;
     box-shadow: 0 0 10px #ccc;
 
 }
@@ -52,7 +51,11 @@ body {
     background-color: rgb(238, 166, 245);
 }
 
-.histero, .laparo {
+.anestesia{
+    background-color: #00695c;
+}
+
+.histero, .laparo, .anestesia {
     padding: 20px;
     border-radius: 20px;
     margin-top: 20px;
@@ -64,12 +67,12 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.histero:hover, .laparo:hover {
+.histero:hover, .laparo:hover, .anestesia:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
 }
 
-.histero span, .laparo span {
+.histero span, .laparo span, .anestesia span {
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -77,7 +80,7 @@ body {
     margin-bottom: 15px;
 }
 
-.histero img, .laparo img {
+.histero img, .laparo img, .anestesia img {
     max-width: 30%;
     height: auto;
     display: block;
@@ -85,7 +88,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.histero:hover img, .laparo:hover img {
+.histero:hover img, .laparo:hover img, .anestesia:hover img {
     transform: scale(1.1);
 }
 

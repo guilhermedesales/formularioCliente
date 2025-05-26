@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informações Pré-Operatórias</title>
+    <link rel="stylesheet" href="style/styleAnestesia.css" />
+    <script src="https://unpkg.com/imask"></script>
+    <link rel="icon" href="img/logo_medico.png" type="image/png">
+
+
+</head>
+
+<body>
+
+    <div class="icone-flutuante"><img src="img/logo_medico.png" class="icone-img" alt=""></div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <div class="container">
+        <div class="form-title">
+            <h2>📄 Questionário de Avaliação</h2>
+            <h4>Pré-Anestésica</h4>
+        </div>
+
+        <form method="post"
+            action="https://script.google.com/macros/s/AKfycbw_f1GkMDDX1-rrgELI61GzJG6ScxImMl506pGkPZaHRHTVJ8bVuQ0C6rYpe3tk1udX/exec"
+            name="contact-form" id="contact-form">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="nome" name="Nome" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Data da Procedimento:</label>
+                    <input type="date" name="data" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Você sabe que precisa fazer um jejum obrigatório de 8h, não podendo ingerir nem mesmo
+                        água?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="jejum" value="Sim" required> Sim</label>
+                        <label><input type="radio" name="jejum" value="Não"> Não</label>
+                    </div>
+                    <br>
+                    <div class="obs">
+                        <p><strong>OBS:</strong> Em condições clínicas especiais, o jejum poderá ser de um tempo menor, desde que isto
+                            seja previamentedefinido com seu médico anestesiologista.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <h3 class="section-title">💙 Informações Médicas</h3>
+            <br>
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+                    <label>Já foi submetida à alguma cirurgia? (se sim, quais?)</label>
+                    <textarea rows="2" name="Cirurgias" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label>Você teve algum tipo de complicação em cirurgias e/ou anestesia? (se sim, quais?)</label>
+                    <textarea rows="2" name="Alergias" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Você tem ou teve pressão alta (hipertensão arterial)?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="pressao" value="Sim" required> Sim</label>
+                        <label><input type="radio" name="pressao" value="Não"> Não</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Você tem diabetes?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="diabete" value="Sim" required> Sim</label>
+                        <label><input type="radio" name="diabete" value="Não"> Não</label>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Você tem algum problema cardíaco ou respiratório? (se sim, quais?)</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Você faz tratamento ou acompanhamento de algum outro problema de saúde (se sim,
+                        quais?)</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Você tem alergia a algum medicamento, substância, alimento, balões de aniversário ou luvas de
+                        látex (se sim,
+                        quais?)</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Você está fazendo uso de algum medicamento neste momento (se sim,
+                        quais?)</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Você fez os exames pré-operatórios e o risco cirúrgico?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="exames" value="Sim" required> Sim</label>
+                        <label><input type="radio" name="exames" value="Não"> Não</label>
+                    </div>
+                    <br>
+                    <div class="obs">
+                        <p><strong>OBS:</strong> Não se esqueça de levá-los.</p>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Você possui peças dentárias móveis (se sim,
+                        quais?)</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+            </div>
+
+            <hr />
+
+            <h3 class="section-title">ℹ️ Informações Adicionais</h3>
+            <div class="form-group full-width">
+                <label>Você tem alguma dúvida em relação ao procedimento cirúrgico ou à anestesia?</label>
+                <textarea rows="3" name="informacao_adicional"></textarea>
+            </div>
+
+            <input type="submit" value="Enviar" id="submit" />
+
+        </form>
+    </div>
+
+    <script src="scripts/utils.js" defer></script>
+    <!--<script src="scripts/form-handler.js" defer></script>-->
+
+</body>
+
+</html>
