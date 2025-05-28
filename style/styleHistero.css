@@ -233,9 +233,8 @@ textarea {
   display: flex;
   flex-direction: column;
   flex: 1 1 150px;
-  /* permite encolher até 150px */
   min-width: 0;
-  /* evita largura mínima desnecessária */
+  max-width: 35%;
 }
 
 .medicamento-detalhes label,
