@@ -217,14 +217,14 @@ textarea {
 .altura-peso-group {
     display: flex;
     gap: 20px;
+    width: 80%;
 }
 
 .input-item {
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 150px;
-    max-width: 180px;
+    width: 10px;
 }
 
 .medicamento-detalhes label,
