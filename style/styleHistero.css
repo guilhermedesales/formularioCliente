@@ -213,3 +213,30 @@ textarea {
 #submit:hover {
   background: #1ebe5d;
 }
+
+.altura-peso-group {
+    display: flex;
+    gap: 20px;
+}
+
+.input-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.medicamento-detalhes label,
+.medicamento-detalhes input {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.alergia-detalhes{
+
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+}

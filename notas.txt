@@ -1,0 +1,8 @@
+Mudanças a serem feitas: (28/05/2025)
+
+- Data de procedimento -> Data (data do preenchimento)
+- Parte de alergias colocar sim ou não (igual no campo gravida)
+- Parte portadora de alergias, acrescentar medicamentos e/ou látex
+- Acrescentar peso e altura após data da  ultima menstruação
+- mudar palavra GRAVIDEZES para NÚMERO DE GESTAÇÕES
+- mudar titulo para QUESTIONÁRIO PRÉ OPERATÓRIO
