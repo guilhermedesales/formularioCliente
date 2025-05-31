@@ -25,8 +25,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         : "Grávida: Não";
 
     const cirurgia = document.querySelectorAll("textarea")[0].value;
-    const medicacao = document.querySelectorAll("textarea")[2].value;
-    const infoAdicional = document.querySelectorAll("textarea")[3].value;
+    const medicacao = document.querySelectorAll("textarea")[1].value;
+    const infoAdicional = document.querySelectorAll("textarea")[2].value;
 
     // alergias
     const temAlergia = document.querySelector('input[name="alergia-medicamento"]:checked')?.value === "sim";

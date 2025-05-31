@@ -14,19 +14,23 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const convenio = document.getElementById("convenio").value;
     const medico = document.getElementById("medico").value;
-    const dataConsultaISO = document.querySelectorAll("input[type='date']")[1].value;
-    const ultimaMenstruacaoISO = document.querySelectorAll("input[type='date']")[2].value;
+    //const dataConsultaISO = document.querySelectorAll("input[type='date']")[1].value;
+    const ultimaMenstruacaoISO = document.querySelectorAll("input[type='date']")[1].value;
+
+    const peso = document.getElementById("peso").value;
+    const altura = document.getElementById("altura").value;
+    console.log("Altura:", altura, "Peso:", peso);
 
     const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
-    const gravidezes = gravidaSim ? `Grávida: Sim (%0A- Gravidezes: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})` : "Grávida: Não";
+    const gravidezes = gravidaSim ? `Grávida: Sim (%0A- Número de Gestações: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})` : "Grávida: Não";
 
     const cirurgia = document.querySelectorAll("textarea")[0].value;
-    const alergias = document.querySelectorAll("textarea")[1].value;
-    const medicacao = document.querySelectorAll("textarea")[2].value;
-    const infoAdicional = document.querySelectorAll("textarea")[3].value;
+    //const alergias = document.querySelectorAll("textarea")[1].value;
+    const medicacao = document.querySelectorAll("textarea")[1].value;
+    const infoAdicional = document.querySelectorAll("textarea")[2].value;
 
     const dataNasc = formatarDataBrasileira(dataNascISO);
-    const data = formatarDataBrasileira(dataConsultaISO);
+    //const data = formatarDataBrasileira(dataConsultaISO);
     const ultimaMenstruacao = formatarDataBrasileira(ultimaMenstruacaoISO);
 
     const texto = `📄 *Informações Pré–Operatórias Laparoscopia*%0A
@@ -36,11 +40,12 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 📞 Telefones: ${telefones}%0A
 🏥 Convênio: ${convenio}%0A
 👨‍⚕️ Médico Solicitante: ${medico}%0A
-🗓️ Data da Consulta: ${data}%0A
+📏 Altura: ${altura} cm%0A
+⚖️ Peso: ${peso} kg%0A
 🩸 Última menstruação: ${ultimaMenstruacao}%0A
 🤰 ${gravidezes}%0A
 🩺 Cirurgias anteriores: ${cirurgia}%0A
-⚠️ Alergias: ${alergias}%0A
+
 💊 Medicações: ${medicacao}%0A
 📝 Informações adicionais: ${infoAdicional}`;
 

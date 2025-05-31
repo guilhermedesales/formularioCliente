@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Informações Pré-Operatórias</title>
-    <link rel="stylesheet" href="style/styleLaparo.css" />
+    <title>Questionário Pré-Operatório</title>
+    <link rel="stylesheet" href="style/styleHistero.css" />
     <script src="https://unpkg.com/imask"></script>
     <link rel="icon" href="img/logo_medico.png" type="image/png">
 
@@ -23,16 +23,16 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
+    <!--
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
+-->
     <div class="container">
         <div class="form-title">
-            <h2>📄 Informações Pré–Operatórias</h2>
-            <h4>Laparoscopia</h4>
+            <h3>📄 ENDOSCOPIA GINECOLÓGICA</h3>
+            <h5>INFORMAÇÕES PRÉ-OPERATÓRIAS</h5>
         </div>
 
         <form method="post"
@@ -76,11 +76,11 @@
                     <label>Médico Solicitante do Procedimento:</label>
                     <input type="text" name="médico" id="medico" required />
                 </div>
-
+                <!--
                 <div class="form-group">
                     <label>Data da Procedimento:</label>
                     <input type="date" name="data" required />
-                </div>
+                </div>-->
             </div>
 
             <hr />
@@ -91,6 +91,15 @@
                 <div class="form-group">
                     <label>Data da última menstruação:</label>
                     <input type="date" name="Última Menstruação" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="altura">Altura:</label>
+                    <input type="text" name="altura" id="altura" placeholder="_.__m" required />
+                </div>
+                <div class="form-group">
+                    <label for="peso">Peso:</label>
+                    <input type="text" name="peso" id="peso" placeholder="__._kg" required />
                 </div>
 
                 <div class="form-group">
@@ -120,10 +129,31 @@
                     <label>Já foi submetida à alguma cirurgia?</label>
                     <textarea rows="2" name="Cirurgias" required></textarea>
                 </div>
+
+
                 <div class="form-group full-width">
-                    <label>Portadora de alergias?</label>
-                    <textarea rows="2" name="Alergias" required></textarea>
+                    <label>Portadora de alergias medicamentosas e/ou látex?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="alergia-medicamento" value="sim"> Sim</label>
+                        <label><input type="radio" name="alergia-medicamento" value="nao"> Não</label>
+                    </div>
+                    <br>
+                    <div class="alergia-detalhes" id="medicamento-info">
+                        <div class="medicamento-detalhes">
+                            <label>Quais medicamentos?</label>
+                            <input type="text" placeholder="Ex: Dipirona, Amoxicilina..." name="quais-medicamentos">
+
+                        </div>
+                        <br>
+                        <label>Alergia a látex?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="alergia-latex" value="sim"> Sim</label>
+                            <label><input type="radio" name="alergia-latex" value="nao"> Não</label>
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="form-group full-width">
                     <label>Faz uso de alguma medicação?</label>
                     <textarea rows="2" name="Medicação" required></textarea>
@@ -148,6 +178,8 @@
     <script src="scripts/mascara-telefone.js" defer></script>
     <script src="scripts/gravidez-info.js" defer></script>
     <script src="scripts/form-handler-laparo.js" defer></script>
+    <script src="scripts/alergia-info.js" defer></script>
+    <script src="scripts/mascara-peso-altura.js" defer></script>
 
 </body>
 
