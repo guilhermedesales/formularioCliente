@@ -18,6 +18,6 @@
     }
 
     const msg = `Tenho uma dúvida referente a: ${selectedFields || 'Outro'}.\n\n${question}`;
-    const url = `https://wa.me/55SEUNUMEROAQUI?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/5521971765131?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   });
