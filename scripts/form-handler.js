@@ -25,8 +25,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         : "Grávida: Não";
 
    const cirurgia = document.getElementById("cirurgias").value;
-    const medicacao = document.querySelectorAll("textarea")[0].value;
-    const infoAdicional = document.querySelectorAll("textarea")[1].value;
+    const medicacao = document.getElementById("medicacao").value;
+    const infoAdicional = document.getElementById("informacao_adicional").value;
     console.log("CIRURGIAS:", cirurgia);
 
     // alergias
@@ -41,7 +41,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const dataNasc = formatarDataBrasileira(dataNascISO);
     const ultimaMenstruacao = formatarDataBrasileira(ultimaMenstruacaoISO);
 
-    const texto = `📄 *Informações Pré–Operatórias*%0A
+    const texto = `📄 *Informações Pré–Operatórias*%0A%0A
 👤 Nome: ${nome}%0A
 🎂 Data de Nascimento: ${dataNasc}%0A
 📆 Idade: ${idade}%0A
