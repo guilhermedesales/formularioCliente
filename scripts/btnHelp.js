@@ -6,18 +6,20 @@
     helpBox.style.display = helpBox.style.display === "none" ? "block" : "none";
   });
 
-  sendBtn.addEventListener("click", () => {
-    const selectedFields = Array.from(document.querySelectorAll("input[name='field']:checked"))
-      .map(cb => cb.value)
-      .join(", ");
+ sendBtn.addEventListener("click", () => {
+  const selectedFields = Array.from(document.querySelectorAll("input[name='field']:checked"))
+    .map(cb => cb.value);
 
-    const question = document.getElementById("questionText").value.trim();
-    if (!question) {
-      alert("Digite sua dúvida antes de enviar.");
-      return;
-    }
+  const question = document.getElementById("questionText").value.trim();
+  if (!question) {
+    alert("Digite sua dúvida antes de enviar.");
+    return;
+  }
 
-    const msg = `Tenho uma dúvida referente a: ${selectedFields || 'Outro'}.\n\n${question}`;
-    const url = `https://wa.me/5521971765131?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-  });
+  const message = `Olá! Tenho uma dúvida referente a:\n- ${selectedFields.join(';\n- ')};\n\n${question}`;
+  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = '5521971765131';
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  window.open(whatsappURL, '_blank');
+});
