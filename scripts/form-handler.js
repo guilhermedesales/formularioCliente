@@ -24,9 +24,10 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         ? `Grávida: Sim (%0A- Número de Gestações: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})`
         : "Grávida: Não";
 
-    const cirurgia = document.querySelectorAll("textarea")[0].value;
-    const medicacao = document.querySelectorAll("textarea")[1].value;
-    const infoAdicional = document.querySelectorAll("textarea")[2].value;
+   const cirurgia = document.getElementById("cirurgias").value;
+    const medicacao = document.querySelectorAll("textarea")[0].value;
+    const infoAdicional = document.querySelectorAll("textarea")[1].value;
+    console.log("CIRURGIAS:", cirurgia);
 
     // alergias
     const temAlergia = document.querySelector('input[name="alergia-medicamento"]:checked')?.value === "sim";
@@ -48,7 +49,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 🏥 Convênio: ${convenio}%0A
 👨‍⚕️ Médico Solicitante: ${medico}%0A
 🩸 Última menstruação: ${ultimaMenstruacao}%0A
-⚖️ Peso: ${peso} kg%0A📏 Altura: ${altura} cm%0A
+⚖️ Peso: ${peso} %0A📏 Altura: ${altura} %0A
 🤰 ${gravidezes}%0A
 🩺 Cirurgias anteriores: ${cirurgia}%0A
 ⚠️ ${textoAlergia}%0A
