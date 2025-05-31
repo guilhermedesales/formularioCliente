@@ -22,7 +22,7 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-<!--
+    <!--
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
@@ -98,91 +98,81 @@
                 </div>
 
 
-            <div class="form-group">
-                <label>Já esteve grávida?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="gravida" required /> Sim</label>
-                    <label><input type="radio" name="gravida" required /> Não</label>
+                <div class="form-group">
+                    <label>Já esteve grávida?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gravida" required /> Sim</label>
+                        <label><input type="radio" name="gravida" required /> Não</label>
+                    </div>
                 </div>
-            </div>
 
-            <div id="gravidez-info" style="display: none;" class="form-group full-width">
-                <label>QUANTAS VEZES?</label>
-                <input type="number" id="qtd-gravidez" min="1" name="N° Gestações" value="1" />
+                <div id="gravidez-info" style="display: none;" class="form-group full-width">
+                    <label>QUANTAS VEZES?</label>
+                    <input type="number" id="qtd-gravidez" min="1" name="N° Gestações" value="1" />
 
-                <div class="radio-group grouped-radios">
-                    <label>Parto Normal? <input type="number" id="parto-normal" value="0" min="0" placeholder="0"
-                            name="Parto Normal" /></label>
-                    <label>Cesariana? <input type="number" id="cesariana" value="0" min="0" placeholder="0"
-                            name="Cesárea" /></label>
-                    <label>Aborto? <input type="number" id="aborto" value="0" min="0" placeholder="0"
-                            name="Aborto" /></label>
+                    <div class="radio-group grouped-radios">
+                        <label>Parto Normal? <input type="number" id="parto-normal" value="0" min="0" placeholder="0"
+                                name="Parto Normal" /></label>
+                        <label>Cesariana? <input type="number" id="cesariana" value="0" min="0" placeholder="0"
+                                name="Cesárea" /></label>
+                        <label>Aborto? <input type="number" id="aborto" value="0" min="0" placeholder="0"
+                                name="Aborto" /></label>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="form-group full-width">
-                <label>Já foi submetida à alguma cirurgia?</label>
-                <textarea rows="2" name="Cirurgias" required></textarea>
-            </div>
-
-            <div class="form-group full-width">
-                <label>Portadora de alergias medicamentosas e/ou látex?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="alergia-medicamento" value="sim"> Sim</label>
-                    <label><input type="radio" name="alergia-medicamento" value="nao"> Não</label>
+                <div class="form-group full-width">
+                    <label>Já foi submetida à alguma cirurgia?</label>
+                    <textarea rows="2" name="Cirurgias" required></textarea>
                 </div>
-                <br>
-                <div class="alergia-detalhes" id="medicamento-info">
-                    <div class="medicamento-detalhes">
-                        <label>Quais medicamentos?</label>
-                        <input type="text" placeholder="Ex: Dipirona, Amoxicilina..." name="quais-medicamentos">
 
+                <div class="form-group full-width">
+                    <label>Portadora de alergias medicamentosas e/ou látex?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="alergia-medicamento" value="sim"> Sim</label>
+                        <label><input type="radio" name="alergia-medicamento" value="nao"> Não</label>
                     </div>
                     <br>
-                    <label>Alergia a látex?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="alergia-latex" value="sim"> Sim</label>
-                        <label><input type="radio" name="alergia-latex" value="nao"> Não</label>
+                    <div class="alergia-detalhes" id="medicamento-info">
+                        <div class="medicamento-detalhes">
+                            <label>Quais medicamentos?</label>
+                            <input type="text" placeholder="Ex: Dipirona, Amoxicilina..." name="quais-medicamentos">
+
+                        </div>
+                        <br>
+                        <label>Alergia a látex?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="alergia-latex" value="sim"> Sim</label>
+                            <label><input type="radio" name="alergia-latex" value="nao"> Não</label>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="form-group full-width">
+                    <label>Faz uso de alguma medicação?</label>
+                    <textarea rows="2" name="Medicação" required></textarea>
+                </div>
+
             </div>
+            <hr />
 
-
+            <h3 class="section-title">ℹ️ Informações Adicionais</h3>
             <div class="form-group full-width">
-                <label>Faz uso de alguma medicação?</label>
-                <textarea rows="2" name="Medicação" required></textarea>
+                <label>Deseja acrescentar alguma informação que julgue importante?</label>
+                <textarea rows="3" name="informacao_adicional"></textarea>
             </div>
 
+            <input type="submit" value="Enviar" id="submit" />
+
+        </form>
     </div>
-    <hr />
-
-    <h3 class="section-title">ℹ️ Informações Adicionais</h3>
-    <div class="form-group full-width">
-        <label>Deseja acrescentar alguma informação que julgue importante?</label>
-        <textarea rows="3" name="informacao_adicional"></textarea>
-    </div>
-
-    <input type="submit" value="Enviar" id="submit" disabled />
-
-    </form>
-    </div>
-
-    <script>
-        const form = document.getElementById('contact-form');
-
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();  // sempre cancela o envio
-
-            alert('Envio desabilitado por enquanto.');
-        });
-    </script>
 
     <script src="scripts/utils.js" defer></script>
     <script src="scripts/idade-calculo.js" defer></script>
     <script src="scripts/mascara-telefone.js" defer></script>
     <script src="scripts/gravidez-info.js" defer></script>
-    <!--<script src="scripts/form-handler.js" defer></script> -->
+    <script src="scripts/form-handler.js" defer></script>
     <script src="scripts/mascara-peso-altura.js" defer></script>
     <script src="scripts/alergia-info.js" defer></script>
 
