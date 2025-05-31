@@ -16,7 +16,7 @@
     return;
   }
 
-  const message = `Olá! Tenho uma dúvida referente a:\n- ${selectedFields.join(';\n- ')};\n\n${question}`;
+  const message = `Olá! Tenho uma dúvida referente a:\n\n- ${selectedFields.join(';\n- ')};\n\n${question}`;
   const encodedMessage = encodeURIComponent(message);
   const phoneNumber = '5521971765131';
 
