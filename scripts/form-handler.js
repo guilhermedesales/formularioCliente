@@ -14,7 +14,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const convenio = document.getElementById("convenio").value;
     const medico = document.getElementById("medico").value;
-    const ultimaMenstruacaoISO = document.querySelectorAll("input[type='date']")[1].value;
+    const ultimaMenstruacaoISO = document.getElementById("dataMenstruacao").value;
 
     const peso = document.getElementById("peso").value;
     const altura = document.getElementById("altura").value;
@@ -24,7 +24,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         ? `Grávida: Sim (%0A- Número de Gestações: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})`
         : "Grávida: Não";
 
-   const cirurgia = document.getElementById("cirurgias").value;
+    const cirurgia = document.getElementById("cirurgias").value;
     const medicacao = document.getElementById("medicacao").value;
     const infoAdicional = document.getElementById("informacao_adicional").value;
     console.log("CIRURGIAS:", cirurgia);
@@ -38,8 +38,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         textoAlergia = `Alergias: Sim (%0A- Medicamentos: ${quaisMedicamentos}%0A- Látex: ${alergiaLatex})`;
     }
 
-    const dataNasc = formatarDataBrasileira(dataNascISO);
-    const ultimaMenstruacao = formatarDataBrasileira(ultimaMenstruacaoISO);
+    const dataNasc = dataNascISO;
+    const ultimaMenstruacao = ultimaMenstruacaoISO;
 
     const texto = `📄 *Informações Pré–Operatórias*%0A%0A
 👤 Nome: ${nome}%0A
@@ -79,6 +79,6 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
             alert("Erro de conexão com o Google Sheets");
         });*/
 
-    
+
 
 });
