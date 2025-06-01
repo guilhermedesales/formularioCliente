@@ -3,7 +3,7 @@ document.getElementById("dataNascimento").addEventListener("change", function ()
   const idadeInput = document.getElementById("idade");
 
   if (input) {
-    // Esperado: dd/mm/yyyy
+
     const partes = input.split('/');
     if (partes.length !== 3) {
       idadeInput.value = "--";
@@ -11,13 +11,12 @@ document.getElementById("dataNascimento").addEventListener("change", function ()
     }
 
     const dia = parseInt(partes[0], 10);
-    const mes = parseInt(partes[1], 10) - 1; // JavaScript usa mês de 0 a 11
+    const mes = parseInt(partes[1], 10) - 1;
     const ano = parseInt(partes[2], 10);
 
     const nascimento = new Date(ano, mes, dia);
     const hoje = new Date();
 
-    // Validação básica
     if (nascimento > hoje || ano < 1900 || isNaN(nascimento.getTime())) {
       idadeInput.value = "--";
       return;
