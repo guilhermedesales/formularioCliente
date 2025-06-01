@@ -24,25 +24,29 @@
     </div>
 
     <!-- Botão flutuante -->
-<button id="helpButton">?</button>
+    <button id="helpButton">?</button>
 
-<!-- Caixa de ajuda -->
-<div id="helpBox">
-  <h4>Sobre qual campo é a dúvida?</h4>
-  <div class="field-options">
-    <label><input type="checkbox" name="field" value="Médico Solicitante"> Médico Solicitante</label><br>
-    <label><input type="checkbox" name="field" value="Convênio"> Convênio</label><br>
-    <label><input type="checkbox" name="field" value="Data da última menstruação"> Data da última menstruação</label><br>
-    <label><input type="checkbox" name="field" value="Histórico de Gravidez"> Já esteve grávida / partos</label><br>
-    <label><input type="checkbox" name="field" value="Cirurgias anteriores"> Cirurgias anteriores</label><br>
-    <label><input type="checkbox" name="field" value="Alergia medicamentosa ou a látex"> Alergia medicamentosa ou a látex</label><br>
-    <label><input type="checkbox" name="field" value="Uso de medicação"> Uso de medicação</label><br>
-    <label><input type="checkbox" name="field" value="Informações adicionais"> Informações adicionais</label><br>
-    <label><input type="checkbox" name="field" value="Outro"> Outro</label><br>
-  </div>
-  <textarea id="questionText" placeholder="Digite sua dúvida aqui..."></textarea>
-  <button id="sendBtn">Enviar pelo WhatsApp</button>
-</div>
+    <!-- Caixa de ajuda -->
+    <div id="helpBox">
+        <h4>Sobre qual campo é a dúvida?</h4>
+        <div class="field-options">
+            <label><input type="checkbox" name="field" value="Médico Solicitante"> Médico Solicitante</label><br>
+            <label><input type="checkbox" name="field" value="Convênio"> Convênio</label><br>
+            <label><input type="checkbox" name="field" value="Data da última menstruação"> Data da última
+                menstruação</label><br>
+            <label><input type="checkbox" name="field" value="Histórico de Gravidez"> Já esteve grávida /
+                partos</label><br>
+            <label><input type="checkbox" name="field" value="Cirurgias anteriores"> Cirurgias anteriores</label><br>
+            <label><input type="checkbox" name="field" value="Alergia medicamentosa ou a látex"> Alergia medicamentosa
+                ou a látex</label><br>
+            <label><input type="checkbox" name="field" value="Uso de medicação"> Uso de medicação</label><br>
+            <label><input type="checkbox" name="field" value="Informações adicionais"> Informações
+                adicionais</label><br>
+            <label><input type="checkbox" name="field" value="Outro"> Outro</label><br>
+        </div>
+        <textarea id="questionText" placeholder="Digite sua dúvida aqui..."></textarea>
+        <button id="sendBtn">Enviar pelo WhatsApp</button>
+    </div>
 
     <!--
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -57,7 +61,7 @@
         </div>
 
         <form method="post"
-            action="https://script.google.com/macros/s/AKfycbw_f1GkMDDX1-rrgELI61GzJG6ScxImMl506pGkPZaHRHTVJ8bVuQ0C6rYpe3tk1udX/exec"
+            action="https://script.google.com/macros/s/AKfycbxqvyaoIJE03Ga5xEHjTF5hjMnrdaWHMApA5kttTlbPUWDw2KkSoyRrv95CKjSHvWzXpQ/exec"
             name="contact-form" id="contact-form">
 
             <div class="form-grid">
@@ -198,7 +202,7 @@
     <script src="scripts/mascara-peso-altura.js" defer></script>
     <script src="scripts/alergia-info.js" defer></script>
     <script src="scripts/btnHelp.js" defer></script>
-
+    <script src="scripts/save-sheets.js" defer></script>
 </body>
 
 </html>
