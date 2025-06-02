@@ -47,7 +47,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 📆 Idade: ${idade}%0A
 📞 Telefones: ${telefones}%0A
 🏥 Convênio: ${convenio}%0A
-👨‍⚕️ Médico Solicitante: ${medico}%0A
+👨‍⚕️ Médico Assistente: ${medico}%0A
 🩸 Última menstruação: ${ultimaMenstruacao}%0A
 ⚖️ Peso: ${peso} %0A📏 Altura: ${altura} %0A
 🤰 ${gravidezes}%0A
