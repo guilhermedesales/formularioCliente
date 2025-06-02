@@ -56,7 +56,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 💊 Medicações: ${medicacao}%0A
 📝 Informações adicionais: ${infoAdicional}`;
 
-    const numeroWhatsApp = "5521971765131";
+    const numeroWhatsApp = "5521995959863";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 
