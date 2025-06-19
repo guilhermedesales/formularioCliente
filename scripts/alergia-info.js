@@ -7,15 +7,15 @@ divMedicamentoInfo.style.display = "none"; // Esconde por padrão
 
 radiosMedicamento.forEach(radio => {
     radio.addEventListener("change", () => {
-        if (radio.checked && radio.value === "Sim") {
+        if (radio.checked && radio.value === "sim") {
             divMedicamentoInfo.style.display = "block";
             inputMedicamentos.value = ""; // limpa campo
             radiosLatex.forEach(r => r.checked = false); // desmarca alergia-latex
-        } else if (radio.checked && radio.value === "Não") {
+        } else if (radio.checked && radio.value === "nao") {
             divMedicamentoInfo.style.display = "none";
             inputMedicamentos.value = ""; // preenche com --
             radiosLatex.forEach(r => {
-                if (r.value === "Não") {
+                if (r.value === "nao") {
                     r.checked = true; // marca Não em alergia-latex
                 } else {
                     r.checked = false;
