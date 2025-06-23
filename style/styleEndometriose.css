@@ -317,3 +317,23 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
 }
 
+#btnInfoImc {
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+#tabelaImc{
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+

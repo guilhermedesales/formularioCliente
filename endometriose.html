@@ -169,8 +169,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="imc">IMC:</label>
+                    <label for="imc">IMC:
+                        <button type="button" id="btnInfoImc" title="Ver tabela de IMC">?</button>
+                    </label>
                     <input type="text" name="imc" id="imc" readonly />
+                </div>
+
+                <!-- Tabela escondida -->
+                <div id="tabelaImc" style="display: none; margin-top: 10px;">
+                    <strong>Tabela de Classificação IMC:</strong>
+                    <ul style="margin-top: 8px; padding-left: 18px;">
+                        <li>Abaixo de 18,5 → Abaixo do peso</li>
+                        <li>18,5 a 24,9 → Peso normal</li>
+                        <li>25,0 a 29,9 → Sobrepeso</li>
+                        <li>30,0 a 34,9 → Obesidade grau I</li>
+                        <li>35,0 a 39,9 → Obesidade grau II</li>
+                        <li>40,0 ou mais → Obesidade grau III</li>
+                    </ul>
                 </div>
 
                 <div class="form-group">
@@ -411,53 +426,11 @@
     <script src="scripts/btnHelp.js" defer></script>
     <script src="scripts/save-sheets.js" defer></script>
     <script src="scripts/mascara-data.js" defer></script>
+    <script src="scripts/buscaCEP.js" defer></script>
+    <script src="scripts/campoOutro.js" defer></script>
+    <script src="scripts/calcIMC.js" defer></script>
+    <script src="scripts/btnTableIMC.js" defer></script>
 
-    <script src="https://unpkg.com/imask"></script>
-    <script>
-        const cepInput = document.getElementById('cep');
-        let lastCep = ''; // controle para não repetir chamadas
-
-        // Aplica a máscara
-        const cepMask = IMask(cepInput, {
-            mask: '00000-000'
-        });
-
-        cepInput.addEventListener('input', () => {
-            const cep = cepInput.value.replace(/\D/g, '');
-
-            // Só busca se mudou e tem 8 dígitos
-            if (cep.length === 8 && cep !== lastCep) {
-                lastCep = cep; // registra último CEP válido
-
-                fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (!data.erro) {
-                            document.getElementById('bairro').value = data.bairro || '';
-                            document.getElementById('cidade').value = data.localidade || '';
-                            document.getElementById('estado').value = data.uf || '';
-                        } else {
-                            alert('CEP não encontrado.');
-                            cepInput.value = '';
-                            lastCep = ''; // limpa o controle para tentar de novo se corrigir
-                        }
-                    })
-                    .catch(() => {
-                        alert('Erro ao buscar o CEP.');
-                        lastCep = ''; // libera para tentar novamente
-                    });
-            }
-        });
-    </script>
-
-    <script>
-        const checkboxOutra = document.getElementById('autoimune-outra');
-        const campoOutra = document.getElementById('campo-outra-autoimune');
-
-        checkboxOutra.addEventListener('change', () => {
-            campoOutra.style.display = checkboxOutra.checked ? 'block' : 'none';
-        });
-    </script>
 </body>
 
 </html>
