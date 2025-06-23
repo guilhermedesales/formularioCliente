@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pré-Consulta Endometriose</title>
+    <link rel="stylesheet" href="style/styleEndometriose.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>📋 Formulário Pré-Consulta - Endometriose</h2>
+
+        <form method="post" action="URL_DO_GOOGLE_APPS_SCRIPT" name="endometriose-form">
+
+            <h3>Identificação</h3>
+            <label>Nome: <input type="text" name="Nome" required /></label>
+            <label>Nome Social: <input type="text" name="Nome social" /></label>
+            <label>Data de nascimento: <input type="text" name="Data nascimento" placeholder="dd/mm/aaaa"
+                    required /></label>
+            <label>Idade: <input type="number" name="Idade" readonly /></label>
+            <label>Cor: <input type="text" name="Cor" /></label>
+            <label>Estado Civil: <input type="text" name="Estado civil" /></label>
+            <label>Profissão: <input type="text" name="Profissão" /></label>
+            <label>Endereço: <input type="text" name="Endereço" /></label>
+            <label>CEP: <input type="text" name="CEP" /></label>
+            <label>Telefone Fixo: <input type="tel" name="Telefone Fixo" /></label>
+            <label>Celular: <input type="tel" name="Celular" required /></label>
+            <label>E-mail: <input type="email" name="Email" /></label>
+            <label>Rede Social: <input type="text" name="Rede Social" /></label>
+
+            <hr />
+            <h3>Anamnese</h3>
+            <label>Altura: <input type="text" name="Altura" placeholder="_.__m" /></label>
+            <label>Peso: <input type="text" name="Peso" placeholder="__._kg" /></label>
+            <label>IMC: <input type="text" name="IMC" /></label>
+
+            <label>Primeira menstruação (idade): <input type="number" name="Primeira menstruação" /></label>
+            <label>Primeira relação sexual (idade): <input type="number" name="Primeira relação sexual" /></label>
+
+            <label>Já esteve grávida?
+                <input type="radio" name="Gravidez" value="Sim" /> Sim
+                <input type="radio" name="Gravidez" value="Não" /> Não
+            </label>
+            <label>Quantas vezes engravidou? <input type="number" name="N° Gestações" /></label>
+            <label>Partos normais? <input type="number" name="Parto Normal" /></label>
+            <label>Cesarianas? <input type="number" name="Cesárea" /></label>
+            <label>Abortos? <input type="number" name="Aborto" /></label>
+            <label>Ligadura tubária?
+                <input type="checkbox" name="Ligadura" value="Sim" />
+            </label>
+            <label>Complicações? <textarea name="Complicações gestacionais"></textarea></label>
+
+            <hr />
+            <h3>Histórico Médico</h3>
+
+            <label>Já fez cirurgia? <textarea name="Cirurgias anteriores"></textarea></label>
+
+            <fieldset>
+                <legend>Doenças pré-existentes:</legend>
+                <label><input type="checkbox" name="Doenças[]" value="Pressão alta" /> Pressão alta</label>
+                <label><input type="checkbox" name="Doenças[]" value="Diabetes" /> Diabetes</label>
+                <label><input type="checkbox" name="Doenças[]" value="IST" /> IST: <input type="text"
+                        name="IST Qual" /></label>
+                <label><input type="checkbox" name="Doenças[]" value="Respiratória" /> Respiratória: <input type="text"
+                        name="Respiratória Qual" /></label>
+                <label><input type="checkbox" name="Doenças[]" value="Tireoidismo" /> Tireoidismo:
+                    <select name="Tipo Tireoidismo">
+                        <option value="Hiper">Hiper</option>
+                        <option value="Hipo">Hipo</option>
+                    </select>
+                </label>
+                <label><input type="checkbox" name="Doenças[]" value="Cardíaca" /> Cardíaca: <input type="text"
+                        name="Cardíaca Qual" /></label>
+                <label><input type="checkbox" name="Doenças[]" value="Psiquiátrica" /> Psiquiátrica: <input type="text"
+                        name="Psiquiátrica Qual" /></label>
+                <label><input type="checkbox" name="Doenças[]" value="Câncer" /> Câncer: <input type="text"
+                        name="Tipo Câncer" /></label>
+                <label><input type="checkbox" name="Doenças[]" value="Colesterol Alto" /> Colesterol Alto</label>
+                <label><input type="checkbox" name="Doenças[]" value="Autoimune" /> Doença Autoimune: <input type="text"
+                        name="Autoimune Qual" /></label>
+            </fieldset>
+
+            <label>Alergia Medicamentosa? <input type="text" name="Alergia Medicamentosa" /></label>
+            <label>Alergia a látex? <input type="radio" name="Alergia Látex" value="Sim" /> Sim <input type="radio"
+                    name="Alergia Látex" value="Não" /> Não</label>
+            <label>Intolerância alimentar? <input type="text" name="Intolerância Alimentar" /></label>
+            <label>Fuma ou já fumou? <input type="text" name="Fumo" /></label>
+            <label>Toma café? Quantas vezes/dia? <input type="text" name="Café" /></label>
+            <label>Uso de drogas ilícitas / álcool? <textarea name="Drogas Álcool"></textarea></label>
+
+            <label>Usa medicamentos atualmente? <textarea name="Medicamentos atuais"></textarea></label>
+            <label>Já usou medicamentos? Quais? <textarea name="Medicamentos anteriores"></textarea></label>
+
+            <hr />
+            <h3>Histórico Familiar</h3>
+            <label><input type="checkbox" name="Histórico[]" value="Pressão alta" /> Pressão alta</label>
+            <label><input type="checkbox" name="Histórico[]" value="Diabetes" /> Diabetes</label>
+            <label><input type="checkbox" name="Histórico[]" value="Endometriose" /> Endometriose</label>
+            <label><input type="checkbox" name="Histórico[]" value="Doença Cardiológica" /> Doença Cardiológica: <input
+                    type="text" name="Doença Cardiológica Qual" /></label>
+            <label><input type="checkbox" name="Histórico[]" value="Câncer" /> Câncer: <input type="text"
+                    name="Tipo Câncer Familiar" /> Grau de parentesco: <input type="text"
+                    name="Parentesco Câncer" /></label>
+            <label>Outra doença familiar: <textarea name="Outra Doença Familiar"></textarea></label>
+
+            <br /><br />
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+</body>
+
+</html>
