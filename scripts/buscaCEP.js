@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/imask"></script>
+//<script src="https://unpkg.com/imask"></script>
 
         const cepInput = document.getElementById('cep');
         let lastCep = ''; // controle para não repetir chamadas
