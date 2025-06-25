@@ -268,21 +268,30 @@
                         <div class="doenca-full">
                             <label>Infecção Sexualmente Transmissível?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="ist" value="Sim" required> Sim</label>
+                                <label><input type="radio" name="ist" value="Sim" data-show-target="#campo-ist">
+                                    Sim</label>
                                 <label><input type="radio" name="ist" value="Não"> Não</label>
                             </div>
-                            <input type="text" name="ist_qual" placeholder="Especifique a IST" />
+                            <div class="hidden" id="campo-ist">
+                                <input type="text" name="ist_qual" placeholder="Especifique a IST" />
+                            </div>
                         </div>
+
 
                         <!-- Doença Respiratória -->
                         <div class="doenca-full">
                             <label>Doença Respiratória?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="respiratoria" value="Sim" required> Sim</label>
+                                <label><input type="radio" name="respiratoria" value="Sim"
+                                        data-show-target="#campo-respiratoria"> Sim</label>
                                 <label><input type="radio" name="respiratoria" value="Não"> Não</label>
                             </div>
-                            <input type="text" name="respiratoria_qual" placeholder="Ex: Asma, DPOC..." />
+                            <div class="hidden" id="campo-respiratoria">
+                                <input type="text" name="respiratoria_qual"
+                                    placeholder="Especifique a doença respiratória" />
+                            </div>
                         </div>
+
 
                         <!-- Tireoidismo -->
                         <div class="form-group-doenca">
@@ -298,32 +307,42 @@
                         <div class="doenca-full">
                             <label>Doença Cardíaca?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="cardiaca" value="Sim" required> Sim</label>
+                                <label><input type="radio" name="cardiaca" value="Sim" required
+                                        data-show-target="#campo-cardiaca"> Sim</label>
                                 <label><input type="radio" name="cardiaca" value="Não"> Não</label>
                             </div>
-                            <input type="text" name="cardiaca_qual"
-                                placeholder="Ex: Arritmia, Insuficiência cardíaca..." />
+                            <div class="hidden" id="campo-cardiaca">
+                                <input type="text" name="cardiaca_qual" placeholder="Especifique a doença cardíaca" />
+                            </div>
                         </div>
 
                         <!-- Doença Psiquiátrica -->
                         <div class="doenca-full">
                             <label>Doença Psiquiátrica?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="psiquiatrica" value="Sim" required> Sim</label>
+                                <label><input type="radio" name="psiquiatrica" value="Sim" required
+                                        data-show-target="#campo-psiquiatrica"> Sim</label>
                                 <label><input type="radio" name="psiquiatrica" value="Não"> Não</label>
                             </div>
-                            <input type="text" name="psiquiatrica_qual" placeholder="Ex: Depressão, Ansiedade..." />
+                            <div class="hidden" id="campo-psiquiatrica">
+                                <input type="text" name="psiquiatrica_qual"
+                                    placeholder="Especifique a doença psiquiátrica" />
+                            </div>
                         </div>
 
                         <!-- Câncer -->
                         <div class="doenca-full">
-                            <label>Já teve Câncer?</label>
+                            <label>Câncer?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="cancer" value="Sim" required> Sim</label>
+                                <label><input type="radio" name="cancer" value="Sim" required
+                                        data-show-target="#campo-cancer"> Sim</label>
                                 <label><input type="radio" name="cancer" value="Não"> Não</label>
                             </div>
-                            <input type="text" name="cancer_qual" placeholder="Ex: Mama, Próstata..." />
+                            <div class="hidden" id="campo-cancer">
+                                <input type="text" name="cancer_qual" placeholder="Especifique o câncer" />
+                            </div>
                         </div>
+
 
                         <!-- Colesterol Alto -->
                         <div class="form-group-doenca">
@@ -368,11 +387,8 @@
                             </div>
                         </div>
 
-
                     </div>
                 </fieldset>
-
-
 
                 <div class="form-group full-width">
                     <label>Portadora de alergias medicamentosas e/ou látex?</label>
@@ -396,6 +412,49 @@
                     </div>
                 </div>
 
+                <div class="form-group full-width">
+                    <label>Fuma ou já fumou?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="fuma" value="sim" data-show-target="#fuma-info"> Sim</label>
+                        <label><input type="radio" name="fuma" value="nao"> Não</label>
+                        <label><input type="radio" name="fuma" value="ainda fuma"> Ainda Fuma</label>
+                    </div>
+                    <br>
+                    <div class="fuma-tempo hidden" id="fuma-info">
+                        <label>Parou de fumar há quanto tempo?</label>
+                        <input type="text" name="parouFumar">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Tem intolerância alimentar?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="intolerancia" value="sim"
+                                data-show-target="#intolerancia-desc"> Sim</label>
+                        <label><input type="radio" name="intolerancia" value="nao"> Não</label>
+                    </div>
+                    <br>
+                    <div class="hidden" id="intolerancia-desc">
+
+                        <label>Descreva:</label>
+                        <input type="text" name="descIntolerancia">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Hábito de tomar café?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="cafe" value="sim" data-show-target="#cafe-info"> Sim</label>
+                        <label><input type="radio" name="cafe" value="nao"> Não</label>
+                    </div>
+                    <br>
+                    <div class="hidden" id="cafe-info">
+                        <label>Quantas vezes ao dia?</label>
+                        <input type="text" name="qtdCafe">
+                    </div>
+                </div>
+
+
 
                 <div class="form-group full-width">
                     <label>Faz uso de alguma medicação?</label>
@@ -403,6 +462,68 @@
                 </div>
 
             </div>
+
+            <fieldset id="historico-familiar">
+                <legend>Histórico Familiar</legend>
+
+                <div class="form-grid-doencas">
+
+                    <!-- Pressão Alta -->
+                    <div class="form-group-doenca">
+                        <label><input type="checkbox" name="hf_pressao_alta" value="Sim"> Pressão Alta</label>
+                    </div>
+
+                    <!-- Diabetes -->
+                    <div class="form-group-doenca">
+                        <label><input type="checkbox" name="hf_diabetes" value="Sim"> Diabetes</label>
+                    </div>
+
+                    <!-- Endometriose -->
+                    <div class="form-group-doenca">
+                        <label><input type="checkbox" name="hf_endometriose" value="Sim"> Endometriose</label>
+                    </div>
+
+                    <!-- Doença Cardiológica -->
+                    <div class="doenca-full">
+                        <label><input type="checkbox" name="hf_cardiologica" value="Sim"
+                                data-show-target="#campo-hf-cardiologica"> Doença Cardiológica?</label>
+                        <div class="hidden" id="campo-hf-cardiologica">
+                            <label>Qual?</label>
+                            <input type="text" name="hf_cardiologica_qual"
+                                placeholder="Ex: Arritmia, Insuficiência cardíaca..." />
+                        </div>
+                    </div>
+
+                    <!-- Câncer -->
+                    <div class="doenca-full">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="hf_cancer_checkbox" value="Sim"
+                                    data-show-target="#campo-hf-cancer" />
+                                Câncer
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-hf-cancer">
+                            <label>Parentesco e tipo de câncer:</label>
+                            <input type="text" name="hf_cancer_info" placeholder="Ex: Avô - Câncer de próstata" />
+                        </div>
+                    </div>
+
+
+                    <!-- Outra Doença Familiar -->
+                    <div class="doenca-full">
+                        <label><input type="checkbox" name="hf_outra" value="Sim" data-show-target="#campo-hf-outra">
+                            Outra doença familiar?</label>
+                        <div class="hidden" id="campo-hf-outra">
+                            <label>Descreva:</label>
+                            <textarea name="hf_outra_descricao" placeholder="Ex: Lúpus, Alzheimer..."></textarea>
+                        </div>
+                    </div>
+
+            </fieldset>
+
+            <br>
+
             <hr />
 
             <h3 class="section-title">ℹ️ Informações Adicionais</h3>
@@ -431,6 +552,44 @@
     <script src="scripts/campoOutro.js" defer></script>
     <script src="scripts/calcIMC.js" defer></script>
     <script src="scripts/btnTableIMC.js" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const allInputs = document.querySelectorAll("input[type=radio], input[type=checkbox]");
+
+            allInputs.forEach(input => {
+                input.addEventListener("change", function () {
+                    const targetSelector = this.getAttribute("data-show-target");
+                    if (!targetSelector) return;
+
+                    const target = document.querySelector(targetSelector);
+                    if (!target) return;
+
+                    if (this.type === "radio") {
+                        const radios = document.getElementsByName(this.name);
+                        radios.forEach(radio => {
+                            const radioTarget = radio.getAttribute("data-show-target");
+                            if (radioTarget) {
+                                const element = document.querySelector(radioTarget);
+                                if (element) element.classList.add("hidden");
+                            }
+                        });
+
+                        if (this.checked) target.classList.remove("hidden");
+
+                    } else if (this.type === "checkbox") {
+                        if (this.checked) {
+                            target.classList.remove("hidden");
+                        } else {
+                            target.classList.add("hidden");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
 </body>
 

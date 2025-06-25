@@ -40,12 +40,17 @@ body {
 
 .obs {
   width: 100%;
-  background-color: #d9dde3; /* cinza claro */
+  background-color: #d9dde3;
+  /* cinza claro */
   font-size: 14px;
-  line-height: 1.6; /* boa distância entre linhas */
-  padding: 12px; /* espaço interno */
-  border-radius: 6px; /* cantos arredondados */
-  margin-top: 10px; /* espaço externo, opcional */
+  line-height: 1.6;
+  /* boa distância entre linhas */
+  padding: 12px;
+  /* espaço interno */
+  border-radius: 6px;
+  /* cantos arredondados */
+  margin-top: 10px;
+  /* espaço externo, opcional */
 }
 
 
@@ -261,6 +266,7 @@ fieldset legend {
   padding: 0 10px;
   color: #6c84ee;
 }
+
 fieldset .form-group {
   margin-bottom: 15px;
 }
@@ -302,9 +308,12 @@ select {
   font-size: 14px;
   background-color: #fff;
   color: #333;
-  appearance: none;         /* Remove estilo padrão do navegador */
-  -webkit-appearance: none; /* Safari/Chrome */
-  -moz-appearance: none;    /* Firefox */
+  appearance: none;
+  /* Remove estilo padrão do navegador */
+  -webkit-appearance: none;
+  /* Safari/Chrome */
+  -moz-appearance: none;
+  /* Firefox */
   background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
   background-position: right 10px center;
@@ -331,9 +340,31 @@ select:focus {
   padding: 0;
 }
 
-#tabelaImc{
+#tabelaImc {
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
 }
 
+.fuma-tempo label,
+#intolerancia-desc label,
+#cafe-info label,
+.form-group .hidden label {
+  display: block;
+  margin-bottom: 8px;
+
+}
+
+.fuma-tempo input,
+#intolerancia-desc input,
+#cafe-info input,
+.form-group .hidden input {
+
+  width: 100%;
+
+}
+
+
+.hidden {
+  display: none;
+}
