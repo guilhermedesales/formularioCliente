@@ -161,58 +161,58 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     // Informação adicional
     const info_adicional = document.querySelector('textarea[name="informacao_adicional"]')?.value.trim() || "Nenhuma informação adicional.";
 
-    const texto = `📄 *Dados Pessoais*%0A%0A
-👤 Nome: ${nome}%0A
-🧑‍🎤 Nome Social: ${nomeSocialFinal}%0A
-🎂 Data de Nascimento: ${dataNascimento} (Idade: ${idade})%0A
-🎨 Cor: ${cor}%0A
-💍 Estado Civil: ${estadoCivil}%0A
-💼 Profissão: ${profissao}%0A
-🏠 CEP: ${cep}%0A
-📍 Endereço: ${endereco}%0A
-📧 E-mail: ${email}%0A
-📞 Telefones: ${telefones}
+    const texto = `*Dados Pessoais*%0A%0A
+- Nome: ${nome}%0A
+- Nome Social: ${nomeSocialFinal}%0A
+- Data de Nascimento: ${dataNascimento} (Idade: ${idade})%0A
+- Cor: ${cor}%0A
+- Estado Civil: ${estadoCivil}%0A
+- Profissão: ${profissao}%0A
+- CEP: ${cep}%0A
+- Endereço: ${endereco}%0A
+- E-mail: ${email}%0A
+- Telefones: ${telefones}
 
-%0A%0A📊 *Informações Clínicas*%0A%0A
-📏 Altura: ${altura}%0A
-⚖️ Peso: ${peso}%0A
-🧮 IMC: ${imc}%0A
-🩸 Primeira Menstruação: ${primeiraMenstruacao} anos%0A
-❤️ Primeira Relação Sexual: ${primeiraRelacao} anos%0A
-🤰 ${gravidezes}%0A
-✂️ Ligadura Tubária: ${ligadura}%0A
-🚨 Complicações na gestação/parto/cesariana: ${complicacoesGestacao}%0A
-🛠️ Cirurgias prévias: ${cirurgiasGerais}
+%0A%0A*Informações Clínicas*%0A%0A
+- Altura: ${altura}%0A
+- Peso: ${peso}%0A
+- IMC: ${imc}%0A
+- Primeira Menstruação: ${primeiraMenstruacao} anos%0A
+- Primeira Relação Sexual: ${primeiraRelacao} anos%0A
+- ${gravidezes}%0A
+- Ligadura Tubária: ${ligadura}%0A
+- Complicações na gestação/parto/cesariana: ${complicacoesGestacao}%0A
+- Cirurgias prévias: ${cirurgiasGerais}
 
-%0A%0A🩺 *Doenças Pré-Existentes*%0A%0A
-🔹 Pressão Alta: ${pressaoAlta}%0A
-🔹 Diabetes: ${diabetes}%0A
-🔹 IST: ${ist}%0A
-🔹 Doença Respiratória: ${respiratoria}%0A
-🔹 Tireoidismo: ${tireoidismo}%0A
-🔹 Doença Cardíaca: ${cardiaca}%0A
-🔹 Doença Psiquiátrica: ${psiquiatrica}%0A
-🔹 Câncer: ${cancer}%0A
-🔹 Colesterol Alto: ${colesterol}%0A
-🔹 Doença Autoimune: ${autoimuneTexto}
+%0A%0A*Doenças Pré-Existentes*%0A%0A
+- Pressão Alta: ${pressaoAlta}%0A
+- Diabetes: ${diabetes}%0A
+- IST: ${ist}%0A
+- Doença Respiratória: ${respiratoria}%0A
+- Tireoidismo: ${tireoidismo}%0A
+- Doença Cardíaca: ${cardiaca}%0A
+- Doença Psiquiátrica: ${psiquiatrica}%0A
+- Câncer: ${cancer}%0A
+- Colesterol Alto: ${colesterol}%0A
+- Doença Autoimune: ${autoimuneTexto}
 
-%0A%0A*🩺 Outras Informações de Saúde*%0A%0A
-- 💊 Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
-- 🎭 Alergia a látex: ${alergiaLatex}%0A
-- 🚬 Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
-- 🍽️ Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
-- ☕ Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
-- 💊 Uso de medicação: ${medicacao}
+%0A%0A*Outras Informações de Saúde*%0A%0A
+- Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
+- Alergia a látex: ${alergiaLatex}%0A
+- Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
+- Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
+- Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
+- Uso de medicação: ${medicacao}
 
-%0A%0A*🏥 Histórico Familiar*%0A%0A
-🔶 Pressão Alta: ${hf_pressao_alta}%0A
-🔶 Diabetes: ${hf_diabetes}%0A
-🔶 Endometriose: ${hf_endometriose}%0A
-🔶 Doença Cardiológica: ${hf_cardiologica}%0A
-🔶 Câncer: ${hf_cancer}%0A
-🔶 Outra doença familiar: ${hf_outra}%0A
+%0A%0A*Histórico Familiar*%0A%0A
+- Pressão Alta: ${hf_pressao_alta}%0A
+- Diabetes: ${hf_diabetes}%0A
+- Endometriose: ${hf_endometriose}%0A
+- Doença Cardiológica: ${hf_cardiologica}%0A
+- Câncer: ${hf_cancer}%0A
+- Outra doença familiar: ${hf_outra}%0A
 
-%0A*📝 Informações Adicionais*%0A%0A${info_adicional}`;
+%0A*Informações Adicionais*%0A%0A${info_adicional}`;
 
 
     const numeroWhatsApp = "5521971765131";

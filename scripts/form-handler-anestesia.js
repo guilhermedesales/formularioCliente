@@ -41,5 +41,5 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
     window.open(urlWhatsApp, '_blank');
 
-    form.reset();
+    //form.reset();
 });
