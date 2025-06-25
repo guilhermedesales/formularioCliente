@@ -126,6 +126,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     // Uso de medicação
     const medicacao = document.querySelector('textarea[name="Medicação"]')?.value.trim() || "Nenhuma";
+    const medicacaoAntes = document.querySelector('textarea[name="MedicaçãoAntes"]')?.value.trim() || "Nenhuma";
 
     function getCheckboxValue(name) {
         const checkbox = document.querySelector(`input[name="${name}"]`);
@@ -202,7 +203,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
 - Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
 - Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
-- Uso de medicação: ${medicacao}
+- Uso de medicação: ${medicacao}%0A
+- Medicamentos utilizados anteriormente: ${medicacaoAntes}
 
 %0A%0A*Histórico Familiar*%0A%0A
 - Pressão Alta: ${hf_pressao_alta}%0A
@@ -215,7 +217,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 %0A*Informações Adicionais*%0A%0A${info_adicional}`;
 
 
-    const numeroWhatsApp = "5521971765131";
+    const numeroWhatsApp = "5521936193944";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 });
