@@ -41,20 +41,21 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const dataNasc = dataNascISO;
     const ultimaMenstruacao = ultimaMenstruacaoISO;
 
-    const texto = `📄 *Informações Pré–Operatórias*%0A%0A
-👤 Nome: ${nome}%0A
-🎂 Data de Nascimento: ${dataNasc}%0A
-📆 Idade: ${idade}%0A
-📞 Telefones: ${telefones}%0A
-🏥 Convênio: ${convenio}%0A
-👨‍⚕️ Médico Assistente: ${medico}%0A
-🩸 Última menstruação: ${ultimaMenstruacao}%0A
-⚖️ Peso: ${peso} %0A📏 Altura: ${altura} %0A
-🤰 ${gravidezes}%0A
-🩺 Cirurgias anteriores: ${cirurgia}%0A
-⚠️ ${textoAlergia}%0A
-💊 Medicações: ${medicacao}%0A
-📝 Informações adicionais: ${infoAdicional}`;
+    const texto = `*Informações Pré–Operatórias*%0A%0A
+- Nome: ${nome}%0A
+- Data de Nascimento: ${dataNasc}%0A
+- Idade: ${idade}%0A
+- Telefones: ${telefones}%0A
+- Convênio: ${convenio}%0A
+- Médico Assistente: ${medico}%0A
+- Última menstruação: ${ultimaMenstruacao}%0A
+- Peso: ${peso} %0A
+- Altura: ${altura} %0A
+- ${gravidezes}%0A
+- Cirurgias anteriores: ${cirurgia}%0A
+- ${textoAlergia}%0A
+- Medicações: ${medicacao}%0A
+- Informações adicionais: ${infoAdicional}`;
 
     const numeroWhatsApp = "5521936193944";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
