@@ -22,20 +22,20 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const infoAdicional = form.querySelector('textarea[name="informacao_adicional"]').value || "Nenhuma.";
 
 
-    const texto = `📄 *Informações Pré–Anestésicas*\n\n` +
-`👤 Nome: ${nome}\n` +
-`⏳ Jejum de 8h compreendido? ${jejum}\n` +
-`🩺 Cirurgias anteriores: ${cirurgias}\n` +
-`⚠️ Complicações em anestesias/cirurgias: ${complicacoes}\n` +
-`📉 Pressão Alta: ${pressao}\n` +
-`🍬 Diabetes: ${diabetes}\n` +
-`❤️ Problemas cardíacos/respiratórios: ${problemasCardioResp}\n` +
-`🩻 Tratamentos em andamento: ${outrosTratamentos}\n` +
-`🌰 Alergias: ${alergias}\n` +
-`💊 Medicamentos em uso: ${medicacoes}\n` +
-`📑 Exames e risco cirúrgico feitos: ${exames}\n` +
-`🦷 Próteses dentárias móveis: ${proteseDentaria}\n` +
-`📝 Informações adicionais: ${infoAdicional}`;
+    const texto = `*Informações Pré–Anestésicas*\n\n` +
+`- Nome: ${nome}\n` +
+`- Jejum de 8h compreendido? ${jejum}\n` +
+`- Cirurgias anteriores: ${cirurgias}\n` +
+`- Complicações em anestesias/cirurgias: ${complicacoes}\n` +
+`- Pressão Alta: ${pressao}\n` +
+`- Diabetes: ${diabetes}\n` +
+`- Problemas cardíacos/respiratórios: ${problemasCardioResp}\n` +
+`- Tratamentos em andamento: ${outrosTratamentos}\n` +
+`- Alergias: ${alergias}\n` +
+`- Medicamentos em uso: ${medicacoes}\n` +
+`- Exames e risco cirúrgico feitos: ${exames}\n` +
+`- Próteses dentárias móveis: ${proteseDentaria}\n` +
+`- Informações adicionais: ${infoAdicional}`;
 
     const numeroWhatsApp = "5521936193944"; //5521936193944
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
