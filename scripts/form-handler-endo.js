@@ -194,7 +194,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 🔹 Colesterol Alto: ${colesterol}%0A
 🔹 Doença Autoimune: ${autoimuneTexto}
 
-%0A%0A*🩺 Outras Informações de Saúde*%0A
+%0A%0A*🩺 Outras Informações de Saúde*%0A%0A
 - 💊 Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
 - 🎭 Alergia a látex: ${alergiaLatex}%0A
 - 🚬 Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
@@ -202,7 +202,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - ☕ Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
 - 💊 Uso de medicação: ${medicacao}
 
-%0A%0A*🏥 Histórico Familiar*%0A
+%0A%0A*🏥 Histórico Familiar*%0A%0A
 🔶 Pressão Alta: ${hf_pressao_alta}%0A
 🔶 Diabetes: ${hf_diabetes}%0A
 🔶 Endometriose: ${hf_endometriose}%0A
@@ -210,7 +210,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 🔶 Câncer: ${hf_cancer}%0A
 🔶 Outra doença familiar: ${hf_outra}%0A
 
-%0A*📝 Informações Adicionais*%0A${info_adicional}`;
+%0A*📝 Informações Adicionais*%0A%0A${info_adicional}`;
 
 
     const numeroWhatsApp = "5521971765131"; 
