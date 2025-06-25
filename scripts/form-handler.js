@@ -60,25 +60,4 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 
-    /* desativado por enquanto
-    fetch(form.action, {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => {
-            if (response.ok) {
-                alert("Formulário enviado com sucesso!");
-                form.reset();
-                document.getElementById("idade").value = "";
-                document.getElementById("gravidez-info").style.display = "none";
-            } else {
-                alert("Erro ao enviar dados para o Google Sheets");
-            }
-        })
-        .catch(error => {
-            alert("Erro de conexão com o Google Sheets");
-        });*/
-
-
-
 });

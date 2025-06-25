@@ -119,6 +119,10 @@
                         <input type="text" id="cep" name="CEP" placeholder="00000-000" required />
                     </div>
                     <div class="form-group">
+                        <label>Rua:</label>
+                        <input type="text" id="rua" name="Rua" />
+                    </div>
+                    <div class="form-group">
                         <label>Bairro:</label>
                         <input type="text" id="bairro" name="Bairro" />
                     </div>
@@ -232,7 +236,7 @@
 
                 <div class="form-group full-width">
                     <label>Houve alguma complicação na Gestação, Parto ou Cesariana? (Descreva)</label>
-                    <textarea rows="2" name="Cirurgias" id="cirurgias" required></textarea>
+                    <textarea rows="2" name="Complicações" id="complicacoes" required></textarea>
                 </div>
 
 
@@ -488,7 +492,6 @@
                         <label><input type="checkbox" name="hf_cardiologica" value="Sim"
                                 data-show-target="#campo-hf-cardiologica"> Doença Cardiológica?</label>
                         <div class="hidden" id="campo-hf-cardiologica">
-                            <label>Qual?</label>
                             <input type="text" name="hf_cardiologica_qual"
                                 placeholder="Ex: Arritmia, Insuficiência cardíaca..." />
                         </div>
@@ -515,7 +518,6 @@
                         <label><input type="checkbox" name="hf_outra" value="Sim" data-show-target="#campo-hf-outra">
                             Outra doença familiar?</label>
                         <div class="hidden" id="campo-hf-outra">
-                            <label>Descreva:</label>
                             <textarea name="hf_outra_descricao" placeholder="Ex: Lúpus, Alzheimer..."></textarea>
                         </div>
                     </div>
@@ -541,7 +543,7 @@
     <script src="scripts/idade-calculo.js" defer></script>
     <script src="scripts/mascara-telefone.js" defer></script>
     <script src="scripts/gravidez-info.js" defer></script>
-    <script src="scripts/form-handler.js" defer></script>
+    <script src="scripts/form-handler-endo.js" defer></script>
     <script src="scripts/mascara-peso-altura.js" defer></script>
     <script src="scripts/alergia-info.js" defer></script>
     <!--<script src="scripts/btnHelp.js" defer></script>
@@ -560,10 +562,6 @@
             allInputs.forEach(input => {
                 input.addEventListener("change", function () {
                     const targetSelector = this.getAttribute("data-show-target");
-                    if (!targetSelector) return;
-
-                    const target = document.querySelector(targetSelector);
-                    if (!target) return;
 
                     if (this.type === "radio") {
                         const radios = document.getElementsByName(this.name);
@@ -571,25 +569,30 @@
                             const radioTarget = radio.getAttribute("data-show-target");
                             if (radioTarget) {
                                 const element = document.querySelector(radioTarget);
-                                if (element) element.classList.add("hidden");
+                                if (element) {
+                                    element.classList.add("hidden");
+                                }
                             }
                         });
 
-                        if (this.checked) target.classList.remove("hidden");
+                        // Se o radio clicado tem data-show-target e está selecionado, mostra
+                        if (this.checked && targetSelector) {
+                            const target = document.querySelector(targetSelector);
+                            if (target) {
+                                target.classList.remove("hidden");
+                            }
+                        }
 
-                    } else if (this.type === "checkbox") {
-                        if (this.checked) {
-                            target.classList.remove("hidden");
-                        } else {
-                            target.classList.add("hidden");
+                    } else if (this.type === "checkbox" && targetSelector) {
+                        const target = document.querySelector(targetSelector);
+                        if (target) {
+                            target.classList.toggle("hidden", !this.checked);
                         }
                     }
                 });
             });
         });
     </script>
-
-
 
 </body>
 

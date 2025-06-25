@@ -368,3 +368,21 @@ select:focus {
 .hidden {
   display: none;
 }
+
+#campo-hf-outra textarea{
+  margin-top: 8px;
+  width: 100%;
+}
+
+#campo-hf-cancer,
+#campo-hf-cardiologica{
+
+  margin-top: 8px;
+
+}
+
+#campo-hf-cancer input,
+#campo-hf-cardiologica input{
+  margin-top: 8px;
+  width: 100%;
+}
