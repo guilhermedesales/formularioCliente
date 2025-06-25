@@ -150,6 +150,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  width: 100%;
 }
 
 /* Coloca os campos extras em coluna (um embaixo do outro) */
@@ -169,9 +170,9 @@ body {
 }
 
 /* Input de número com largura adequada */
-.grouped-radios input[type="number"] {
-  width: 80px;
-  padding: 4px 6px;
+.grouped-radios input {
+  width: 50px;
+  padding: 8px 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -181,7 +182,7 @@ body {
   display: block;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  width: 100px;
+  width: 50%;
   padding: 6px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -343,7 +344,7 @@ select:focus {
 #tabelaImc {
   background-color: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .fuma-tempo label,

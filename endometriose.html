@@ -56,7 +56,7 @@
 -->
     <div class="container">
         <div class="form-title">
-            <h3>ENDOMETRIOSE</h3>
+            <h3>📄 ENDOMETRIOSE</h3>
             <h5>Formulário Pré-Consulta</h5>
         </div>
 
@@ -73,7 +73,7 @@
 
                 <div class="form-group">
                     <label>Nome Social:</label>
-                    <input type="text" id="nomeSocial" name="Nome Social" required />
+                    <input type="text" id="nomeSocial" name="Nome Social" />
                 </div>
 
                 <div class="form-group-grouped">
@@ -541,58 +541,19 @@
 
     <script src="scripts/utils.js" defer></script>
     <script src="scripts/idade-calculo.js" defer></script>
+    <script src="scripts/buscaCEP.js" defer></script>
     <script src="scripts/mascara-telefone.js" defer></script>
     <script src="scripts/gravidez-info.js" defer></script>
-    <script src="scripts/form-handler-endo.js" defer></script>
     <script src="scripts/mascara-peso-altura.js" defer></script>
     <script src="scripts/alergia-info.js" defer></script>
     <!--<script src="scripts/btnHelp.js" defer></script>
     <script src="scripts/save-sheets.js" defer></script>-->
     <script src="scripts/mascara-data.js" defer></script>
-    <!--<script src="https://unpkg.com/imask"></script-->
-    <script src="scripts/buscaCEP.js" defer></script>
     <script src="scripts/campoOutro.js" defer></script>
     <script src="scripts/calcIMC.js" defer></script>
     <script src="scripts/btnTableIMC.js" defer></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const allInputs = document.querySelectorAll("input[type=radio], input[type=checkbox]");
-
-            allInputs.forEach(input => {
-                input.addEventListener("change", function () {
-                    const targetSelector = this.getAttribute("data-show-target");
-
-                    if (this.type === "radio") {
-                        const radios = document.getElementsByName(this.name);
-                        radios.forEach(radio => {
-                            const radioTarget = radio.getAttribute("data-show-target");
-                            if (radioTarget) {
-                                const element = document.querySelector(radioTarget);
-                                if (element) {
-                                    element.classList.add("hidden");
-                                }
-                            }
-                        });
-
-                        // Se o radio clicado tem data-show-target e está selecionado, mostra
-                        if (this.checked && targetSelector) {
-                            const target = document.querySelector(targetSelector);
-                            if (target) {
-                                target.classList.remove("hidden");
-                            }
-                        }
-
-                    } else if (this.type === "checkbox" && targetSelector) {
-                        const target = document.querySelector(targetSelector);
-                        if (target) {
-                            target.classList.toggle("hidden", !this.checked);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="scripts/campoHiden.js" defer></script>
+    <script src="scripts/form-handler-endo.js" defer></script>
 
 </body>
 

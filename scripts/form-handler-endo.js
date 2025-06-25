@@ -2,7 +2,9 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     e.preventDefault();
 
     const nome = document.getElementById("nome").value;
-    const nomeSocial = document.getElementById("nomeSocial").value;
+    const nomeSocial = document.getElementById("nomeSocial").value.trim();
+    const nomeSocialFinal = nomeSocial === "" ? "Não informado" : nomeSocial;
+
     const dataNascimento = document.getElementById("dataNascimento").value;
     const idade = document.getElementById("idade").value;
     const cor = document.getElementById("cor").value;
@@ -161,7 +163,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const texto = `📄 *Dados Pessoais*%0A%0A
 👤 Nome: ${nome}%0A
-🧑‍🎤 Nome Social: ${nomeSocial}%0A
+🧑‍🎤 Nome Social: ${nomeSocialFinal}%0A
 🎂 Data de Nascimento: ${dataNascimento} (Idade: ${idade})%0A
 🎨 Cor: ${cor}%0A
 💍 Estado Civil: ${estadoCivil}%0A
@@ -213,7 +215,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 %0A*📝 Informações Adicionais*%0A%0A${info_adicional}`;
 
 
-    const numeroWhatsApp = "5521971765131"; 
+    const numeroWhatsApp = "5521971765131";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 });
