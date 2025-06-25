@@ -125,6 +125,40 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     // Uso de medicação
     const medicacao = document.querySelector('textarea[name="Medicação"]')?.value.trim() || "Nenhuma";
 
+    function getCheckboxValue(name) {
+        const checkbox = document.querySelector(`input[name="${name}"]`);
+        return checkbox && checkbox.checked ? checkbox.value : "Não";
+    }
+
+    function getCheckboxWithDetail(checkboxName, detailFieldName) {
+        const checked = document.querySelector(`input[name="${checkboxName}"]`)?.checked;
+        if (checked) {
+            const detail = document.querySelector(`input[name="${detailFieldName}"]`)?.value.trim();
+            return detail ? `Sim (${detail})` : "Sim (sem especificação)";
+        }
+        return "Não";
+    }
+
+    function getCheckboxWithTextareaDetail(checkboxName, textareaName) {
+        const checked = document.querySelector(`input[name="${checkboxName}"]`)?.checked;
+        if (checked) {
+            const text = document.querySelector(`textarea[name="${textareaName}"]`)?.value.trim();
+            return text ? `Sim (${text})` : "Sim (sem especificação)";
+        }
+        return "Não";
+    }
+
+    // Pegando os valores do histórico familiar
+    const hf_pressao_alta = getCheckboxValue("hf_pressao_alta");
+    const hf_diabetes = getCheckboxValue("hf_diabetes");
+    const hf_endometriose = getCheckboxValue("hf_endometriose");
+    const hf_cardiologica = getCheckboxWithDetail("hf_cardiologica", "hf_cardiologica_qual");
+    const hf_cancer = getCheckboxWithDetail("hf_cancer_checkbox", "hf_cancer_info");
+    const hf_outra = getCheckboxWithTextareaDetail("hf_outra", "hf_outra_descricao");
+
+    // Informação adicional
+    const info_adicional = document.querySelector('textarea[name="informacao_adicional"]')?.value.trim() || "Nenhuma informação adicional.";
+
     const texto = `📄 *Dados Pessoais*%0A%0A
 👤 Nome: ${nome}%0A
 🧑‍🎤 Nome Social: ${nomeSocial}%0A
@@ -160,15 +194,26 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 🔹 Colesterol Alto: ${colesterol}%0A
 🔹 Doença Autoimune: ${autoimuneTexto}
 
-%0A%0A*Outras Informações de Saúde*%0A
-- Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
-- Alergia a látex: ${alergiaLatex}%0A
-- Fuma ou já fumou: ${fuma}${fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao" ? ` (Parou há: ${parouFumar})` : ""}%0A
-- Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
-- Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
-- Uso de medicação: ${medicacao}`;
+%0A%0A*🩺 Outras Informações de Saúde*%0A
+- 💊 Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
+- 🎭 Alergia a látex: ${alergiaLatex}%0A
+- 🚬 Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
+- 🍽️ Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
+- ☕ Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
+- 💊 Uso de medicação: ${medicacao}
 
-    const numeroWhatsApp = "5521971765131"; // ou outro número que preferir
+%0A%0A*🏥 Histórico Familiar*%0A
+🔶 Pressão Alta: ${hf_pressao_alta}%0A
+🔶 Diabetes: ${hf_diabetes}%0A
+🔶 Endometriose: ${hf_endometriose}%0A
+🔶 Doença Cardiológica: ${hf_cardiologica}%0A
+🔶 Câncer: ${hf_cancer}%0A
+🔶 Outra doença familiar: ${hf_outra}%0A
+
+%0A*📝 Informações Adicionais*%0A${info_adicional}`;
+
+
+    const numeroWhatsApp = "5521971765131"; 
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 });
