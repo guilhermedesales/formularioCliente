@@ -21,7 +21,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
     const gravidezes = gravidaSim
-        ? `Grávida: Sim (%0A- Número de Gestações: ${qtdGravidez.value}%0A- Partos Normais: ${partoNormal.value}%0A- Cesarianas: ${cesariana.value}%0A- Abortos: ${aborto.value})`
+        ? `Grávida: Sim / Número de Gestações: ${qtdGravidez.value} / Partos Normais: ${partoNormal.value} / Cesarianas: ${cesariana.value} / Abortos: ${aborto.value})`
         : "Grávida: Não";
 
     const cirurgia = document.getElementById("cirurgias").value;
@@ -29,13 +29,16 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const infoAdicional = document.getElementById("informacao_adicional").value;
     console.log("CIRURGIAS:", cirurgia);
 
+    const doenca = document.getElementById("doenca").value;
+    const doencafamilia = document.getElementById("doencafamilia").value;
+
     // alergias
     const temAlergia = document.querySelector('input[name="alergia-medicamento"]:checked')?.value === "sim";
     let textoAlergia = "Alergias: Não";
     if (temAlergia) {
         const quaisMedicamentos = document.querySelector('input[name="quais-medicamentos"]').value || "Não informado";
         const alergiaLatex = document.querySelector('input[name="alergia-latex"]:checked')?.value === "sim" ? "Sim" : "Não";
-        textoAlergia = `Alergias: Sim (%0A- Medicamentos: ${quaisMedicamentos}%0A- Látex: ${alergiaLatex})`;
+        textoAlergia = `Alergias: Sim / Medicamentos: ${quaisMedicamentos} / Látex: ${alergiaLatex}`;
     }
 
     const dataNasc = dataNascISO;
@@ -46,15 +49,18 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Data de Nascimento: ${dataNasc}%0A
 - Idade: ${idade}%0A
 - Telefones: ${telefones}%0A
-- Convênio: ${convenio}%0A
+- Convênio: ${convenio}%0A%0A
+
 - Ginecologista: ${medico}%0A
 - Última menstruação: ${ultimaMenstruacao}%0A
-- Peso: ${peso} %0A
-- Altura: ${altura} %0A
+- Peso: ${peso} / Altura: ${altura} %0A
 - ${gravidezes}%0A
 - Cirurgias anteriores: ${cirurgia}%0A
 - ${textoAlergia}%0A
-- Medicações: ${medicacao}%0A
+- HPP: ${doenca}%0A
+- HF: ${doencafamilia}%0A
+- Medicações: ${medicacao}%0A%0A
+
 - Informações adicionais: ${infoAdicional}`;
 
     const numeroWhatsApp = "5521936193944";

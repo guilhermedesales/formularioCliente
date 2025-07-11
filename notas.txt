@@ -6,3 +6,12 @@ Mudanças a serem feitas: (28/05/2025)
 - Acrescentar peso e altura após data da  ultima menstruação
 - mudar palavra GRAVIDEZES para NÚMERO DE GESTAÇÕES
 - mudar titulo para QUESTIONÁRIO PRÉ OPERATÓRIO
+
+Mudanças a serem feitas: (07/10/2025)
+
+- add doença e doença familiar ao index.html
+- atualizar pdf com novos campos
+- add pdf no anestesia.html
+- alterar a formatação no envia do wpp
+
+** seria bom mudar a forma q o alergias medicamentosas e latex é perguntada e salva (fica confuso no pdf)
