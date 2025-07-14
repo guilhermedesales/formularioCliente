@@ -21,25 +21,35 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
     const gravidezes = gravidaSim
-        ? `Grávida: Sim / Número de Gestações: ${qtdGravidez.value} / Partos Normais: ${partoNormal.value} / Cesarianas: ${cesariana.value} / Abortos: ${aborto.value})`
+        ? `Grávida: Sim / Nº de Gestações: ${qtdGravidez.value} / Partos Normais: ${partoNormal.value} / Cesarianas: ${cesariana.value} / Abortos: ${aborto.value}`
         : "Grávida: Não";
 
     const cirurgia = document.getElementById("cirurgias").value;
     const medicacao = document.getElementById("medicacao").value;
-    const infoAdicional = document.getElementById("informacao_adicional").value;
+    const infoAdicional = document.querySelector('textarea[name="informacao_adicional"]')?.value.trim() || "Nenhuma informação adicional.";
     console.log("CIRURGIAS:", cirurgia);
 
     const doenca = document.getElementById("doenca").value;
     const doencafamilia = document.getElementById("doencafamilia").value;
 
     // alergias
-    const temAlergia = document.querySelector('input[name="alergia-medicamento"]:checked')?.value === "sim";
-    let textoAlergia = "Alergias: Não";
-    if (temAlergia) {
-        const quaisMedicamentos = document.querySelector('input[name="quais-medicamentos"]').value || "Não informado";
-        const alergiaLatex = document.querySelector('input[name="alergia-latex"]:checked')?.value === "sim" ? "Sim" : "Não";
-        textoAlergia = `Alergias: Sim / Medicamentos: ${quaisMedicamentos} / Látex: ${alergiaLatex}`;
+    const temAlergiaMedicamento = document.querySelector('input[name="alergia-medicamento"]:checked')?.value === "sim";
+    const alergiaLatex = document.querySelector('input[name="alergia-latex"]:checked')?.value === "sim";
+
+    const quaisMedicamentos = temAlergiaMedicamento
+        ? (document.querySelector('input[name="quais-medicamentos"]')?.value.trim() || "")
+        : "";
+
+    let textoAlergia = "Alergias: Nenhuma";
+
+    if (temAlergiaMedicamento && quaisMedicamentos && alergiaLatex) {
+        textoAlergia = `Alergias: ${quaisMedicamentos} e látex`;
+    } else if (temAlergiaMedicamento && quaisMedicamentos) {
+        textoAlergia = `Alergias: ${quaisMedicamentos}`;
+    } else if (alergiaLatex) {
+        textoAlergia = "Alergias: látex";
     }
+
 
     const dataNasc = dataNascISO;
     const ultimaMenstruacao = ultimaMenstruacaoISO;
@@ -59,9 +69,9 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - ${textoAlergia}%0A
 - HPP: ${doenca}%0A
 - HF: ${doencafamilia}%0A
-- Medicações: ${medicacao}%0A%0A
+- Medicações: ${medicacao}
 
-- Informações adicionais: ${infoAdicional}`;
+%0A%0A*Informações Adicionais*%0A%0A ${infoAdicional}`;
 
     const numeroWhatsApp = "5521936193944";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;

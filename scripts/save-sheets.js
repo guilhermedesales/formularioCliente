@@ -1,4 +1,4 @@
- const scriptURL = 'https://script.google.com/macros/s/AKfycbwkjxSjxJXuaxwzgpbyGSeYp3pYCxxgIbYvcNLLpfva203sN0Q2ADew-Ay_CnnSdhAe/exec'
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbw2oyYoCSXhOIE1__tes9I5vdFu4ti_nVj05Y7z0gRiWFwFfBFjinm-avv4sHrq6jk/exec'
 
         const form = document.forms['contact-form']
 
@@ -7,7 +7,7 @@
             e.preventDefault()
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => alert("Thank you! Form is submitted"))
+                .then(response => alert("Formulário Enviado"))
                 .then(() => { window.location.reload(); })
                 .catch(error => console.error('Error!', error.message))
         })

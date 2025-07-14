@@ -40,7 +40,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         const cesariana = document.getElementById("cesariana").value;
         const aborto = document.getElementById("aborto").value;
 
-        gravidezes = `Já esteve grávida: Sim%0A- Nº de Gestações: ${qtdGravidez}%0A- Partos Normais: ${partoNormal}%0A- Cesarianas: ${cesariana}%0A- Abortos: ${aborto}`;
+        gravidezes = `Já esteve grávida: Sim / Nº de Gestações: ${qtdGravidez} / Partos Normais: ${partoNormal} / Cesarianas: ${cesariana} / Abortos: ${aborto}`;
     }
 
     const ligadura = document.querySelector('input[name="ligadura tubaria"]:checked')?.value || "Não informado";
@@ -83,15 +83,22 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     let outraAutoimune = "";
     if (autoimunesMarcadas.includes("Outra")) {
         const descricao = document.querySelector('input[name="autoimune_outra_descricao"]')?.value;
-        outraAutoimune = descricao ? ` (Descreve: ${descricao})` : " (não especificada)";
+        outraAutoimune = descricao ? ` (${descricao})` : " (Marcou outra mas não especificou)";
     }
 
     // Monta texto das autoimunes
     let autoimuneTexto = "Nenhuma";
     if (autoimunesMarcadas.length > 0) {
-        autoimuneTexto = autoimunesMarcadas.join(", ");
-        if (outraAutoimune) autoimuneTexto += outraAutoimune;
+        const listaFiltrada = autoimunesMarcadas.filter(v => v !== "Outra");
+        if (autoimunesMarcadas.includes("Outra")) {
+            const descricao = document.querySelector('input[name="autoimune_outra_descricao"]')?.value.trim();
+            if (descricao) listaFiltrada.push(descricao);
+        }
+        if (listaFiltrada.length > 0) {
+            autoimuneTexto = listaFiltrada.join(", ");
+        }
     }
+
 
     function getValorRadio(name) {
         const selected = document.querySelector(`input[name="${name}"]:checked`);
@@ -108,9 +115,23 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     }
 
     // Alergias medicamentosas e látex
-    const alergiaMedicamento = getValorRadio("alergia-medicamento");
-    const quaisMedicamentos = alergiaMedicamento.toLowerCase() === "sim" ? (document.querySelector('input[name="quais-medicamentos"]')?.value.trim() || "Não especificado") : "Não aplicável";
-    const alergiaLatex = getValorRadio("alergia-latex");
+    const alergiaMedicamento = getValorRadio("alergia-medicamento").toLowerCase() === "sim";
+    const quaisMedicamentos = alergiaMedicamento
+        ? (document.querySelector('input[name="quais-medicamentos"]')?.value.trim() || "")
+        : "";
+
+    const alergiaLatex = getValorRadio("alergia-latex").toLowerCase() === "sim";
+
+    let alergiasTexto = "Nenhuma";
+
+    if (alergiaMedicamento && quaisMedicamentos && alergiaLatex) {
+        alergiasTexto = `${quaisMedicamentos} e látex`;
+    } else if (alergiaMedicamento && quaisMedicamentos) {
+        alergiasTexto = quaisMedicamentos;
+    } else if (alergiaLatex) {
+        alergiasTexto = "látex";
+    }
+
 
     // Fuma ou já fumou
     const fuma = getValorRadio("fuma");
@@ -175,9 +196,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Telefones: ${telefones}
 
 %0A%0A*Informações Clínicas*%0A%0A
-- Altura: ${altura}%0A
-- Peso: ${peso}%0A
-- IMC: ${imc}%0A
+- Altura: ${altura} / Peso: ${peso} / IMC: ${imc}%0A
 - Primeira Menstruação: ${primeiraMenstruacao} anos%0A
 - Primeira Relação Sexual: ${primeiraRelacao} anos%0A
 - ${gravidezes}%0A
@@ -185,36 +204,42 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Complicações na gestação/parto/cesariana: ${complicacoesGestacao}%0A
 - Cirurgias prévias: ${cirurgiasGerais}
 
-%0A%0A*Doenças Pré-Existentes*%0A%0A
-- Pressão Alta: ${pressaoAlta}%0A
-- Diabetes: ${diabetes}%0A
-- IST: ${ist}%0A
-- Doença Respiratória: ${respiratoria}%0A
-- Tireoidismo: ${tireoidismo}%0A
-- Doença Cardíaca: ${cardiaca}%0A
-- Doença Psiquiátrica: ${psiquiatrica}%0A
-- Câncer: ${cancer}%0A
-- Colesterol Alto: ${colesterol}%0A
-- Doença Autoimune: ${autoimuneTexto}
+%0A- HPP: ${[
+            pressaoAlta.toLowerCase() === "sim" ? "Pressão Alta" : "",
+            diabetes.toLowerCase() === "sim" ? "Diabetes" : "",
+            ist.toLowerCase().startsWith("sim") ? `IST (${ist.split("(")[1]?.replace(")", "") || "não especificada"})` : "",
+            respiratoria.toLowerCase().startsWith("sim") ? `Doença Respiratória (${respiratoria.split("(")[1]?.replace(")", "") || "não especificada"})` : "",
+            tireoidismo.toLowerCase() === "hiper" ? "Hipertireoidismo" :
+                tireoidismo.toLowerCase() === "hipo" ? "Hipotireoidismo" : "",
+            cardiaca.toLowerCase().startsWith("sim") ? `Doença Cardíaca (${cardiaca.split("(")[1]?.replace(")", "") || "não especificada"})` : "",
+            psiquiatrica.toLowerCase().startsWith("sim") ? `Doença Psiquiátrica (${psiquiatrica.split("(")[1]?.replace(")", "") || "não especificada"})` : "",
+            cancer.toLowerCase().startsWith("sim") ? `Câncer (${cancer.split("(")[1]?.replace(")", "") || "não especificado"})` : "",
+            colesterol.toLowerCase() === "sim" ? "Colesterol Alto" : ""
+        ].filter(Boolean).join(", ") || "Nenhuma"
+        }
 
-%0A%0A*Outras Informações de Saúde*%0A%0A
-- Alergia a medicamentos: ${alergiaMedicamento}${alergiaMedicamento.toLowerCase() === "sim" ? ` (Quais: ${quaisMedicamentos})` : ""}%0A
-- Alergia a látex: ${alergiaLatex}%0A
-- Fuma ou já fumou: ${fuma}${(fuma.toLowerCase() === "sim" || fuma.toLowerCase() === "nao") && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
+%0A- Autoimune: ${autoimuneTexto}
+
+%0A
+- Alergias: ${alergiasTexto}%0A
+- Fuma ou já fumou: ${fuma}${fuma.toLowerCase() === "sim" && parouFumar ? ` (Parou há: ${parouFumar})` : ""}%0A
 - Intolerância alimentar: ${intolerancia}${intolerancia.toLowerCase() === "sim" ? ` (Descrição: ${descIntolerancia})` : ""}%0A
-- Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (Qtd: ${qtdCafe})` : ""}%0A
+- Hábito de café: ${cafe}${cafe.toLowerCase() === "sim" ? ` (${qtdCafe} vezes ao dia)` : ""}%0A
 - Uso de medicação: ${medicacao}%0A
 - Medicamentos utilizados anteriormente: ${medicacaoAntes}
 
-%0A%0A*Histórico Familiar*%0A%0A
-- Pressão Alta: ${hf_pressao_alta}%0A
-- Diabetes: ${hf_diabetes}%0A
-- Endometriose: ${hf_endometriose}%0A
-- Doença Cardiológica: ${hf_cardiologica}%0A
-- Câncer: ${hf_cancer}%0A
-- Outra doença familiar: ${hf_outra}%0A
+%0A- HF: ${[
+            hf_pressao_alta.toLowerCase() === "sim" ? "Pressão Alta" : "",
+            hf_diabetes.toLowerCase() === "sim" ? "Diabetes" : "",
+            hf_endometriose.toLowerCase() === "sim" ? "Endometriose" : "",
+            hf_cardiologica.toLowerCase().startsWith("sim") ? `Doença Cardiológica (${hf_cardiologica.split("(")[1]?.replace(")", "") || "não especificada"})` : "",
+            hf_cancer.toLowerCase().startsWith("sim") ? `Câncer (${hf_cancer.split("(")[1]?.replace(")", "") || "não especificado"})` : "",
+            hf_outra.toLowerCase().startsWith("sim") ? `${hf_outra.split("(")[1]?.replace(")", "") || "não especificada"}` : ""
+        ].filter(Boolean).join(", ") || "Nenhuma condição relatada"
+        }
 
-%0A*Informações Adicionais*%0A%0A${info_adicional}`;
+
+%0A%0A*Informações Adicionais*%0A%0A${info_adicional}`;
 
 
     const numeroWhatsApp = "5521936193944";
