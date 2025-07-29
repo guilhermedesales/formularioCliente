@@ -221,7 +221,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         ].filter(Boolean).join(", ") || "Nenhuma"
         }
 
-%0A- Autoimune: ${autoimuneTexto}
+%0A- Doença Autoimune: ${autoimuneTexto}
 
 %0A
 - Alergias: ${alergiasTexto}%0A
