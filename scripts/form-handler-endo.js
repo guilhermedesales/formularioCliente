@@ -19,6 +19,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const estado = document.getElementById("estado").value;
     const endereco = `${rua} - ${numero}, ${bairro}, ${cidade} - ${estado}`;
 
+    const indicacao = document.getElementById("indicacao").value;
+
     const email = document.getElementById("email").value;
 
     const telefones = Array.from(document.querySelectorAll(".telefone"))
@@ -192,6 +194,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Profissão: ${profissao}%0A
 - CEP: ${cep}%0A
 - Endereço: ${endereco}%0A
+- Indicação: ${indicacao}%0A
 - E-mail: ${email}%0A
 - Telefones: ${telefones}
 
