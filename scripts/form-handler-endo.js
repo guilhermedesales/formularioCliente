@@ -34,7 +34,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const primeiraMenstruacao = document.getElementById("primeiraMenstruacao").value;
     const primeiraRelacao = document.getElementById("primeiraRelacao").value;
 
-    const gravida = document.querySelector('input[name="gravida"]:checked')?.value === "Sim";
+    /*const gravida = document.querySelector('input[name="gravida"]:checked')?.value === "Sim";
     let gravidezes = "Já esteve grávida: Não";
     if (gravida) {
         const qtdGravidez = document.getElementById("qtd-gravidez").value;
@@ -48,6 +48,37 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const ligadura = document.querySelector('input[name="ligadura tubaria"]:checked')?.value || "Não informado";
 
     const complicacoesGestacao = document.getElementById("complicacoes")?.value || "Não informado";
+    */
+
+    const gravida = document.querySelector('input[name="gravida"]:checked')?.value === "Sim";
+
+    // monta bloco de gravidez que será incluído no texto final
+    let gravidezBlock = "- Já esteve grávida: Não"; // padrão quando não marcou "Sim"
+
+    if (gravida) {
+        const qtdGravidez = document.getElementById("qtd-gravidez")?.value?.trim() || "Não informado";
+        const partoNormal = document.getElementById("parto-normal")?.value?.trim() || "0";
+        const cesariana = document.getElementById("cesariana")?.value?.trim() || "0";
+        const aborto = document.getElementById("aborto")?.value?.trim() || "0";
+
+        // ligadura e complicações só são lidas se marcou que já esteve grávida
+        const ligadura = document.querySelector('input[name="ligadura tubaria"]:checked')?.value || "Não informado";
+        const complicacoesVal = document.getElementById("complicacoes")?.value?.trim();
+        const complicacoesTexto = complicacoesVal ? complicacoesVal : "Não informado";
+
+        // monta o bloco com quebras de linha em %0A (estilo do seu template atual)
+        gravidezBlock =
+            `- Já esteve grávida: Sim%0A` +
+            `- Nº de gestações: ${qtdGravidez}%0A` +
+            `- Partos normais: ${partoNormal}%0A` +
+            `- Cesarianas: ${cesariana}%0A` +
+            `- Abortos: ${aborto}%0A` +
+            `- Ligadura Tubária: ${ligadura}%0A` +
+            `- Complicações na gestação/parto/cesariana: ${complicacoesTexto}`;
+    }
+    // === FIM: Substituir por este bloco ===
+
+
     const cirurgiasGerais = document.getElementById("cirurgias")?.value || "Não informado";
 
     function getValorRadio(name) {
@@ -202,9 +233,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 - Altura: ${altura} / Peso: ${peso} / IMC: ${imc}%0A
 - Primeira Menstruação: ${primeiraMenstruacao} anos%0A
 - Primeira Relação Sexual: ${primeiraRelacao} anos%0A
-- ${gravidezes}%0A
-- Ligadura Tubária: ${ligadura}%0A
-- Complicações na gestação/parto/cesariana: ${complicacoesGestacao}%0A
+${gravidezBlock}%0A
 - Cirurgias prévias: ${cirurgiasGerais}
 
 %0A- HPP: ${[
