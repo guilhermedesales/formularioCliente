@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endoscopia Ginecológica - Pré-Operatório</title>
+    <link rel="stylesheet" href="../style/index_novo.css" />
+    <link rel="icon" href="../img/logo_medico.png" type="image/png">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <img src="../img/logo_medico.png" alt="Logo" class="logo">
+            <div class="header-text">
+                <h1>ENDOSCOPIA GINECOLÓGICA</h1>
+                <p>Informações Pré-Operatórias</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-steps">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span class="step-label">Cadastro</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <span class="step-label">Médicas</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <span class="step-label">Finalizar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <form id="contact-form" method="post" name="contact-form">
+
+            <!-- Page 1: Dados Cadastrais -->
+            <div class="form-page active" data-page="1">
+                <div class="page-header">
+                    <div class="page-icon">📋</div>
+                    <h2>Dados Cadastrais</h2>
+                    <p>Informações básicas e contato</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="Nome" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dataNascimento">Data de Nascimento *</label>
+                        <input type="text" id="dataNascimento" placeholder="dd/mm/aaaa" name="Data nascimento" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        <input type="text" id="idade" readonly name="Idade" />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="telefone">Telefone para contato *</label>
+                        <input type="tel" class="telefone" id="telefone" name="Telefone" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="convenio">Convênio *</label>
+                        <input type="text" id="convenio" name="Convênio" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medico">Nome do seu Ginecologista *</label>
+                        <input type="text" id="medico" name="Médico" required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Informações Médicas -->
+            <div class="form-page" data-page="2">
+                <div class="page-header">
+                    <div class="page-icon">💙</div>
+                    <h2>Informações Médicas</h2>
+                    <p>Dados importantes sobre sua saúde</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="dataMenstruacao">Data da última menstruação *</label>
+                        <input type="text" name="Última Menstruação" id="dataMenstruacao" placeholder="dd/mm/aaaa" required />
+                        <small>Formato: dd/mm/aaaa</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="altura">Altura *</label>
+                        <input type="text" name="altura" id="altura" placeholder="_.__m" required />
+                        <small>Em metros (ex: 1.65)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peso">Peso *</label>
+                        <input type="text" name="peso" id="peso" placeholder="__._kg" required />
+                        <small>Em kg (ex: 65.5)</small>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Já esteve grávida? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="gravida" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="gravida" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos de gravidez (ocultos inicialmente) -->
+                    <div id="gravidez-info" style="display: none;" class="subsection pregnancy-section">
+                        <h4>📊 Histórico Obstétrico</h4>
+
+                        <div class="counter-cards">
+                            <div class="counter-card">
+                                <label>Gestações</label>
+                                <p class="counter-subtitle">Total de gravidezes</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="qtd-gravidez">−</button>
+                                    <input type="number" id="qtd-gravidez" name="N° Gestações" value="0" min="0" />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="qtd-gravidez">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Partos Normais</label>
+                                <p class="counter-subtitle">Nascimentos vaginais</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="parto-normal">−</button>
+                                    <input type="number" id="parto-normal" name="Parto Normal" value="0" min="0" data-limited="true" />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="parto-normal">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Cesarianas</label>
+                                <p class="counter-subtitle">Partos cirúrgicos</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="cesariana">−</button>
+                                    <input type="number" id="cesariana" name="Cesárea" value="0" min="0" data-limited="true" />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="cesariana">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Abortos</label>
+                                <p class="counter-subtitle">Espontâneos/Induzidos</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="aborto">−</button>
+                                    <input type="number" id="aborto" name="Aborto" value="0" min="0" data-limited="true" />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="aborto">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cirurgias">Já foi submetida à alguma cirurgia? *</label>
+                        <textarea rows="3" name="Cirurgias" id="cirurgias" required
+                            placeholder="Descreva quais cirurgias já realizou ou escreva 'Nenhuma'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Portadora de alergias medicamentosas e/ou látex? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="alergia-medicamento" value="sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="alergia-medicamento" value="nao" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos de alergia (ocultos inicialmente) -->
+                    <div id="medicamento-info" class="alergia-detalhes hidden">
+                        <div class="form-group full-width">
+                            <label for="quais-medicamentos">Quais medicamentos?</label>
+                            <small style="font-size: 0.85em; color: #666; display: block; margin-bottom: 8px;">(Deixe em branco se não houver medicamentos)</small>
+                            <input type="text" name="quais-medicamentos" id="quais-medicamentos" 
+                                placeholder="Ex: Dipirona, Amoxicilina..." class="disease-input" />
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Alergia a látex?</label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="alergia-latex" value="sim" />
+                                    <span>Sim</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="alergia-latex" value="nao" />
+                                    <span>Não</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="doenca">Possui alguma doença? Quais?</label>
+                        <textarea rows="3" name="Doença" id="doenca"
+                            placeholder="Descreva suas condições de saúde ou escreva 'Nenhuma'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="doencafamilia">Histórico de doenças na família? Quais?</label>
+                        <textarea rows="3" name="DoençaFamilia" id="doencafamilia"
+                            placeholder="Descreva o histórico familiar de doenças..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="medicacao">Faz uso de alguma medicação? Quais? Quanto Tempo?</label>
+                        <textarea rows="3" name="Medicação" id="medicacao"
+                            placeholder="Liste as medicações em uso, dosagem e há quanto tempo utiliza..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Finalizar -->
+            <div class="form-page" data-page="3">
+                <div class="page-header">
+                    <div class="page-icon">✅</div>
+                    <h2>Informações Adicionais</h2>
+                    <p>Última etapa! Adicione qualquer informação relevante</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="informacao_adicional">Deseja acrescentar alguma informação que julgue importante?</label>
+                        <textarea rows="6" name="informacao_adicional" id="informacao_adicional"
+                            placeholder="Utilize este espaço para compartilhar qualquer informação adicional que considere relevante para sua consulta..."></textarea>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <div class="success-icon">🎉</div>
+                    <h3>Quase lá!</h3>
+                    <p>Revise suas informações e clique em <strong>Enviar</strong> para concluir seu cadastro.</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="form-navigation">
+                <button type="button" class="btn-nav btn-prev" id="prevBtn" disabled>
+                    <span>←</span> Voltar
+                </button>
+                <button type="button" class="btn-nav btn-next" id="nextBtn">
+                    Avançar <span>→</span>
+                </button>
+                <button type="button" class="btn-nav btn-review" id="reviewBtn" style="display: none;">
+                    📋 Revisar Respostas
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Help Button -->
+    <button id="helpButton" class="help-btn" title="Precisa de ajuda?">?</button>
+
+    <!-- Help Box -->
+    <div id="helpBox" class="help-box" style="display: none;">
+        <button class="help-close" id="helpClose">×</button>
+        <h4>💬 Como podemos ajudar?</h4>
+        <p>Selecione sobre qual campo você tem dúvida:</p>
+        <div class="field-options">
+            <label><input type="checkbox" name="field" value="Informações pessoais"> Informações pessoais</label>
+            <label><input type="checkbox" name="field" value="Endereço"> Endereço</label>
+            <label><input type="checkbox" name="field" value="Informações médicas"> Informações médicas</label>
+            <label><input type="checkbox" name="field" value="Doenças pré-existentes"> Doenças pré-existentes</label>
+            <label><input type="checkbox" name="field" value="Histórico familiar"> Histórico familiar</label>
+        </div>
+        <textarea id="questionText" placeholder="Digite sua dúvida aqui..." rows="4"></textarea>
+        <button id="sendHelpBtn" class="btn-send-help">📱 Enviar pelo WhatsApp</button>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Revisão Final</h2>
+                <button class="modal-close" id="closeReview">×</button>
+            </div>
+            <div class="modal-body" id="reviewContent">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal btn-back" id="backToEdit">← Voltar para Editar</button>
+                <button type="submit" class="btn-modal btn-confirm" id="confirmSubmit">✓ Confirmar e Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/imask"></script>
+    <script src="../scripts/config.js" defer></script>
+    <script src="../scripts/form-action-setup.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/idade-calculo.js" defer></script>
+    <script src="../scripts/buscaCEP.js" defer></script>
+    <script src="../scripts/mascara-telefone.js" defer></script>
+    <script src="../scripts/mascara-data.js" defer></script>
+    <script src="../scripts/mascara-peso-altura.js" defer></script>
+    <script src="../scripts/index_novo.js" defer></script>
+    <script src="../scripts/form-handler.js" defer></script>
+</body>
+
+</html>

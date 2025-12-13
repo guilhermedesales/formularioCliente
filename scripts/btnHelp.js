@@ -20,7 +20,7 @@ const helpBtn = document.getElementById("helpButton");
 
     const message = `Olá! Tenho uma dúvida referente a:\n\n- ${selectedFields.join(';\n- ')};\n\n${question}`;
     const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = '5521936193944';
+    const phoneNumber = CONFIG.WHATSAPP_NUMBER;
 
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');

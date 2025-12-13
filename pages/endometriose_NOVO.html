@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endogil Endometriose - Nova Interface</title>
+    <link rel="stylesheet" href="style/endometriose_novo.css" />
+    <link rel="icon" href="img/logo_medico.png" type="image/png">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <img src="img/logo_medico.png" alt="Logo" class="logo">
+            <div class="header-text">
+                <h1>ENDOMETRIOSE</h1>
+                <p>Formulário Pré-Consulta</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-steps">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span class="step-label">Cadastro</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <span class="step-label">Médicas</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <span class="step-label">Histórico</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-circle">4</div>
+                <span class="step-label">Doenças</span>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="step-circle">5</div>
+                <span class="step-label">Hábitos</span>
+            </div>
+            <div class="progress-step" data-step="6">
+                <div class="step-circle">6</div>
+                <span class="step-label">Finalizar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <form id="contact-form" method="post" name="contact-form">
+
+            <!-- Page 1: Dados Pessoais, Endereço e Contato -->
+            <div class="form-page active" data-page="1">
+                <div class="page-header">
+                    <div class="page-icon">📋</div>
+                    <h2>Informações Cadastrais</h2>
+                    <p>Dados pessoais, endereço e contato</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="section-divider full-width">
+                        <h4>👤 Dados Pessoais</h4>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="Nome" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="nomeSocial">Nome Social</label>
+                        <input type="text" id="nomeSocial" name="Nome Social" />
+                        <small>Caso prefira ser chamada por outro nome</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dataNascimento">Data de Nascimento *</label>
+                        <input type="text" id="dataNascimento" placeholder="dd/mm/aaaa" name="Data nascimento"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        <input type="text" id="idade" readonly name="Idade" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cor">Cor/Raça *</label>
+                        <select id="cor" name="Cor" required>
+                            <option value="">Selecione</option>
+                            <option value="Branca">Branca</option>
+                            <option value="Preta">Preta</option>
+                            <option value="Parda">Parda</option>
+                            <option value="Amarela">Amarela</option>
+                            <option value="Indígena">Indígena</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estadoCivil">Estado Civil *</label>
+                        <select id="estadoCivil" name="Estado Civil" required>
+                            <option value="">Selecione</option>
+                            <option value="Solteiro(a)">Solteiro(a)</option>
+                            <option value="Casado(a)">Casado(a)</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                            <option value="Viúvo(a)">Viúvo(a)</option>
+                            <option value="União Estável">União Estável</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="profissao">Profissão *</label>
+                        <input type="text" id="profissao" name="Profissão" required />
+                    </div>
+
+                    <div class="section-divider full-width">
+                        <h4>📍 Endereço</h4>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cep">CEP *</label>
+                        <input type="text" id="cep" name="CEP" placeholder="00000-000" required />
+                        <small>Digite o CEP para preenchimento automático</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número *</label>
+                        <input type="text" id="numero" name="Numero" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="rua">Rua *</label>
+                        <input type="text" id="rua" name="Rua" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro *</label>
+                        <input type="text" id="bairro" name="Bairro" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" name="Cidade" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <input type="text" id="estado" name="estado" required />
+                    </div>
+
+                    <div class="section-divider full-width">
+                        <h4>📞 Contato</h4>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="Email" placeholder="seuemail@exemplo.com" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="telefone1">Telefone Principal *</label>
+                        <input type="tel" class="telefone" id="telefone1" name="Telefone" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="telefone2">Telefone Secundário</label>
+                        <input type="tel" class="telefone" id="telefone2" name="Telefone2" />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="indicacao">Como nos conheceu? *</label>
+                        <input type="text" id="indicacao" name="indicação" 
+                            placeholder="Ex: Indicação de amigo, Google, Instagram..." required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Informações Médicas -->
+            <div class="form-page" data-page="2">
+                <div class="page-header">
+                    <div class="page-icon">💙</div>
+                    <h2>Informações Médicas</h2>
+                    <p>Dados importantes sobre sua saúde</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="altura">Altura *</label>
+                        <input type="text" name="altura" id="altura" placeholder="1.65" required />
+                        <small>Em metros (ex: 1.65)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peso">Peso *</label>
+                        <input type="text" name="peso" id="peso" placeholder="65.5" required />
+                        <small>Em kg (ex: 65.5)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imc">IMC</label>
+                        <input type="text" name="imc" id="imc" readonly />
+                        <button type="button" class="btn-info" id="btnInfoImc" title="Ver tabela de IMC">
+                            <span>ℹ️</span> Ver Tabela
+                        </button>
+                    </div>
+
+                    <!-- Tabela IMC (oculta inicialmente) -->
+                    <div id="tabelaImc" class="info-box" style="display: none;">
+                        <h4>📊 Classificação IMC</h4>
+                        <ul>
+                            <li><strong>Abaixo de 18,5:</strong> Abaixo do peso</li>
+                            <li><strong>18,5 a 24,9:</strong> Peso normal</li>
+                            <li><strong>25,0 a 29,9:</strong> Sobrepeso</li>
+                            <li><strong>30,0 a 34,9:</strong> Obesidade grau I</li>
+                            <li><strong>35,0 a 39,9:</strong> Obesidade grau II</li>
+                            <li><strong>40,0 ou mais:</strong> Obesidade grau III</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="primeiraMenstruacao">Primeira Menstruação *</label>
+                        <input type="number" id="primeiraMenstruacao" placeholder="Idade" 
+                            name="Primeira Menstruação" required />
+                        <small>Com quantos anos?</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="primeiraRelacao">Primeira Relação Sexual *</label>
+                        <input type="number" id="primeiraRelacao" placeholder="Idade" 
+                            name="Primeira Relação" required />
+                        <small>Com quantos anos?</small>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Já esteve grávida? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="gravida" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="gravida" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos de gravidez (ocultos inicialmente) -->
+                    <div id="gravidez-info" style="display: none;" class="subsection pregnancy-section">
+                        <h4>📊 Histórico Obstétrico</h4>
+
+                        <div class="counter-cards">
+                            <div class="counter-card">
+                                <label>Gestações</label>
+                                <p class="counter-subtitle">Total de gravidezes</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="qtd-gravidez">−</button>
+                                    <input type="number" id="qtd-gravidez" name="N° Gestações" value="0" min="0" readonly />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="qtd-gravidez">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Partos Normais</label>
+                                <p class="counter-subtitle">Nascimentos vaginais</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="parto-normal">−</button>
+                                    <input type="number" id="parto-normal" name="Parto Normal" value="0" min="0" data-limited="true" readonly />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="parto-normal">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Cesarianas</label>
+                                <p class="counter-subtitle">Partos cirúrgicos</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="cesariana">−</button>
+                                    <input type="number" id="cesariana" name="Cesárea" value="0" min="0" data-limited="true" readonly />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="cesariana">+</button>
+                                </div>
+                            </div>
+
+                            <div class="counter-card">
+                                <label>Abortos</label>
+                                <p class="counter-subtitle">Espontâneos/Induzidos</p>
+                                <div class="counter-control">
+                                    <button type="button" class="counter-btn" data-action="decrease" data-target="aborto">−</button>
+                                    <input type="number" id="aborto" name="Aborto" value="0" min="0" data-limited="true" readonly />
+                                    <button type="button" class="counter-btn" data-action="increase" data-target="aborto">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-top: 25px;">
+                            <label for="complicacoes">Houve complicações na Gestação, Parto ou Cesariana?</label>
+                            <textarea rows="3" name="Complicações" id="complicacoes" 
+                                placeholder="Descreva se houve alguma complicação..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Fez Ligadura Tubária? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="ligadura tubaria" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="ligadura tubaria" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cirurgias">Já foi submetida à alguma cirurgia? *</label>
+                        <textarea rows="3" name="Cirurgias" id="cirurgias" required
+                            placeholder="Descreva quais cirurgias já realizou ou escreva 'Nenhuma'"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Histórico de Saúde -->
+            <div class="form-page" data-page="3">
+                <div class="page-header">
+                    <div class="page-icon">🏥</div>
+                    <h2>Histórico de Saúde</h2>
+                    <p>Informações sobre condições de saúde pré-existentes</p>
+                </div>
+
+                <div class="diseases-grid">
+                    <div class="disease-card">
+                        <label>Pressão Alta</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="pressao_alta" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="pressao_alta" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="disease-card">
+                        <label>Diabetes</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="diabetes" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="diabetes" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="disease-card">
+                        <label>Colesterol Alto</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="colesterol" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="colesterol" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width">
+                        <label>Tireoidismo</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="tireoidismo" value="Hiper" required>
+                                <span>Hiper</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="tireoidismo" value="Hipo">
+                                <span>Hipo</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="tireoidismo" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width expandable">
+                        <label>Infecção Sexualmente Transmissível (IST)</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="ist" value="Sim" data-show-target="#campo-ist">
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="ist" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-ist">
+                            <input type="text" name="ist_qual" placeholder="Especifique qual IST" class="disease-input" />
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width expandable">
+                        <label>Doença Respiratória</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="respiratoria" value="Sim" data-show-target="#campo-respiratoria">
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="respiratoria" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-respiratoria">
+                            <input type="text" name="respiratoria_qual" placeholder="Especifique qual doença" class="disease-input" />
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width expandable">
+                        <label>Doença Cardíaca</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="cardiaca" value="Sim" data-show-target="#campo-cardiaca">
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="cardiaca" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-cardiaca">
+                            <input type="text" name="cardiaca_qual" placeholder="Especifique qual doença" class="disease-input" />
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width expandable">
+                        <label>Doença Psiquiátrica</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="psiquiatrica" value="Sim" data-show-target="#campo-psiquiatrica">
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="psiquiatrica" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-psiquiatrica">
+                            <input type="text" name="psiquiatrica_qual" placeholder="Especifique qual doença" class="disease-input" />
+                        </div>
+                    </div>
+
+                    <div class="disease-card full-width expandable">
+                        <label>Câncer</label>
+                        <div class="toggle-group">
+                            <label class="toggle-option">
+                                <input type="radio" name="cancer" value="Sim" data-show-target="#campo-cancer">
+                                <span>Sim</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="cancer" value="Não">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="campo-cancer">
+                            <input type="text" name="cancer_qual" placeholder="Especifique qual tipo" class="disease-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 4: Doenças Autoimunes e Alergias -->
+            <div class="form-page" data-page="4">
+                <div class="page-header">
+                    <div class="page-icon">🔬</div>
+                    <h2>Doenças Autoimunes e Alergias</h2>
+                    <p>Informações sobre condições autoimunes e alergias</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Doenças Autoimunes</h4>
+                    <p class="subtitle">Selecione todas que se aplicam</p>
+
+                    <div class="checkbox-grid">
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Artrite Reumatoide" />
+                            <span>Artrite Reumatoide</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Lupus" />
+                            <span>Lupus Eritematoso</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Vitiligo" />
+                            <span>Vitiligo</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Psoriase" />
+                            <span>Psoríase</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Sjogren" />
+                            <span>Síndrome de Sjögren</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Hashimoto" />
+                            <span>Tiroidite de Hashimoto</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Polimialgia" />
+                            <span>Polimialgia Reumática</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Espondilite" />
+                            <span>Espondilite Anquilosante</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Graves" />
+                            <span>Doença de Graves</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Esclerose Múltipla" />
+                            <span>Esclerose Múltipla</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="autoimune[]" value="Esofagite" />
+                            <span>Esofagite Eosinofílica</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="autoimune-outra" name="autoimune[]" value="Outra" />
+                            <span>Outra</span>
+                        </label>
+                    </div>
+
+                    <div id="campo-outra-autoimune" class="form-group full-width" style="display: none; margin-top: 20px;">
+                        <label>Especifique a doença autoimune:</label>
+                        <input type="text" name="autoimune_outra_descricao"
+                            placeholder="Ex: Hepatite autoimune..." />
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h4>Alergias</h4>
+
+                    <div class="form-group full-width">
+                        <label>Portadora de alergias medicamentosas e/ou látex? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="alergia-medicamento" value="sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="alergia-medicamento" value="nao" required>
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="alergia-detalhes" id="medicamento-info" style="display: none;">
+                        <div class="form-group full-width">
+                            <label for="quais-medicamentos">Quais medicamentos?</label>
+                            <input type="text" id="quais-medicamentos" placeholder="Ex: Dipirona, Amoxicilina..."
+                                name="quais-medicamentos">
+                            <small>Deixe em branco se não houver medicamentos</small>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Alergia a látex?</label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="alergia-latex" value="sim">
+                                    <span>Sim</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="alergia-latex" value="nao">
+                                    <span>Não</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h4>Histórico Familiar</h4>
+                    <p class="subtitle">Selecione condições presentes em familiares diretos</p>
+
+                    <div class="checkbox-grid">
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="hf_pressao_alta" value="Sim">
+                            <span>Pressão Alta</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="hf_diabetes" value="Sim">
+                            <span>Diabetes</span>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="hf_endometriose" value="Sim">
+                            <span>Endometriose</span>
+                        </label>
+
+                        <label class="checkbox-card full-width">
+                            <input type="checkbox" name="hf_cardiologica" value="Sim" data-show-target="#campo-hf-cardiologica">
+                            <span>Doença Cardiológica</span>
+                        </label>
+                    </div>
+
+                    <div class="hidden" id="campo-hf-cardiologica" style="margin-top: 10px;">
+                        <input type="text" name="hf_cardiologica_qual"
+                            placeholder="Ex: Arritmia, Insuficiência cardíaca..." class="disease-input" />
+                    </div>
+
+                    <label class="checkbox-card full-width" style="margin-top: 20px;">
+                        <input type="checkbox" name="hf_cancer_checkbox" value="Sim" data-show-target="#campo-hf-cancer" />
+                        <span>Câncer na família</span>
+                    </label>
+                    <div class="hidden" id="campo-hf-cancer" style="margin-top: 10px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-size: 14px;">Parentesco e tipo de câncer:</label>
+                        <input type="text" name="hf_cancer_info" 
+                            placeholder="Ex: Avó - Câncer de mama, Tio - Câncer de próstata" class="disease-input" />
+                    </div>
+
+                    <label class="checkbox-card full-width">
+                        <input type="checkbox" name="hf_outra" value="Sim" data-show-target="#campo-hf-outra" />
+                        <span>Outra doença familiar</span>
+                    </label>
+                    <div class="hidden" id="campo-hf-outra" style="margin-top: 10px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-size: 14px;">Descreva a doença:</label>
+                        <textarea name="hf_outra_descricao" rows="3" 
+                            placeholder="Ex: Lúpus, Alzheimer..." class="disease-input"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 5: Hábitos e Medicamentos -->
+            <div class="form-page" data-page="5">
+                <div class="page-header">
+                    <div class="page-icon">💊</div>
+                    <h2>Hábitos e Medicamentos</h2>
+                    <p>Informações sobre hábitos de vida e medicações</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Fuma ou já fumou? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="fuma" value="sim" data-show-target="#fuma-info">
+                                <span>Já fumei</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="fuma" value="nao">
+                                <span>Nunca fumei</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="fuma" value="ainda fuma">
+                                <span>Fumo atualmente</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="fuma-info" style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-size: 14px;">Parou de fumar há quanto tempo?</label>
+                            <input type="text" name="parouFumar" placeholder="Ex: 2 anos, 6 meses..." class="disease-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Tem intolerância alimentar? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="intolerancia" value="sim" data-show-target="#intolerancia-desc">
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="intolerancia" value="nao">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="intolerancia-desc" style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-size: 14px;">Descreva:</label>
+                            <input type="text" name="descIntolerancia" 
+                                placeholder="Ex: Lactose, Glúten..." class="disease-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Hábito de tomar café? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="cafe" value="sim" data-show-target="#cafe-info">
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="cafe" value="nao">
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="hidden" id="cafe-info" style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-size: 14px;">Quantas vezes ao dia?</label>
+                            <input type="text" name="qtdCafe" placeholder="Ex: 2-3 xícaras por dia" class="disease-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="medicacao">Faz uso de alguma medicação? Quais? Quanto Tempo?</label>
+                        <textarea rows="4" name="Medicação" id="medicacao" 
+                            placeholder="Liste todas as medicações que você usa atualmente, incluindo o tempo de uso&#10;&#10;Ex: Anticoncepcional - 2 anos&#10;Omeprazol 20mg - 6 meses"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="medicacaoAntes">Já fez uso de alguma medicação antes? Quais? Quanto Tempo?</label>
+                        <textarea rows="4" name="MedicaçãoAntes" id="medicacaoAntes"
+                            placeholder="Liste medicações que você já usou no passado&#10;&#10;Ex: Roacutan - 1 ano (parei há 3 anos)"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 6: Finalizar -->
+            <div class="form-page" data-page="6">
+                <div class="page-header">
+                    <div class="page-icon">✅</div>
+                    <h2>Informações Adicionais</h2>
+                    <p>Última etapa! Adicione qualquer informação relevante</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="informacao_adicional">Deseja acrescentar alguma informação que julgue importante?</label>
+                        <textarea rows="6" name="informacao_adicional" id="informacao_adicional"
+                            placeholder="Utilize este espaço para compartilhar qualquer informação adicional que considere relevante para sua consulta..."></textarea>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <div class="success-icon">🎉</div>
+                    <h3>Quase lá!</h3>
+                    <p>Revise suas informações e clique em <strong>Enviar</strong> para concluir seu cadastro.</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="form-navigation">
+                <button type="button" class="btn-nav btn-prev" id="prevBtn" disabled>
+                    <span>←</span> Voltar
+                </button>
+                <button type="button" class="btn-nav btn-next" id="nextBtn">
+                    Avançar <span>→</span>
+                </button>
+                <button type="button" class="btn-nav btn-review" id="reviewBtn" style="display: none;">
+                    📋 Revisar Respostas
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Help Button -->
+    <button id="helpButton" class="help-btn" title="Precisa de ajuda?">?</button>
+
+    <!-- Help Box -->
+    <div id="helpBox" class="help-box" style="display: none;">
+        <button class="help-close" id="helpClose">×</button>
+        <h4>💬 Como podemos ajudar?</h4>
+        <p>Selecione sobre qual campo você tem dúvida:</p>
+        <div class="field-options">
+            <label><input type="checkbox" name="field" value="Informações pessoais"> Informações pessoais</label>
+            <label><input type="checkbox" name="field" value="Endereço"> Endereço</label>
+            <label><input type="checkbox" name="field" value="Informações médicas"> Informações médicas</label>
+            <label><input type="checkbox" name="field" value="Doenças pré-existentes"> Doenças pré-existentes</label>
+            <label><input type="checkbox" name="field" value="Histórico familiar"> Histórico familiar</label>
+        </div>
+        <textarea id="questionText" placeholder="Digite sua dúvida aqui..." rows="4"></textarea>
+        <button id="sendHelpBtn" class="btn-send-help">📱 Enviar pelo WhatsApp</button>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Revisão Final</h2>
+                <button class="modal-close" id="closeReview">×</button>
+            </div>
+            <div class="modal-body" id="reviewContent">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal btn-back" id="backToEdit">← Voltar para Editar</button>
+                <button type="submit" class="btn-modal btn-confirm" id="confirmSubmit">✓ Confirmar e Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/imask"></script>
+    <script src="scripts/config.js" defer></script>
+    <script src="scripts/form-action-setup.js" defer></script>
+    <script src="scripts/utils.js" defer></script>
+    <script src="scripts/idade-calculo.js" defer></script>
+    <script src="scripts/buscaCEP.js" defer></script>
+    <script src="scripts/mascara-telefone.js" defer></script>
+    <script src="scripts/gravidezEndo.js" defer></script>
+    <script src="scripts/alergia-info.js" defer></script>
+    <script src="scripts/mascara-data.js" defer></script>
+    <script src="scripts/campoOutro.js" defer></script>
+    <script src="scripts/calcNovoIMC.js" defer></script>
+    <script src="scripts/btnTableIMC.js" defer></script>
+    <script src="scripts/campoHiden.js" defer></script>
+    <script src="scripts/endometriose_novo.js" defer></script>
+    <script src="scripts/form-handler-endo.js" defer></script>
+</body>
+
+</html>

@@ -19,10 +19,10 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const proteseDentaria = form.querySelector('textarea[name="proteseDentaria"]').value;
 
     const exames = form.querySelector('input[name="exames"]:checked')?.value || "Não informado";
-    const infoAdicional = form.querySelector('textarea[name="informacao_adicional"]').value || "Nenhuma.";
+    const infoAdicional = form.querySelector('textarea[name="informacao_adicional"]').value.trim();
 
 
-    const texto = `*Informações Pré–Anestésicas*\n\n` +
+    let texto = `*Informações Pré–Anestésicas*\n\n` +
 `- Nome: ${nome}\n` +
 `- Jejum de 8h compreendido? ${jejum}\n` +
 `- Cirurgias anteriores: ${cirurgias}\n` +
@@ -34,10 +34,13 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 `- Alergias: ${alergias}\n` +
 `- Medicamentos em uso: ${medicacoes}\n` +
 `- Exames e risco cirúrgico feitos: ${exames}\n` +
-`- Próteses dentárias móveis: ${proteseDentaria}\n` +
-`- Informações adicionais: ${infoAdicional}`;
+`- Próteses dentárias móveis: ${proteseDentaria}`;
 
-    const numeroWhatsApp = "5521936193944"; //5521936193944
+    if (infoAdicional) {
+        texto += `\n- Informações adicionais: ${infoAdicional}`;
+    }
+
+    const numeroWhatsApp = CONFIG.WHATSAPP_NUMBER; //5521936193944
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
     window.open(urlWhatsApp, '_blank');
 
