@@ -8,9 +8,9 @@
 }
 
 :root {
-    --primary-color: #4361ee;
-    --primary-dark: #3451d1;
-    --primary-light: #5a76f7;
+    --primary-color: #f57c00;
+    --primary-dark: #e65100;
+    --primary-light: #8e24aa;
     --secondary-color: #e63946;
     --success-color: #06d6a0;
     --warning-color: #ffd60a;
@@ -38,10 +38,10 @@ body {
    HEADER
 ======================================== */
 .header {
-    background: linear-gradient(135deg, #667eea 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
+    background: linear-gradient(to right, #f57c00, #8e24aa);
     color: white;
     padding: 15px 20px;
-    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -92,6 +92,7 @@ body {
     position: sticky;
     top: 80px;
     z-index: 99;
+    margin-top: 0;
 }
 
 .progress-bar {
@@ -177,7 +178,7 @@ body {
 ======================================== */
 .container {
     max-width: 900px;
-    margin: 30px auto;
+    margin: 20px auto;
     padding: 0 20px;
 }
 
