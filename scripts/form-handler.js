@@ -18,8 +18,19 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const peso = document.getElementById("peso").value;
     const altura = document.getElementById("altura").value;
+    
+    // Calcula IMC
+    let imc = "";
+    if (peso && altura) {
+        const pesoNum = parseFloat(peso.replace(',', '.'));
+        const alturaNum = parseFloat(altura.replace(',', '.'));
+        if (pesoNum > 0 && alturaNum > 0) {
+            const imcCalc = (pesoNum / (alturaNum * alturaNum)).toFixed(2);
+            imc = ` / IMC: ${imcCalc}`;
+        }
+    }
 
-    const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.nextSibling?.nodeValue?.trim() === "Sim";
+    const gravidaSim = document.querySelector('input[name="gravida"]:checked')?.value === "Sim";
     
     let gravidezes = "Gesta 0";
     
@@ -87,7 +98,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
 - Ginecologista: ${medico}%0A
 - DUM: ${ultimaMenstruacao}%0A
-- Peso: ${peso} / Altura: ${altura} %0A
+- Peso: ${peso} / Altura: ${altura}${imc} %0A
 - ${gravidezes}%0A
 - Cirurgias anteriores: ${cirurgia}%0A
 - ${textoAlergia}%0A

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questionário Pré-Anestésica</title>
+    <link rel="stylesheet" href="../style/anestesia_novo.css" />
+    <link rel="icon" href="../img/logo_medico.png" type="image/png">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <img src="../img/logo_medico.png" alt="Logo" class="logo">
+            <div class="header-text">
+                <h1>QUESTIONÁRIO PRÉ-ANESTÉSICA</h1>
+                <p>Avaliação Pré-Operatória</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-steps">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span class="step-label">Identificação</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <span class="step-label">Histórico</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <span class="step-label">Finalizar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <form id="contact-form" method="post" name="contact-form">
+
+            <!-- Page 1: Dados Pessoais, Endereço e Contato -->
+            <div class="form-page active" data-page="1">
+                <div class="page-header">
+                    <div class="page-icon">📋</div>
+                    <h2>Identificação</h2>
+                    <p>Informações básicas para o procedimento anestésico</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="Nome" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <div class="obs" style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            <h4 style="margin-top: 0; color: #856404;">⚠️ Informação Importante sobre Jejum</h4>
+                            <p style="margin-bottom: 15px; line-height: 1.6;">Você sabe que precisa fazer um jejum obrigatório de 8h, não podendo ingerir nem mesmo água?</p>
+                            <p style="margin: 0; font-size: 0.9em; color: #856404;"><strong>OBS:</strong> Em condições clínicas especiais, o jejum poderá ser de um tempo menor, desde que isto seja previamente definido com seu médico anestesiologista.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label style="font-size: 1.1em; font-weight: 600;">Você entendeu a orientação sobre o jejum? *</label>
+                        <div class="radio-group" id="jejum-group">
+                            <label class="radio-card">
+                                <input type="radio" name="jejum" value="Sim" required />
+                                <span>Sim, entendi</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="jejum" value="Não" required />
+                                <span>Não, tenho dúvidas</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Informações Médicas -->
+            <div class="form-page" data-page="2">
+                <div class="page-header">
+                    <div class="page-icon">💙</div>
+                    <h2>Histórico Médico</h2>
+                    <p>Informações importantes para o procedimento anestésico</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="cirurgias">Já foi submetida à alguma cirurgia? (se sim, quais?) *</label>
+                        <textarea rows="3" name="cirurgias" id="cirurgias" required
+                            placeholder="Descreva quais cirurgias já realizou ou escreva 'Nenhuma'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="complicacoes">Você teve algum tipo de complicação em cirurgias e/ou anestesia? (se sim, quais?) *</label>
+                        <textarea rows="3" name="complicacoes" id="complicacoes" required
+                            placeholder="Descreva se houve complicações ou escreva 'Não'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Você tem ou teve pressão alta (hipertensão arterial)? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="pressao" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="pressao" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Você tem diabetes? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="diabete" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="diabete" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="problemasCardioResp">Você tem algum problema cardíaco ou respiratório? (se sim, quais?) *</label>
+                        <textarea rows="3" name="problemasCardioResp" id="problemasCardioResp" required
+                            placeholder="Descreva seus problemas cardíacos ou respiratórios ou escreva 'Não'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="outrosTratamentos">Você faz tratamento ou acompanhamento de algum outro problema de saúde? (se sim, quais?) *</label>
+                        <textarea rows="3" name="outrosTratamentos" id="outrosTratamentos" required
+                            placeholder="Descreva outros tratamentos ou acompanhamentos ou escreva 'Não'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="alergias">Você tem alergia a algum medicamento, substância, alimento, balões de aniversário ou luvas de látex? (se sim, quais?) *</label>
+                        <textarea rows="3" name="alergias" id="alergias" required
+                            placeholder="Descreva suas alergias ou escreva 'Não'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="medicacoes">Você está fazendo uso de algum medicamento neste momento? *</label>
+                        <small style="display: block; margin-bottom: 8px;">Se sim, cite as substâncias ou medicações que você fez uso nos últimos dez dias</small>
+                        <textarea rows="3" name="medicacoes" id="medicacoes" required
+                            placeholder="Liste os medicamentos em uso ou escreva 'Não'"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Você fez os exames pré-operatórios e o risco cirúrgico? *</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="exames" value="Sim" required />
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="exames" value="Não" required />
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <div class="obs" style="margin-top: 10px; padding: 10px; background: #e7f3ff; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 0.9em;"><strong>OBS:</strong> Não se esqueça de levá-los.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="proteseDentaria">Você possui peças dentárias móveis? (se sim, quais?) *</label>
+                        <textarea rows="2" name="proteseDentaria" id="proteseDentaria" required
+                            placeholder="Descreva suas próteses dentárias ou escreva 'Não'"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Finalizar -->
+            <div class="form-page" data-page="3">
+                <div class="page-header">
+                    <div class="page-icon">✅</div>
+                    <h2>Informações Adicionais</h2>
+                    <p>Última etapa! Adicione qualquer informação relevante</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="informacao_adicional">Você tem alguma dúvida em relação ao procedimento cirúrgico ou à anestesia?</label>
+                        <textarea rows="6" name="informacao_adicional" id="informacao_adicional"
+                            placeholder="Utilize este espaço para esclarecer suas dúvidas ou compartilhar qualquer informação adicional que considere relevante..."></textarea>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <div class="success-icon">🎉</div>
+                    <h3>Quase lá!</h3>
+                    <p>Revise suas informações e clique em <strong>Enviar</strong> para concluir seu questionário pré-anestésico.</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="form-navigation">
+                <button type="button" class="btn-nav btn-prev" id="prevBtn" disabled>
+                    <span>←</span> Voltar
+                </button>
+                <button type="button" class="btn-nav btn-next" id="nextBtn">
+                    Avançar <span>→</span>
+                </button>
+                <button type="button" class="btn-nav btn-review" id="reviewBtn" style="display: none;">
+                    📋 Revisar Respostas
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Help Button -->
+    <button id="helpButton" class="help-btn" title="Precisa de ajuda?">?</button>
+
+    <!-- Help Box -->
+    <div id="helpBox" class="help-box" style="display: none;">
+        <button class="help-close" id="helpClose">×</button>
+        <h4>💬 Como podemos ajudar?</h4>
+        <p>Selecione sobre qual campo você tem dúvida:</p>
+        <div class="field-options">
+            <label><input type="checkbox" name="field" value="Informações pessoais"> Informações pessoais</label>
+            <label><input type="checkbox" name="field" value="Endereço"> Endereço</label>
+            <label><input type="checkbox" name="field" value="Informações médicas"> Informações médicas</label>
+            <label><input type="checkbox" name="field" value="Doenças pré-existentes"> Doenças pré-existentes</label>
+            <label><input type="checkbox" name="field" value="Histórico familiar"> Histórico familiar</label>
+        </div>
+        <textarea id="questionText" placeholder="Digite sua dúvida aqui..." rows="4"></textarea>
+        <button id="sendHelpBtn" class="btn-send-help">📱 Enviar pelo WhatsApp</button>
+    </div>
+
+    <!-- Jejum Doubt Modal -->
+    <div id="jejumDoubtModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>❓ Dúvida sobre Jejum</h2>
+                <button class="modal-close" id="closeJejumDoubt">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; line-height: 1.6;">Por favor, descreva sua dúvida sobre o jejum pré-operatório:</p>
+                <textarea id="jejumDoubtText" rows="5" placeholder="Digite sua dúvida aqui..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal btn-back" id="cancelJejumDoubt">← Voltar</button>
+                <button type="button" class="btn-modal btn-confirm" id="sendJejumDoubt">📱 Enviar Dúvida</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Revisão Final</h2>
+                <button class="modal-close" id="closeReview">×</button>
+            </div>
+            <div class="modal-body" id="reviewContent">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal btn-back" id="backToEdit">← Voltar para Editar</button>
+                <button type="submit" class="btn-modal btn-confirm" id="confirmSubmit">✓ Confirmar e Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/form-action-setup.js"></script>
+    <script src="../scripts/anestesia_novo.js"></script>
+    <script src="../scripts/form-handler-anestesia.js"></script>
+</body>
+
+</html>

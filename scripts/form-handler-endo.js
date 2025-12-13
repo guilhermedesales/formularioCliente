@@ -291,4 +291,11 @@ ${info_adicional ? `%0A%0A*Informações Adicionais*%0A%0A${info_adicional}` : '
     const numeroWhatsApp = CONFIG.WHATSAPP_NUMBER;
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
+    
+    // Call reset function after successful submission
+    setTimeout(() => {
+        if (typeof window.resetFormAfterSubmit === 'function') {
+            window.resetFormAfterSubmit();
+        }
+    }, 1000);
 });
