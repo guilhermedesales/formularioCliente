@@ -1,4 +1,4 @@
- const scriptURL = 'https://script.google.com/macros/s/AKfycbwg_CF7feqxcD1WhzivJfuvvSRihjiIESVy6ahr5avFhBdwXdrXGmhEP6Hh-1NMeQre/exec'
+ const scriptURL = CONFIG.SHEETS_URL_ANESTESIA;
 
         const form = document.forms['contact-form']
 

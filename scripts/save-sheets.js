@@ -1,4 +1,4 @@
- const scriptURL = 'https://script.google.com/macros/s/AKfycbw2oyYoCSXhOIE1__tes9I5vdFu4ti_nVj05Y7z0gRiWFwFfBFjinm-avv4sHrq6jk/exec'
+ const scriptURL = CONFIG.SHEETS_URL_HISTEROSCOPIA;
 
         const form = document.forms['contact-form']
 

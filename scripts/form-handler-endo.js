@@ -52,31 +52,45 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
     const gravida = document.querySelector('input[name="gravida"]:checked')?.value === "Sim";
 
-    // monta bloco de gravidez que será incluído no texto final
-    let gravidezBlock = "- Já esteve grávida: Não"; // padrão quando não marcou "Sim"
+    // monta bloco de gravidez no formato Gesta/Para/PN/Cesaria/Aborto
+    let gravidezBlock = "- Gesta 0"; // padrão quando não marcou "Sim"
 
     if (gravida) {
-        const qtdGravidez = document.getElementById("qtd-gravidez")?.value?.trim() || "Não informado";
-        const partoNormal = document.getElementById("parto-normal")?.value?.trim() || "0";
-        const cesariana = document.getElementById("cesariana")?.value?.trim() || "0";
-        const aborto = document.getElementById("aborto")?.value?.trim() || "0";
+        const qtdGravidez = parseInt(document.getElementById("qtd-gravidez")?.value?.trim()) || 0;
+        const partoNormal = parseInt(document.getElementById("parto-normal")?.value?.trim()) || 0;
+        const cesariana = parseInt(document.getElementById("cesariana")?.value?.trim()) || 0;
+        const aborto = parseInt(document.getElementById("aborto")?.value?.trim()) || 0;
+
+        // Calcula Para (partos totais = PN + Cesária)
+        const para = partoNormal + cesariana;
+
+        // Monta o texto de gestações
+        let gestaText = `- Gesta ${qtdGravidez} / Para ${para}`;
+        
+        // Adiciona tipos de parto apenas se houver
+        const tipos = [];
+        if (partoNormal > 0) tipos.push(`PN ${partoNormal}`);
+        if (cesariana > 0) tipos.push(`Cesaria ${cesariana}`);
+        if (aborto > 0) tipos.push(`Aborto ${aborto}`);
+        
+        if (tipos.length > 0) {
+            gestaText += ` / ${tipos.join(' / ')}`;
+        }
+
+        gravidezBlock = gestaText;
 
         // ligadura e complicações só são lidas se marcou que já esteve grávida
         const ligadura = document.querySelector('input[name="ligadura tubaria"]:checked')?.value || "Não informado";
         const complicacoesVal = document.getElementById("complicacoes")?.value?.trim();
-        const complicacoesTexto = complicacoesVal ? complicacoesVal : "Não informado";
-
-        // monta o bloco com quebras de linha em %0A (estilo do seu template atual)
-        gravidezBlock =
-            `- Já esteve grávida: Sim%0A` +
-            `- Nº de gestações: ${qtdGravidez}%0A` +
-            `- Partos normais: ${partoNormal}%0A` +
-            `- Cesarianas: ${cesariana}%0A` +
-            `- Abortos: ${aborto}%0A` +
-            `- Ligadura Tubária: ${ligadura}%0A` +
-            `- Complicações na gestação/parto/cesariana: ${complicacoesTexto}`;
+        
+        // Adiciona informações extras apenas se existirem
+        if (ligadura !== "Não informado") {
+            gravidezBlock += `%0A- Ligadura Tubária: ${ligadura}`;
+        }
+        if (complicacoesVal) {
+            gravidezBlock += `%0A- Complicações na gestação/parto/cesariana: ${complicacoesVal}`;
+        }
     }
-    // === FIM: Substituir por este bloco ===
 
 
     const cirurgiasGerais = document.getElementById("cirurgias")?.value || "Não informado";
@@ -214,7 +228,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     const hf_outra = getCheckboxWithTextareaDetail("hf_outra", "hf_outra_descricao");
 
     // Informação adicional
-    const info_adicional = document.querySelector('textarea[name="informacao_adicional"]')?.value.trim() || "Nenhuma informação adicional.";
+    const info_adicional = document.querySelector('textarea[name="informacao_adicional"]')?.value.trim() || "";
 
     const texto = `*Dados Pessoais*%0A%0A
 - Nome: ${nome}%0A
@@ -231,8 +245,8 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
 %0A%0A*Informações Clínicas*%0A%0A
 - Altura: ${altura} / Peso: ${peso} / IMC: ${imc}%0A
-- Primeira Menstruação: ${primeiraMenstruacao} anos%0A
-- Primeira Relação Sexual: ${primeiraRelacao} anos%0A
+- Menarca: ${primeiraMenstruacao} anos%0A
+- Coitarca: ${primeiraRelacao} anos%0A
 ${gravidezBlock}%0A
 - Cirurgias prévias: ${cirurgiasGerais}
 
@@ -271,10 +285,10 @@ ${gravidezBlock}%0A
         }
 
 
-%0A%0A*Informações Adicionais*%0A%0A${info_adicional}`;
+${info_adicional ? `%0A%0A*Informações Adicionais*%0A%0A${info_adicional}` : ''}`;
 
 
-    const numeroWhatsApp = "5521936193944";
+    const numeroWhatsApp = CONFIG.WHATSAPP_NUMBER;
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`;
     window.open(urlWhatsApp, '_blank');
 });

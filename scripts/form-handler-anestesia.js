@@ -37,7 +37,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 `- Próteses dentárias móveis: ${proteseDentaria}\n` +
 `- Informações adicionais: ${infoAdicional}`;
 
-    const numeroWhatsApp = "5521936193944"; //5521936193944
+    const numeroWhatsApp = CONFIG.WHATSAPP_NUMBER; //5521936193944
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
     window.open(urlWhatsApp, '_blank');
 

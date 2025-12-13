@@ -1,0 +1,260 @@
+/* =====================================================
+   MELHORIAS DE RESPONSIVIDADE E UX
+   Adicione este conteúdo ao final dos arquivos CSS existentes
+   ===================================================== */
+
+/* Loading State para botão de submit */
+#submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#submit.loading {
+  position: relative;
+  color: transparent;
+}
+
+#submit.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #f57c00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover para botão WhatsApp */
+#sendBtn:hover {
+  background-color: #1da851;
+  transform: scale(1.02);
+}
+
+#sendBtn:active {
+  transform: scale(0.98);
+}
+
+/* Transições suaves */
+#sendBtn,
+input[type="submit"],
+button {
+  transition: all 0.3s ease;
+}
+
+/* Feedback visual para campos obrigatórios */
+input:required:invalid,
+textarea:required:invalid,
+select:required:invalid {
+  border-left: 3px solid transparent;
+}
+
+input:required:valid,
+textarea:required:valid,
+select:required:valid {
+  border-left: 3px solid #4caf50;
+}
+
+/* Focus melhorado */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #f57c00;
+  box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1);
+}
+
+/* Melhorias para telas pequenas */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .form-title {
+    margin: -15px -15px 20px -15px;
+    padding: 15px;
+  }
+
+  .form-title h3 {
+    font-size: 1.3rem;
+  }
+
+  .form-title h5 {
+    font-size: 0.9rem;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+  }
+
+  .form-group-grouped {
+    flex-direction: column;
+  }
+
+  .form-grid {
+    gap: 15px;
+  }
+
+  /* Botão de ajuda mais acessível no mobile */
+  #helpButton {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  #helpBox {
+    bottom: 75px;
+    right: 15px;
+    left: 15px;
+    width: auto;
+  }
+
+  /* Ícone flutuante menor */
+  .icone-img {
+    width: 60px;
+  }
+
+  /* Radio buttons e checkboxes mais espaçados */
+  .radio-group label,
+  .checkbox-group label {
+    padding: 10px;
+  }
+
+  /* Tabela IMC responsiva */
+  .table-imc {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title h3 {
+    font-size: 1.1rem;
+  }
+
+  .form-title h5 {
+    font-size: 0.8rem;
+  }
+
+  input[type="submit"] {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Melhor experiência para telefones */
+  .phone-wrapper {
+    flex-direction: column;
+  }
+
+  .btn-add-phone,
+  .btn-remove-phone {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Animações suaves */
+.form-group,
+.radio-group label,
+.checkbox-group label {
+  transition: all 0.2s ease;
+}
+
+/* Hover states para melhor feedback */
+.radio-group label:hover,
+.checkbox-group label:hover {
+  background-color: rgba(245, 124, 0, 0.05);
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3);
+}
+
+input[type="submit"]:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Melhor acessibilidade para campos desabilitados */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Tooltip para ajuda */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 5px;
+}
+
+[data-tooltip]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #333;
+  margin-bottom: -5px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles */
+@media print {
+  #helpButton,
+  #helpBox,
+  input[type="submit"],
+  .btn-add-phone,
+  .btn-remove-phone {
+    display: none;
+  }
+
+  .container {
+    box-shadow: none;
+  }
+
+  .form-title {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
