@@ -874,7 +874,7 @@ function autoSaveForm() {
     localStorage.setItem('endoFormPage', currentPage);
 }
 
-function loadSavedForm() {
+async function loadSavedForm() {
     const savedData = localStorage.getItem('endoFormDraft');
     const savedPage = localStorage.getItem('endoFormPage');
     
@@ -882,7 +882,8 @@ function loadSavedForm() {
         const data = JSON.parse(savedData);
         
         // Ask user if they want to restore
-        if (confirm('Encontramos um rascunho salvo. Deseja continuar de onde parou?')) {
+        const shouldRestore = await customConfirm('Encontramos um rascunho salvo. Deseja continuar de onde parou?');
+        if (shouldRestore) {
             Object.keys(data).forEach(key => {
                 const elements = document.querySelectorAll(`[name="${key}"]`);
                 elements.forEach(element => {
