@@ -9,111 +9,115 @@
  * @param {string} cancelText - Texto do botão de cancelamento (padrão: "Não")
  * @returns {Promise<boolean>} - Retorna uma Promise que resolve com true se confirmado, false se cancelado
  */
-function customConfirm(message, confirmText = 'Sim, continuar', cancelText = 'Não, começar novo') {
-    return new Promise((resolve) => {
-        // Remove popup existente se houver
-        const existingPopup = document.getElementById('custom-confirm-popup');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
+function customConfirm(
+  message,
+  confirmText = "Sim, continuar",
+  cancelText = "Não, começar novo"
+) {
+  return new Promise((resolve) => {
+    // Remove popup existente se houver
+    const existingPopup = document.getElementById("custom-confirm-popup");
+    if (existingPopup) {
+      existingPopup.remove();
+    }
 
-        // Cria overlay
-        const overlay = document.createElement('div');
-        overlay.id = 'custom-confirm-popup';
-        overlay.className = 'custom-confirm-overlay';
-        
-        // Cria container do popup
-        const popup = document.createElement('div');
-        popup.className = 'custom-confirm-popup';
-        
-        // Animação de entrada
-        setTimeout(() => {
-            overlay.classList.add('active');
-            popup.classList.add('active');
-        }, 10);
-        
-        // Ícone
-        const icon = document.createElement('div');
-        icon.className = 'custom-confirm-icon';
-        icon.innerHTML = '💾';
-        
-        // Mensagem
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'custom-confirm-message';
-        messageDiv.textContent = message;
-        
-        // Container de botões
-        const buttonsDiv = document.createElement('div');
-        buttonsDiv.className = 'custom-confirm-buttons';
-        
-        // Botão Confirmar
-        const confirmBtn = document.createElement('button');
-        confirmBtn.className = 'custom-confirm-btn confirm';
-        confirmBtn.innerHTML = `<span>✓</span> ${confirmText}`;
-        confirmBtn.onclick = () => {
-            closePopup(true);
-        };
-        
-        // Botão Cancelar
-        const cancelBtn = document.createElement('button');
-        cancelBtn.className = 'custom-confirm-btn cancel';
-        cancelBtn.innerHTML = `<span>✕</span> ${cancelText}`;
-        cancelBtn.onclick = () => {
-            closePopup(false);
-        };
-        
-        // Função para fechar o popup
-        function closePopup(result) {
-            overlay.classList.remove('active');
-            popup.classList.remove('active');
-            
-            setTimeout(() => {
-                overlay.remove();
-                resolve(result);
-            }, 300);
-        }
-        
-        // Monta o popup
-        buttonsDiv.appendChild(confirmBtn);
-        buttonsDiv.appendChild(cancelBtn);
-        
-        popup.appendChild(icon);
-        popup.appendChild(messageDiv);
-        popup.appendChild(buttonsDiv);
-        
-        overlay.appendChild(popup);
-        document.body.appendChild(overlay);
-        
-        // Fecha ao clicar no overlay (fora do popup)
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                closePopup(false);
-            }
-        });
-        
-        // Foca no botão de confirmar
-        setTimeout(() => confirmBtn.focus(), 100);
-        
-        // Suporte a teclado
-        document.addEventListener('keydown', function handleKeyPress(e) {
-            if (e.key === 'Escape') {
-                closePopup(false);
-                document.removeEventListener('keydown', handleKeyPress);
-            } else if (e.key === 'Enter') {
-                closePopup(true);
-                document.removeEventListener('keydown', handleKeyPress);
-            }
-        });
+    // Cria overlay
+    const overlay = document.createElement("div");
+    overlay.id = "custom-confirm-popup";
+    overlay.className = "custom-confirm-overlay";
+
+    // Cria container do popup
+    const popup = document.createElement("div");
+    popup.className = "custom-confirm-popup";
+
+    // Animação de entrada
+    setTimeout(() => {
+      overlay.classList.add("active");
+      popup.classList.add("active");
+    }, 10);
+
+    // Ícone
+    const icon = document.createElement("div");
+    icon.className = "custom-confirm-icon";
+    icon.innerHTML = "💾";
+
+    // Mensagem
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "custom-confirm-message";
+    messageDiv.textContent = message;
+
+    // Container de botões
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.className = "custom-confirm-buttons";
+
+    // Botão Confirmar
+    const confirmBtn = document.createElement("button");
+    confirmBtn.className = "custom-confirm-btn confirm";
+    confirmBtn.innerHTML = `<span>✓</span> ${confirmText}`;
+    confirmBtn.onclick = () => {
+      closePopup(true);
+    };
+
+    // Botão Cancelar
+    const cancelBtn = document.createElement("button");
+    cancelBtn.className = "custom-confirm-btn cancel";
+    cancelBtn.innerHTML = `<span>✕</span> ${cancelText}`;
+    cancelBtn.onclick = () => {
+      closePopup(false);
+    };
+
+    // Função para fechar o popup
+    function closePopup(result) {
+      overlay.classList.remove("active");
+      popup.classList.remove("active");
+
+      setTimeout(() => {
+        overlay.remove();
+        resolve(result);
+      }, 300);
+    }
+
+    // Monta o popup
+    buttonsDiv.appendChild(confirmBtn);
+    buttonsDiv.appendChild(cancelBtn);
+
+    popup.appendChild(icon);
+    popup.appendChild(messageDiv);
+    popup.appendChild(buttonsDiv);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    // Fecha ao clicar no overlay (fora do popup)
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        closePopup(false);
+      }
     });
+
+    // Foca no botão de confirmar
+    setTimeout(() => confirmBtn.focus(), 100);
+
+    // Suporte a teclado
+    document.addEventListener("keydown", function handleKeyPress(e) {
+      if (e.key === "Escape") {
+        closePopup(false);
+        document.removeEventListener("keydown", handleKeyPress);
+      } else if (e.key === "Enter") {
+        closePopup(true);
+        document.removeEventListener("keydown", handleKeyPress);
+      }
+    });
+  });
 }
 
 // Adiciona estilos CSS dinamicamente
 (function addCustomConfirmStyles() {
-    if (document.getElementById('custom-confirm-styles')) return;
-    
-    const styles = document.createElement('style');
-    styles.id = 'custom-confirm-styles';
-    styles.textContent = `
+  if (document.getElementById("custom-confirm-styles")) return;
+
+  const styles = document.createElement("style");
+  styles.id = "custom-confirm-styles";
+  styles.textContent = `
         .custom-confirm-overlay {
             position: fixed;
             top: 0;
@@ -250,8 +254,8 @@ function customConfirm(message, confirmText = 'Sim, continuar', cancelText = 'N�
             }
         }
     `;
-    
-    document.head.appendChild(styles);
+
+  document.head.appendChild(styles);
 })();
 
-console.log('✅ Custom Confirm Component Loaded');
+console.log("✅ Custom Confirm Component Loaded");
