@@ -6,245 +6,251 @@ let currentPage = 1;
 const totalPages = 3;
 
 // DOM Elements
-const formPages = document.querySelectorAll('.form-page');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const reviewBtn = document.getElementById('reviewBtn');
-const progressBar = document.querySelector('.progress-bar');
-const progressSteps = document.querySelectorAll('.progress-step');
+const formPages = document.querySelectorAll(".form-page");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const reviewBtn = document.getElementById("reviewBtn");
+const progressBar = document.querySelector(".progress-bar");
+const progressSteps = document.querySelectorAll(".progress-step");
 
 // ========================================
 // INITIALIZATION
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
-    initializePage();
-    setupNavigationButtons();
-    setupConditionalFields();
-    setupJejumDoubtModal();
-    setupHelpButton();
-    setupReviewModal();
-    updateProgressBar();
+document.addEventListener("DOMContentLoaded", function () {
+  initializePage();
+  setupNavigationButtons();
+  setupConditionalFields();
+  setupJejumDoubtModal();
+  setupHelpButton();
+  setupReviewModal();
+  updateProgressBar();
 });
 
 function initializePage() {
-    showPage(currentPage);
-    updateButtons();
-    updateProgressBar();
+  showPage(currentPage);
+  updateButtons();
+  updateProgressBar();
 }
 
 // ========================================
 // PAGE NAVIGATION
 // ========================================
 function showPage(pageNum) {
-    // Hide all pages
-    formPages.forEach(page => {
-        page.classList.remove('active', 'slide-left', 'slide-right');
-    });
+  // Hide all pages
+  formPages.forEach((page) => {
+    page.classList.remove("active", "slide-left", "slide-right");
+  });
 
-    // Show current page with animation
-    const currentPageElement = document.querySelector(`[data-page="${pageNum}"]`);
-    if (currentPageElement) {
-        currentPageElement.classList.add('active');
-        
-        // Add slide animation based on direction
-        if (pageNum > currentPage) {
-            currentPageElement.classList.add('slide-left');
-        } else if (pageNum < currentPage) {
-            currentPageElement.classList.add('slide-right');
-        }
+  // Show current page with animation
+  const currentPageElement = document.querySelector(`[data-page="${pageNum}"]`);
+  if (currentPageElement) {
+    currentPageElement.classList.add("active");
+
+    // Add slide animation based on direction
+    if (pageNum > currentPage) {
+      currentPageElement.classList.add("slide-left");
+    } else if (pageNum < currentPage) {
+      currentPageElement.classList.add("slide-right");
     }
+  }
 
-    // Update current page
-    currentPage = pageNum;
+  // Update current page
+  currentPage = pageNum;
 
-    // Update buttons and progress
-    updateButtons();
-    updateProgressBar();
-    updateProgressSteps();
+  // Update buttons and progress
+  updateButtons();
+  updateProgressBar();
+  updateProgressSteps();
 
-    // Scroll to top smoothly
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+  // Scroll to top smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 function updateButtons() {
-    // Previous button
-    prevBtn.disabled = currentPage === 1;
+  // Previous button
+  prevBtn.disabled = currentPage === 1;
 
-    // Next/Review button visibility
-    if (currentPage === totalPages) {
-        nextBtn.style.display = 'none';
-        reviewBtn.style.display = 'flex';
-    } else {
-        nextBtn.style.display = 'flex';
-        reviewBtn.style.display = 'none';
-    }
+  // Next/Review button visibility
+  if (currentPage === totalPages) {
+    nextBtn.style.display = "none";
+    reviewBtn.style.display = "flex";
+  } else {
+    nextBtn.style.display = "flex";
+    reviewBtn.style.display = "none";
+  }
 }
 
 function updateProgressBar() {
-    const progress = ((currentPage - 1) / (totalPages - 1)) * 100;
-    progressBar.style.setProperty('--progress-width', `${progress}%`);
-    
-    // Update CSS variable for progress bar
-    const styleSheet = document.styleSheets[0];
-    const progressBarRule = Array.from(styleSheet.cssRules).find(
-        rule => rule.selectorText === '.progress-bar::before'
-    );
-    
-    if (progressBarRule) {
-        progressBarRule.style.width = `${progress}%`;
-    }
+  const progress = ((currentPage - 1) / (totalPages - 1)) * 100;
+  progressBar.style.setProperty("--progress-width", `${progress}%`);
+
+  // Update CSS variable for progress bar
+  const styleSheet = document.styleSheets[0];
+  const progressBarRule = Array.from(styleSheet.cssRules).find(
+    (rule) => rule.selectorText === ".progress-bar::before"
+  );
+
+  if (progressBarRule) {
+    progressBarRule.style.width = `${progress}%`;
+  }
 }
 
 function updateProgressSteps() {
-    progressSteps.forEach((step, index) => {
-        const stepNum = index + 1;
-        
-        if (stepNum < currentPage) {
-            step.classList.add('completed');
-            step.classList.remove('active');
-        } else if (stepNum === currentPage) {
-            step.classList.add('active');
-            step.classList.remove('completed');
-        } else {
-            step.classList.remove('active', 'completed');
-        }
-    });
+  progressSteps.forEach((step, index) => {
+    const stepNum = index + 1;
+
+    if (stepNum < currentPage) {
+      step.classList.add("completed");
+      step.classList.remove("active");
+    } else if (stepNum === currentPage) {
+      step.classList.add("active");
+      step.classList.remove("completed");
+    } else {
+      step.classList.remove("active", "completed");
+    }
+  });
 }
 
 // ========================================
 // BUTTON HANDLERS
 // ========================================
 function setupNavigationButtons() {
-    prevBtn.addEventListener('click', function() {
-        if (currentPage > 1) {
-            showPage(currentPage - 1);
-        }
-    });
+  prevBtn.addEventListener("click", function () {
+    if (currentPage > 1) {
+      showPage(currentPage - 1);
+    }
+  });
 
-    nextBtn.addEventListener('click', function() {
-        if (validateCurrentPage()) {
-            if (currentPage < totalPages) {
-                showPage(currentPage + 1);
-            }
-        }
-    });
+  nextBtn.addEventListener("click", function () {
+    if (validateCurrentPage()) {
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    }
+  });
 
-    // Progress step navigation (optional - click on steps to navigate)
-    progressSteps.forEach((step, index) => {
-        step.addEventListener('click', function() {
-            const targetPage = index + 1;
-            if (targetPage <= currentPage || validatePagesUpTo(targetPage - 1)) {
-                showPage(targetPage);
-            }
-        });
+  // Progress step navigation (optional - click on steps to navigate)
+  progressSteps.forEach((step, index) => {
+    step.addEventListener("click", function () {
+      const targetPage = index + 1;
+      if (targetPage <= currentPage || validatePagesUpTo(targetPage - 1)) {
+        showPage(targetPage);
+      }
     });
+  });
 }
 
 // ========================================
 // VALIDATION
 // ========================================
 function validateCurrentPage() {
-    const currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
-    const requiredInputs = currentPageElement.querySelectorAll('[required]');
-    
-    let isValid = true;
-    let firstInvalidField = null;
+  const currentPageElement = document.querySelector(
+    `[data-page="${currentPage}"]`
+  );
+  const requiredInputs = currentPageElement.querySelectorAll("[required]");
 
-    requiredInputs.forEach(input => {
-        // Check if field is visible (not hidden by conditional logic)
-        const isVisible = input.offsetParent !== null;
-        
-        if (isVisible) {
-            if (input.type === 'radio') {
-                const radioGroup = currentPageElement.querySelectorAll(`[name="${input.name}"]`);
-                const isChecked = Array.from(radioGroup).some(radio => radio.checked);
-                
-                if (!isChecked) {
-                    isValid = false;
-                    if (!firstInvalidField) firstInvalidField = input;
-                    highlightInvalidField(input);
-                }
-            } else if (input.type === 'checkbox') {
-                // Handle checkbox groups if needed
-                if (!input.checked) {
-                    // Only validate if it's a standalone required checkbox
-                    const checkboxGroup = currentPageElement.querySelectorAll(`[name="${input.name}"]`);
-                    if (checkboxGroup.length === 1) {
-                        isValid = false;
-                        if (!firstInvalidField) firstInvalidField = input;
-                        highlightInvalidField(input);
-                    }
-                }
-            } else {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    if (!firstInvalidField) firstInvalidField = input;
-                    highlightInvalidField(input);
-                } else {
-                    removeInvalidHighlight(input);
-                }
-            }
-        }
-    });
+  let isValid = true;
+  let firstInvalidField = null;
 
-    // Validação especial para a página 1 - Jejum
-    if (currentPage === 1 && isValid) {
-        const jejumChecked = document.querySelector('input[name="jejum"]:checked');
-        if (jejumChecked && jejumChecked.value === "Não") {
-            showJejumDoubtModal();
-            return false;
+  requiredInputs.forEach((input) => {
+    // Check if field is visible (not hidden by conditional logic)
+    const isVisible = input.offsetParent !== null;
+
+    if (isVisible) {
+      if (input.type === "radio") {
+        const radioGroup = currentPageElement.querySelectorAll(
+          `[name="${input.name}"]`
+        );
+        const isChecked = Array.from(radioGroup).some((radio) => radio.checked);
+
+        if (!isChecked) {
+          isValid = false;
+          if (!firstInvalidField) firstInvalidField = input;
+          highlightInvalidField(input);
         }
+      } else if (input.type === "checkbox") {
+        // Handle checkbox groups if needed
+        if (!input.checked) {
+          // Only validate if it's a standalone required checkbox
+          const checkboxGroup = currentPageElement.querySelectorAll(
+            `[name="${input.name}"]`
+          );
+          if (checkboxGroup.length === 1) {
+            isValid = false;
+            if (!firstInvalidField) firstInvalidField = input;
+            highlightInvalidField(input);
+          }
+        }
+      } else {
+        if (!input.value.trim()) {
+          isValid = false;
+          if (!firstInvalidField) firstInvalidField = input;
+          highlightInvalidField(input);
+        } else {
+          removeInvalidHighlight(input);
+        }
+      }
     }
+  });
 
-    if (!isValid) {
-        showValidationMessage();
-        if (firstInvalidField) {
-            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            firstInvalidField.focus();
-        }
+  // Validação especial para a página 1 - Jejum
+  if (currentPage === 1 && isValid) {
+    const jejumChecked = document.querySelector('input[name="jejum"]:checked');
+    if (jejumChecked && jejumChecked.value === "Não") {
+      showJejumDoubtModal();
+      return false;
     }
+  }
 
-    return isValid;
+  if (!isValid) {
+    showValidationMessage();
+    if (firstInvalidField) {
+      firstInvalidField.scrollIntoView({ behavior: "smooth", block: "center" });
+      firstInvalidField.focus();
+    }
+  }
+
+  return isValid;
 }
 
 function validatePagesUpTo(pageNum) {
-    for (let i = 1; i <= pageNum; i++) {
-        const tempCurrentPage = currentPage;
-        currentPage = i;
-        const isValid = validateCurrentPage();
-        currentPage = tempCurrentPage;
-        
-        if (!isValid) return false;
-    }
-    return true;
+  for (let i = 1; i <= pageNum; i++) {
+    const tempCurrentPage = currentPage;
+    currentPage = i;
+    const isValid = validateCurrentPage();
+    currentPage = tempCurrentPage;
+
+    if (!isValid) return false;
+  }
+  return true;
 }
 
 function highlightInvalidField(field) {
-    field.style.borderColor = '#e63946';
-    field.style.animation = 'shake 0.5s';
-    
-    setTimeout(() => {
-        field.style.animation = '';
-    }, 500);
+  field.style.borderColor = "#e63946";
+  field.style.animation = "shake 0.5s";
+
+  setTimeout(() => {
+    field.style.animation = "";
+  }, 500);
 }
 
 function removeInvalidHighlight(field) {
-    field.style.borderColor = '';
+  field.style.borderColor = "";
 }
 
 function showValidationMessage() {
-    // Create temporary validation message
-    const existingMessage = document.querySelector('.validation-message');
-    if (existingMessage) {
-        existingMessage.remove();
-    }
+  // Create temporary validation message
+  const existingMessage = document.querySelector(".validation-message");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
 
-    const message = document.createElement('div');
-    message.className = 'validation-message';
-    message.innerHTML = `
+  const message = document.createElement("div");
+  message.className = "validation-message";
+  message.innerHTML = `
         <div class="validation-overlay" onclick="this.closest('.validation-message').remove()"></div>
         <div class="validation-box">
             <div class="validation-icon">⚠️</div>
@@ -254,18 +260,18 @@ function showValidationMessage() {
         </div>
     `;
 
-    document.body.appendChild(message);
+  document.body.appendChild(message);
 
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        if (message.parentNode) {
-            message.remove();
-        }
-    }, 5000);
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    if (message.parentNode) {
+      message.remove();
+    }
+  }, 5000);
 }
 
 // Add shake animation
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
     @keyframes shake {
         0%, 100% { transform: translateX(0); }
@@ -284,481 +290,530 @@ document.head.appendChild(style);
 // CONDITIONAL FIELDS
 // ========================================
 function setupConditionalFields() {
-    // Handle all radio/checkbox inputs that show/hide fields
-    const conditionalTriggers = document.querySelectorAll('[data-show-target]');
-    
-    conditionalTriggers.forEach(trigger => {
-        trigger.addEventListener('change', function() {
-            const targetSelector = this.getAttribute('data-show-target');
-            const targetElement = document.querySelector(targetSelector);
-            
-            if (targetElement) {
-                if (this.checked) {
-                    targetElement.style.display = 'block';
-                    targetElement.classList.remove('hidden');
-                    
-                    // Make fields inside required if needed
-                    const innerInputs = targetElement.querySelectorAll('input, textarea, select');
-                    innerInputs.forEach(input => {
-                        input.setAttribute('data-conditionally-required', 'true');
-                    });
-                } else {
-                    targetElement.style.display = 'none';
-                    targetElement.classList.add('hidden');
-                    
-                    // Clear values and remove required status
-                    const innerInputs = targetElement.querySelectorAll('input, textarea, select');
-                    innerInputs.forEach(input => {
-                        if (input.type === 'checkbox' || input.type === 'radio') {
-                            input.checked = false;
-                        } else {
-                            input.value = '';
-                        }
-                        input.removeAttribute('data-conditionally-required');
-                    });
-                }
-            }
-        });
-    });
+  // Handle all radio/checkbox inputs that show/hide fields
+  const conditionalTriggers = document.querySelectorAll("[data-show-target]");
 
-    // Handle radio button groups that should hide fields when other options are selected
-    const radioGroups = {};
-    conditionalTriggers.forEach(trigger => {
-        if (trigger.type === 'radio') {
-            const groupName = trigger.name;
-            if (!radioGroups[groupName]) {
-                radioGroups[groupName] = [];
+  conditionalTriggers.forEach((trigger) => {
+    trigger.addEventListener("change", function () {
+      const targetSelector = this.getAttribute("data-show-target");
+      const targetElement = document.querySelector(targetSelector);
+
+      if (targetElement) {
+        if (this.checked) {
+          targetElement.style.display = "block";
+          targetElement.classList.remove("hidden");
+
+          // Make fields inside required if needed
+          const innerInputs = targetElement.querySelectorAll(
+            "input, textarea, select"
+          );
+          innerInputs.forEach((input) => {
+            input.setAttribute("data-conditionally-required", "true");
+          });
+        } else {
+          targetElement.style.display = "none";
+          targetElement.classList.add("hidden");
+
+          // Clear values and remove required status
+          const innerInputs = targetElement.querySelectorAll(
+            "input, textarea, select"
+          );
+          innerInputs.forEach((input) => {
+            if (input.type === "checkbox" || input.type === "radio") {
+              input.checked = false;
+            } else {
+              input.value = "";
             }
-            radioGroups[groupName].push(trigger);
+            input.removeAttribute("data-conditionally-required");
+          });
         }
+      }
     });
+  });
 
-    // Add change listeners to hide fields when other radios in group are selected
-    Object.values(radioGroups).forEach(group => {
-        group.forEach(radio => {
-            const allRadiosInGroup = document.querySelectorAll(`input[type="radio"][name="${radio.name}"]`);
-            allRadiosInGroup.forEach(otherRadio => {
-                otherRadio.addEventListener('change', function() {
-                    group.forEach(conditionalRadio => {
-                        if (conditionalRadio.hasAttribute('data-show-target')) {
-                            const target = document.querySelector(conditionalRadio.getAttribute('data-show-target'));
-                            if (target && !conditionalRadio.checked) {
-                                target.style.display = 'none';
-                                target.classList.add('hidden');
-                                
-                                // Clear fields
-                                const innerInputs = target.querySelectorAll('input, textarea, select');
-                                innerInputs.forEach(input => {
-                                    if (input.type === 'checkbox' || input.type === 'radio') {
-                                        input.checked = false;
-                                    } else {
-                                        input.value = '';
-                                    }
-                                });
-                            }
-                        }
-                    });
-                });
-            });
-        });
-    });
-
-    // Special handling for "Outra" checkbox in autoimune section
-    const outraCheckbox = document.getElementById('autoimune-outra');
-    if (outraCheckbox) {
-        outraCheckbox.addEventListener('change', function() {
-            const campoOutra = document.getElementById('campo-outra-autoimune');
-            if (campoOutra) {
-                if (this.checked) {
-                    campoOutra.style.display = 'block';
-                } else {
-                    campoOutra.style.display = 'none';
-                    const input = campoOutra.querySelector('input');
-                    if (input) input.value = '';
-                }
-            }
-        });
+  // Handle radio button groups that should hide fields when other options are selected
+  const radioGroups = {};
+  conditionalTriggers.forEach((trigger) => {
+    if (trigger.type === "radio") {
+      const groupName = trigger.name;
+      if (!radioGroups[groupName]) {
+        radioGroups[groupName] = [];
+      }
+      radioGroups[groupName].push(trigger);
     }
+  });
 
-    // Handle alergia medicamento visibility
-    const alergiaRadios = document.querySelectorAll('input[name="alergia-medicamento"]');
-    alergiaRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            const medicamentoInfo = document.getElementById('medicamento-info');
-            if (medicamentoInfo) {
-                if (this.value === 'sim') {
-                    medicamentoInfo.style.display = 'block';
-                } else {
-                    medicamentoInfo.style.display = 'none';
-                }
+  // Add change listeners to hide fields when other radios in group are selected
+  Object.values(radioGroups).forEach((group) => {
+    group.forEach((radio) => {
+      const allRadiosInGroup = document.querySelectorAll(
+        `input[type="radio"][name="${radio.name}"]`
+      );
+      allRadiosInGroup.forEach((otherRadio) => {
+        otherRadio.addEventListener("change", function () {
+          group.forEach((conditionalRadio) => {
+            if (conditionalRadio.hasAttribute("data-show-target")) {
+              const target = document.querySelector(
+                conditionalRadio.getAttribute("data-show-target")
+              );
+              if (target && !conditionalRadio.checked) {
+                target.style.display = "none";
+                target.classList.add("hidden");
+
+                // Clear fields
+                const innerInputs = target.querySelectorAll(
+                  "input, textarea, select"
+                );
+                innerInputs.forEach((input) => {
+                  if (input.type === "checkbox" || input.type === "radio") {
+                    input.checked = false;
+                  } else {
+                    input.value = "";
+                  }
+                });
+              }
             }
+          });
         });
+      });
     });
+  });
+
+  // Special handling for "Outra" checkbox in autoimune section
+  const outraCheckbox = document.getElementById("autoimune-outra");
+  if (outraCheckbox) {
+    outraCheckbox.addEventListener("change", function () {
+      const campoOutra = document.getElementById("campo-outra-autoimune");
+      if (campoOutra) {
+        if (this.checked) {
+          campoOutra.style.display = "block";
+        } else {
+          campoOutra.style.display = "none";
+          const input = campoOutra.querySelector("input");
+          if (input) input.value = "";
+        }
+      }
+    });
+  }
+
+  // Handle alergia medicamento visibility
+  const alergiaRadios = document.querySelectorAll(
+    'input[name="alergia-medicamento"]'
+  );
+  alergiaRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const medicamentoInfo = document.getElementById("medicamento-info");
+      if (medicamentoInfo) {
+        if (this.value === "sim") {
+          medicamentoInfo.style.display = "block";
+        } else {
+          medicamentoInfo.style.display = "none";
+        }
+      }
+    });
+  });
 }
 
 // ========================================
 // COUNTER BUTTONS
 // ========================================
 function setupCounterButtons() {
-    const counterButtons = document.querySelectorAll('.counter-btn');
-    
-    counterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const action = this.getAttribute('data-action');
-            const targetId = this.getAttribute('data-target');
-            const input = document.getElementById(targetId);
-            
-            if (input) {
-                let currentValue = parseInt(input.value) || 0;
-                const min = parseInt(input.getAttribute('min')) || 0;
-                const max = parseInt(input.getAttribute('max')) || Infinity;
-                
-                // Check if this counter is limited by gestações
-                const isLimited = input.hasAttribute('data-limited');
-                const gestacoesInput = document.getElementById('qtd-gravidez');
-                const maxGestacoes = gestacoesInput ? parseInt(gestacoesInput.value) : Infinity;
-                
-                if (action === 'increase') {
-                    // If limited, check against gestações total
-                    if (isLimited) {
-                        const partoNormal = parseInt(document.getElementById('parto-normal').value) || 0;
-                        const cesariana = parseInt(document.getElementById('cesariana').value) || 0;
-                        const aborto = parseInt(document.getElementById('aborto').value) || 0;
-                        
-                        const total = partoNormal + cesariana + aborto;
-                        
-                        // Bloqueia incremento se já atingiu o limite (sem popup)
-                        if (total >= maxGestacoes) {
-                            this.style.opacity = '0.5';
-                            this.style.cursor = 'not-allowed';
-                            return;
-                        }
-                    }
-                    
-                    if (currentValue < max) {
-                        input.value = currentValue + 1;
-                        animateValue(input);
-                        updateCounterButtonStates();
-                    }
-                } else if (action === 'decrease' && currentValue > min) {
-                    input.value = currentValue - 1;
-                    animateValue(input);
-                    updateCounterButtonStates();
-                }
+  const counterButtons = document.querySelectorAll(".counter-btn");
+
+  counterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const action = this.getAttribute("data-action");
+      const targetId = this.getAttribute("data-target");
+      const input = document.getElementById(targetId);
+
+      if (input) {
+        let currentValue = parseInt(input.value) || 0;
+        const min = parseInt(input.getAttribute("min")) || 0;
+        const max = parseInt(input.getAttribute("max")) || Infinity;
+
+        // Check if this counter is limited by gestações
+        const isLimited = input.hasAttribute("data-limited");
+        const gestacoesInput = document.getElementById("qtd-gravidez");
+        const maxGestacoes = gestacoesInput
+          ? parseInt(gestacoesInput.value)
+          : Infinity;
+
+        if (action === "increase") {
+          // If limited, check against gestações total
+          if (isLimited) {
+            const partoNormal =
+              parseInt(document.getElementById("parto-normal").value) || 0;
+            const cesariana =
+              parseInt(document.getElementById("cesariana").value) || 0;
+            const aborto =
+              parseInt(document.getElementById("aborto").value) || 0;
+
+            const total = partoNormal + cesariana + aborto;
+
+            // Bloqueia incremento se já atingiu o limite (sem popup)
+            if (total >= maxGestacoes) {
+              this.style.opacity = "0.5";
+              this.style.cursor = "not-allowed";
+              return;
             }
-        });
+          }
+
+          if (currentValue < max) {
+            input.value = currentValue + 1;
+            animateValue(input);
+            updateCounterButtonStates();
+          }
+        } else if (action === "decrease" && currentValue > min) {
+          input.value = currentValue - 1;
+          animateValue(input);
+          updateCounterButtonStates();
+        }
+      }
     });
-    
-    // Atualizar estados iniciais
-    updateCounterButtonStates();
+  });
+
+  // Atualizar estados iniciais
+  updateCounterButtonStates();
 }
 
 function updateCounterButtonStates() {
-    const gestacoesInput = document.getElementById('qtd-gravidez');
-    const maxGestacoes = gestacoesInput ? parseInt(gestacoesInput.value) : 0;
-    
-    const partoNormal = parseInt(document.getElementById('parto-normal').value) || 0;
-    const cesariana = parseInt(document.getElementById('cesariana').value) || 0;
-    const aborto = parseInt(document.getElementById('aborto').value) || 0;
-    const total = partoNormal + cesariana + aborto;
-    
-    // Atualiza todos os botões de incremento dos contadores limitados
-    const limitedButtons = document.querySelectorAll('.counter-btn[data-action="increase"]');
-    limitedButtons.forEach(button => {
-        const targetId = button.getAttribute('data-target');
-        const input = document.getElementById(targetId);
-        
-        if (input && input.hasAttribute('data-limited')) {
-            if (total >= maxGestacoes) {
-                button.style.opacity = '0.5';
-                button.style.cursor = 'not-allowed';
-            } else {
-                button.style.opacity = '1';
-                button.style.cursor = 'pointer';
-            }
-        }
-    });
+  const gestacoesInput = document.getElementById("qtd-gravidez");
+  const maxGestacoes = gestacoesInput ? parseInt(gestacoesInput.value) : 0;
+
+  const partoNormal =
+    parseInt(document.getElementById("parto-normal").value) || 0;
+  const cesariana = parseInt(document.getElementById("cesariana").value) || 0;
+  const aborto = parseInt(document.getElementById("aborto").value) || 0;
+  const total = partoNormal + cesariana + aborto;
+
+  // Atualiza todos os botões de incremento dos contadores limitados
+  const limitedButtons = document.querySelectorAll(
+    '.counter-btn[data-action="increase"]'
+  );
+  limitedButtons.forEach((button) => {
+    const targetId = button.getAttribute("data-target");
+    const input = document.getElementById(targetId);
+
+    if (input && input.hasAttribute("data-limited")) {
+      if (total >= maxGestacoes) {
+        button.style.opacity = "0.5";
+        button.style.cursor = "not-allowed";
+      } else {
+        button.style.opacity = "1";
+        button.style.cursor = "pointer";
+      }
+    }
+  });
 }
 
 function animateValue(element) {
-    element.style.transform = 'scale(1.2)';
-    element.style.color = 'var(--primary-color)';
-    
-    setTimeout(() => {
-        element.style.transform = 'scale(1)';
-    }, 200);
+  element.style.transform = "scale(1.2)";
+  element.style.color = "var(--primary-color)";
+
+  setTimeout(() => {
+    element.style.transform = "scale(1)";
+  }, 200);
 }
 
 // ========================================
 // PREGNANCY TOGGLE
 // ========================================
 function setupPregnancyToggle() {
-    const gravidaRadios = document.querySelectorAll('input[name="gravida"]');
-    const gravidezInfo = document.getElementById('gravidez-info');
-    
-    gravidaRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.value === 'Sim') {
-                gravidezInfo.style.display = 'block';
-                // Set initial value to 1 for gestations when opening
-                const qtdGravidez = document.getElementById('qtd-gravidez');
-                if (qtdGravidez && qtdGravidez.value === '0') {
-                    qtdGravidez.value = '1';
-                }
-            } else {
-                gravidezInfo.style.display = 'none';
-                // Reset all counters
-                document.getElementById('qtd-gravidez').value = '0';
-                document.getElementById('parto-normal').value = '0';
-                document.getElementById('aborto').value = '0';
-                const complicacoes = document.getElementById('complicacoes');
-                if (complicacoes) complicacoes.value = '';
-            }
-        });
+  const gravidaRadios = document.querySelectorAll('input[name="gravida"]');
+  const gravidezInfo = document.getElementById("gravidez-info");
+
+  gravidaRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      if (this.value === "Sim") {
+        gravidezInfo.style.display = "block";
+        // Set initial value to 1 for gestations when opening
+        const qtdGravidez = document.getElementById("qtd-gravidez");
+        if (qtdGravidez && qtdGravidez.value === "0") {
+          qtdGravidez.value = "1";
+        }
+      } else {
+        gravidezInfo.style.display = "none";
+        // Reset all counters
+        document.getElementById("qtd-gravidez").value = "0";
+        document.getElementById("parto-normal").value = "0";
+        document.getElementById("aborto").value = "0";
+        const complicacoes = document.getElementById("complicacoes");
+        if (complicacoes) complicacoes.value = "";
+      }
     });
+  });
 }
 
 // ========================================
 // KEYBOARD NAVIGATION
 // ========================================
-document.addEventListener('keydown', function(e) {
-    // Alt + Left Arrow = Previous page
-    if (e.altKey && e.key === 'ArrowLeft') {
-        e.preventDefault();
-        if (currentPage > 1) {
-            showPage(currentPage - 1);
-        }
+document.addEventListener("keydown", function (e) {
+  // Alt + Left Arrow = Previous page
+  if (e.altKey && e.key === "ArrowLeft") {
+    e.preventDefault();
+    if (currentPage > 1) {
+      showPage(currentPage - 1);
     }
-    
-    // Alt + Right Arrow = Next page
-    if (e.altKey && e.key === 'ArrowRight') {
-        e.preventDefault();
-        if (currentPage < totalPages && validateCurrentPage()) {
-            showPage(currentPage + 1);
-        }
+  }
+
+  // Alt + Right Arrow = Next page
+  if (e.altKey && e.key === "ArrowRight") {
+    e.preventDefault();
+    if (currentPage < totalPages && validateCurrentPage()) {
+      showPage(currentPage + 1);
     }
+  }
 });
 
 // ========================================
 // FORM SUBMISSION
 // ========================================
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+document
+  .getElementById("contact-form")
+  .addEventListener("submit", function (e) {
     e.preventDefault(); // Always prevent default first
-    
+
     // The actual submission will be triggered from the review modal
-});
+  });
 
 // ========================================
 // JEJUM DOUBT MODAL
 // ========================================
 function showJejumDoubtModal() {
-    const modal = document.getElementById('jejumDoubtModal');
-    modal.style.display = 'flex';
+  const modal = document.getElementById("jejumDoubtModal");
+  modal.style.display = "flex";
 }
 
 function setupJejumDoubtModal() {
-    const modal = document.getElementById('jejumDoubtModal');
-    const closeBtn = document.getElementById('closeJejumDoubt');
-    const cancelBtn = document.getElementById('cancelJejumDoubt');
-    const sendBtn = document.getElementById('sendJejumDoubt');
-    const textarea = document.getElementById('jejumDoubtText');
-    
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-            textarea.value = '';
-        });
-    }
-    
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-            textarea.value = '';
-        });
-    }
-    
-    if (sendBtn) {
-        sendBtn.addEventListener('click', function() {
-            const doubt = textarea.value.trim();
-            
-            if (!doubt) {
-                alert('Por favor, descreva sua dúvida antes de enviar.');
-                return;
-            }
-            
-            const nome = document.getElementById('nome').value || 'Paciente';
-            const message = `*Dúvida sobre Jejum Pré-Operatório*%0A%0APaciente: ${nome}%0A%0ADúvida:%0A${doubt}`;
-            
-            const phoneNumber = typeof CONFIG !== 'undefined' ? CONFIG.WHATSAPP_NUMBER : '5511999999999';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-            
-            window.open(whatsappURL, '_blank');
-            
-            modal.style.display = 'none';
-            textarea.value = '';
-        });
-    }
+  const modal = document.getElementById("jejumDoubtModal");
+  const closeBtn = document.getElementById("closeJejumDoubt");
+  const cancelBtn = document.getElementById("cancelJejumDoubt");
+  const sendBtn = document.getElementById("sendJejumDoubt");
+  const textarea = document.getElementById("jejumDoubtText");
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      modal.style.display = "none";
+      textarea.value = "";
+    });
+  }
+
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", function () {
+      modal.style.display = "none";
+      textarea.value = "";
+    });
+  }
+
+  if (sendBtn) {
+    sendBtn.addEventListener("click", function () {
+      const doubt = textarea.value.trim();
+
+      if (!doubt) {
+        alert("Por favor, descreva sua dúvida antes de enviar.");
+        return;
+      }
+
+      const nome = document.getElementById("nome").value || "Paciente";
+      const message = `*Dúvida sobre Jejum Pré-Operatório*%0A%0APaciente: ${nome}%0A%0ADúvida:%0A${doubt}`;
+
+      const phoneNumber =
+        typeof CONFIG !== "undefined"
+          ? CONFIG.WHATSAPP_NUMBER
+          : "5511999999999";
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+      window.open(whatsappURL, "_blank");
+
+      modal.style.display = "none";
+      textarea.value = "";
+    });
+  }
 }
 
 // ========================================
 // HELP BUTTON
 // ========================================
 function setupHelpButton() {
-    const helpBtn = document.getElementById('helpButton');
-    const helpBox = document.getElementById('helpBox');
-    const helpClose = document.getElementById('helpClose');
-    const sendHelpBtn = document.getElementById('sendHelpBtn');
-    
-    if (helpBtn && helpBox) {
-        helpBtn.addEventListener('click', function() {
-            const isOpen = helpBox.style.display === 'block';
-            helpBox.style.display = isOpen ? 'none' : 'block';
-        });
-        
-        if (helpClose) {
-            helpClose.addEventListener('click', function() {
-                helpBox.style.display = 'none';
-            });
-        }
-        
-        if (sendHelpBtn) {
-            sendHelpBtn.addEventListener('click', function() {
-                const selectedFields = Array.from(document.querySelectorAll('input[name="field"]:checked'))
-                    .map(cb => cb.value);
-                
-                const question = document.getElementById('questionText').value.trim();
-                
-                if (!question) {
-                    alert('Por favor, digite sua dúvida antes de enviar.');
-                    return;
-                }
-                
-                const message = `Olá! Tenho uma dúvida sobre o formulário de Endometriose:%0A%0ACampos: ${selectedFields.join(', ') || 'Geral'}%0A%0A${question}`;
-                
-                // Get phone number from CONFIG if available
-                const phoneNumber = typeof CONFIG !== 'undefined' ? CONFIG.WHATSAPP_NUMBER : '5511999999999';
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-                
-                window.open(whatsappURL, '_blank');
-                
-                // Clear and close
-                document.getElementById('questionText').value = '';
-                document.querySelectorAll('input[name="field"]').forEach(cb => cb.checked = false);
-                helpBox.style.display = 'none';
-            });
-        }
+  const helpBtn = document.getElementById("helpButton");
+  const helpBox = document.getElementById("helpBox");
+  const helpClose = document.getElementById("helpClose");
+  const sendHelpBtn = document.getElementById("sendHelpBtn");
+
+  if (helpBtn && helpBox) {
+    helpBtn.addEventListener("click", function () {
+      const isOpen = helpBox.style.display === "block";
+      helpBox.style.display = isOpen ? "none" : "block";
+    });
+
+    if (helpClose) {
+      helpClose.addEventListener("click", function () {
+        helpBox.style.display = "none";
+      });
     }
+
+    if (sendHelpBtn) {
+      sendHelpBtn.addEventListener("click", function () {
+        const selectedFields = Array.from(
+          document.querySelectorAll('input[name="field"]:checked')
+        ).map((cb) => cb.value);
+
+        const question = document.getElementById("questionText").value.trim();
+
+        if (!question) {
+          alert("Por favor, digite sua dúvida antes de enviar.");
+          return;
+        }
+
+        const message = `Olá! Tenho uma dúvida sobre o formulário de Endometriose:%0A%0ACampos: ${
+          selectedFields.join(", ") || "Geral"
+        }%0A%0A${question}`;
+
+        // Get phone number from CONFIG if available
+        const phoneNumber =
+          typeof CONFIG !== "undefined"
+            ? CONFIG.WHATSAPP_NUMBER
+            : "5511999999999";
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        window.open(whatsappURL, "_blank");
+
+        // Clear and close
+        document.getElementById("questionText").value = "";
+        document
+          .querySelectorAll('input[name="field"]')
+          .forEach((cb) => (cb.checked = false));
+        helpBox.style.display = "none";
+      });
+    }
+  }
 }
 
 // ========================================
 // REVIEW MODAL
 // ========================================
 function setupReviewModal() {
-    const reviewBtn = document.getElementById('reviewBtn');
-    const modal = document.getElementById('reviewModal');
-    const closeReview = document.getElementById('closeReview');
-    const backToEdit = document.getElementById('backToEdit');
-    const confirmSubmit = document.getElementById('confirmSubmit');
-    
-    if (reviewBtn) {
-        reviewBtn.addEventListener('click', function() {
-            if (validateCurrentPage()) {
-                showReviewModal();
-            }
-        });
-    }
-    
-    if (closeReview) {
-        closeReview.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-    }
-    
-    if (backToEdit) {
-        backToEdit.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-    }
-    
-    if (confirmSubmit) {
-        confirmSubmit.addEventListener('click', function() {
-            modal.style.display = 'none';
-            
-            // Show loading
-            confirmSubmit.disabled = true;
-            confirmSubmit.innerHTML = '<span style="animation: spin 1s linear infinite;">⏳</span> Enviando...';
-            
-            // Trigger form submission manually
-            const form = document.getElementById('contact-form');
-            const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
-            
-            // Remove our preventDefault listener temporarily
-            form.removeEventListener('submit', arguments.callee);
-            
-            // Let form-handler-endo.js handle the submission
-            if (form.dispatchEvent(submitEvent)) {
-                // If not prevented by form-handler, submit normally
-                setTimeout(() => {
-                    form.submit();
-                }, 100);
-            }
-        });
-    }
-    
-    // Close modal when clicking outside
-    modal?.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
+  const reviewBtn = document.getElementById("reviewBtn");
+  const modal = document.getElementById("reviewModal");
+  const closeReview = document.getElementById("closeReview");
+  const backToEdit = document.getElementById("backToEdit");
+  const confirmSubmit = document.getElementById("confirmSubmit");
+
+  if (reviewBtn) {
+    reviewBtn.addEventListener("click", function () {
+      if (validateCurrentPage()) {
+        showReviewModal();
+      }
     });
+  }
+
+  if (closeReview) {
+    closeReview.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  }
+
+  if (backToEdit) {
+    backToEdit.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  }
+
+  if (confirmSubmit) {
+    confirmSubmit.addEventListener("click", function () {
+      modal.style.display = "none";
+
+      // Show loading
+      confirmSubmit.disabled = true;
+      confirmSubmit.innerHTML =
+        '<span style="animation: spin 1s linear infinite;">⏳</span> Enviando...';
+
+      // Trigger form submission manually
+      const form = document.getElementById("contact-form");
+      const submitEvent = new Event("submit", {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      // Remove our preventDefault listener temporarily
+      form.removeEventListener("submit", arguments.callee);
+
+      // Let form-handler-endo.js handle the submission
+      if (form.dispatchEvent(submitEvent)) {
+        // If not prevented by form-handler, submit normally
+        setTimeout(() => {
+          form.submit();
+        }, 100);
+      }
+    });
+  }
+
+  // Close modal when clicking outside
+  modal?.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 }
 
 function showReviewModal() {
-    const modal = document.getElementById('reviewModal');
-    const reviewContent = document.getElementById('reviewContent');
-    
-    // Build review content
-    const formData = new FormData(document.getElementById('contact-form'));
-    let html = '';
-    
-    // Section 1: Identificação
+  const modal = document.getElementById("reviewModal");
+  const reviewContent = document.getElementById("reviewContent");
+
+  // Build review content
+  const formData = new FormData(document.getElementById("contact-form"));
+  let html = "";
+
+  // Section 1: Identificação
+  html += '<div class="review-section">';
+  html += "<h3>👤 Identificação</h3>";
+  html += buildReviewItem("Nome", formData.get("Nome"));
+  html += buildReviewItem("Jejum de 8h compreendido", formData.get("jejum"));
+  html += "</div>";
+
+  // Section 2: Histórico Médico
+  html += '<div class="review-section">';
+  html += "<h3>💙 Histórico Médico</h3>";
+  html += buildReviewItem("Cirurgias Anteriores", formData.get("cirurgias"));
+  html += buildReviewItem(
+    "Complicações em Cirurgias/Anestesia",
+    formData.get("complicacoes")
+  );
+  html += buildReviewItem("Pressão Alta", formData.get("pressao"));
+  html += buildReviewItem("Diabetes", formData.get("diabete"));
+  html += buildReviewItem(
+    "Problemas Cardíacos/Respiratórios",
+    formData.get("problemasCardioResp")
+  );
+  html += buildReviewItem(
+    "Outros Tratamentos",
+    formData.get("outrosTratamentos")
+  );
+  html += buildReviewItem("Alergias", formData.get("alergias"));
+  html += buildReviewItem("Medicações em Uso", formData.get("medicacoes"));
+  html += buildReviewItem("Exames Pré-Operatórios", formData.get("exames"));
+  html += buildReviewItem(
+    "Próteses Dentárias",
+    formData.get("proteseDentaria")
+  );
+  html += "</div>";
+
+  // Section 3: Informações Adicionais
+  const infoAdicional = formData.get("informacao_adicional");
+  if (infoAdicional) {
     html += '<div class="review-section">';
-    html += '<h3>👤 Identificação</h3>';
-    html += buildReviewItem('Nome', formData.get('Nome'));
-    html += buildReviewItem('Jejum de 8h compreendido', formData.get('jejum'));
-    html += '</div>';
-    
-    // Section 2: Histórico Médico
-    html += '<div class="review-section">';
-    html += '<h3>💙 Histórico Médico</h3>';
-    html += buildReviewItem('Cirurgias Anteriores', formData.get('cirurgias'));
-    html += buildReviewItem('Complicações em Cirurgias/Anestesia', formData.get('complicacoes'));
-    html += buildReviewItem('Pressão Alta', formData.get('pressao'));
-    html += buildReviewItem('Diabetes', formData.get('diabete'));
-    html += buildReviewItem('Problemas Cardíacos/Respiratórios', formData.get('problemasCardioResp'));
-    html += buildReviewItem('Outros Tratamentos', formData.get('outrosTratamentos'));
-    html += buildReviewItem('Alergias', formData.get('alergias'));
-    html += buildReviewItem('Medicações em Uso', formData.get('medicacoes'));
-    html += buildReviewItem('Exames Pré-Operatórios', formData.get('exames'));
-    html += buildReviewItem('Próteses Dentárias', formData.get('proteseDentaria'));
-    html += '</div>';
-    
-    // Section 3: Informações Adicionais
-    const infoAdicional = formData.get('informacao_adicional');
-    if (infoAdicional) {
-        html += '<div class="review-section">';
-        html += '<h3>ℹ️ Informações Adicionais</h3>';
-        html += buildReviewItem('Dúvidas sobre o Procedimento', infoAdicional);
-        html += '</div>';
-    }
-    
-    reviewContent.innerHTML = html;
-    modal.style.display = 'flex';
+    html += "<h3>ℹ️ Informações Adicionais</h3>";
+    html += buildReviewItem("Dúvidas sobre o Procedimento", infoAdicional);
+    html += "</div>";
+  }
+
+  reviewContent.innerHTML = html;
+  modal.style.display = "flex";
 }
 
 function buildReviewItem(label, value) {
-    if (!value || value === 'undefined') return '';
-    return `
+  if (!value || value === "undefined") return "";
+  return `
         <div class="review-item">
             <div class="review-label">${label}:</div>
             <div class="review-value">${value}</div>
@@ -768,35 +823,35 @@ function buildReviewItem(label, value) {
 
 // Reset form after successful submission
 function resetFormToStart() {
-    // Clear all form fields
-    document.getElementById('contact-form').reset();
-    
-    // Reset counters
-    document.getElementById('qtd-gravidez').value = '0';
-    document.getElementById('parto-normal').value = '0';
-    document.getElementById('cesariana').value = '0';
-    document.getElementById('aborto').value = '0';
-    
-    // Hide conditional sections
-    document.querySelectorAll('.hidden').forEach(el => {
-        el.style.display = 'none';
-        el.classList.add('hidden');
-    });
-    
-    const gravidezInfo = document.getElementById('gravidez-info');
-    if (gravidezInfo) gravidezInfo.style.display = 'none';
-    
-    // Go back to page 1
-    showPage(1);
-    
-    // Show success message
-    showSuccessMessage();
+  // Clear all form fields
+  document.getElementById("contact-form").reset();
+
+  // Reset counters
+  document.getElementById("qtd-gravidez").value = "0";
+  document.getElementById("parto-normal").value = "0";
+  document.getElementById("cesariana").value = "0";
+  document.getElementById("aborto").value = "0";
+
+  // Hide conditional sections
+  document.querySelectorAll(".hidden").forEach((el) => {
+    el.style.display = "none";
+    el.classList.add("hidden");
+  });
+
+  const gravidezInfo = document.getElementById("gravidez-info");
+  if (gravidezInfo) gravidezInfo.style.display = "none";
+
+  // Go back to page 1
+  showPage(1);
+
+  // Show success message
+  showSuccessMessage();
 }
 
 function showSuccessMessage() {
-    const message = document.createElement('div');
-    message.className = 'success-message-overlay';
-    message.innerHTML = `
+  const message = document.createElement("div");
+  message.className = "success-message-overlay";
+  message.innerHTML = `
         <div style="
             position: fixed;
             top: 50%;
@@ -838,14 +893,14 @@ function showSuccessMessage() {
             z-index: 10000;
         " onclick="this.closest('.success-message-overlay').remove()"></div>
     `;
-    
-    document.body.appendChild(message);
-    
-    setTimeout(() => {
-        if (message.parentNode) {
-            message.remove();
-        }
-    }, 5000);
+
+  document.body.appendChild(message);
+
+  setTimeout(() => {
+    if (message.parentNode) {
+      message.remove();
+    }
+  }, 5000);
 }
 
 // Export function for form-handler to call after successful submission
@@ -855,74 +910,77 @@ window.resetFormAfterSubmit = resetFormToStart;
 // AUTO-SAVE (Optional - saves to localStorage)
 // ========================================
 function autoSaveForm() {
-    const formData = new FormData(document.getElementById('contact-form'));
-    const data = {};
-    
-    for (let [key, value] of formData.entries()) {
-        if (data[key]) {
-            if (Array.isArray(data[key])) {
-                data[key].push(value);
-            } else {
-                data[key] = [data[key], value];
-            }
-        } else {
-            data[key] = value;
-        }
+  const formData = new FormData(document.getElementById("contact-form"));
+  const data = {};
+
+  for (let [key, value] of formData.entries()) {
+    if (data[key]) {
+      if (Array.isArray(data[key])) {
+        data[key].push(value);
+      } else {
+        data[key] = [data[key], value];
+      }
+    } else {
+      data[key] = value;
     }
-    
-    localStorage.setItem('endoFormDraft', JSON.stringify(data));
-    localStorage.setItem('endoFormPage', currentPage);
+  }
+
+  localStorage.setItem("endoFormDraft", JSON.stringify(data));
+  localStorage.setItem("endoFormPage", currentPage);
 }
 
-function loadSavedForm() {
-    const savedData = localStorage.getItem('endoFormDraft');
-    const savedPage = localStorage.getItem('endoFormPage');
-    
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        
-        // Ask user if they want to restore
-        if (confirm('Encontramos um rascunho salvo. Deseja continuar de onde parou?')) {
-            Object.keys(data).forEach(key => {
-                const elements = document.querySelectorAll(`[name="${key}"]`);
-                elements.forEach(element => {
-                    if (element.type === 'checkbox' || element.type === 'radio') {
-                        if (Array.isArray(data[key])) {
-                            element.checked = data[key].includes(element.value);
-                        } else {
-                            element.checked = element.value === data[key];
-                        }
-                    } else {
-                        element.value = data[key];
-                    }
-                });
-            });
-            
-            if (savedPage) {
-                showPage(parseInt(savedPage));
+async function loadSavedForm() {
+  const savedData = localStorage.getItem("endoFormDraft");
+  const savedPage = localStorage.getItem("endoFormPage");
+
+  if (savedData) {
+    const data = JSON.parse(savedData);
+
+    // Ask user if they want to restore
+    const shouldRestore = await customConfirm(
+      "Encontramos um rascunho salvo. Deseja continuar de onde parou?"
+    );
+    if (shouldRestore) {
+      Object.keys(data).forEach((key) => {
+        const elements = document.querySelectorAll(`[name="${key}"]`);
+        elements.forEach((element) => {
+          if (element.type === "checkbox" || element.type === "radio") {
+            if (Array.isArray(data[key])) {
+              element.checked = data[key].includes(element.value);
+            } else {
+              element.checked = element.value === data[key];
             }
-        } else {
-            localStorage.removeItem('endoFormDraft');
-            localStorage.removeItem('endoFormPage');
-        }
+          } else {
+            element.value = data[key];
+          }
+        });
+      });
+
+      if (savedPage) {
+        showPage(parseInt(savedPage));
+      }
+    } else {
+      localStorage.removeItem("endoFormDraft");
+      localStorage.removeItem("endoFormPage");
     }
+  }
 }
 
 // Auto-save every 30 seconds
 setInterval(autoSaveForm, 30000);
 
 // Save on page unload
-window.addEventListener('beforeunload', autoSaveForm);
+window.addEventListener("beforeunload", autoSaveForm);
 
 // Load saved data on page load
-window.addEventListener('load', function() {
-    setTimeout(loadSavedForm, 500);
+window.addEventListener("load", function () {
+  setTimeout(loadSavedForm, 500);
 });
 
 // Clear saved data on successful submission
-document.getElementById('contact-form').addEventListener('submit', function() {
-    localStorage.removeItem('endoFormDraft');
-    localStorage.removeItem('endoFormPage');
+document.getElementById("contact-form").addEventListener("submit", function () {
+  localStorage.removeItem("endoFormDraft");
+  localStorage.removeItem("endoFormPage");
 });
 
-console.log('✅ Endometriose Form Pagination System Loaded');
+console.log("✅ Endometriose Form Pagination System Loaded");
