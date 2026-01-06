@@ -560,13 +560,7 @@ document.addEventListener("keydown", function (e) {
 // ========================================
 // FORM SUBMISSION
 // ========================================
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault(); // Always prevent default first
-
-    // The actual submission will be triggered from the review modal
-  });
+// Submit handler removed - handled by form-handler-endo.js
 
 // ========================================
 // HELP BUTTON
@@ -657,31 +651,30 @@ function setupReviewModal() {
   }
 
   if (confirmSubmit) {
-    confirmSubmit.addEventListener("click", function () {
-      modal.style.display = "none";
-
+    confirmSubmit.addEventListener("click", function (e) {
       // Show loading
       confirmSubmit.disabled = true;
       confirmSubmit.innerHTML =
         '<span style="animation: spin 1s linear infinite;">⏳</span> Enviando...';
 
-      // Trigger form submission manually
-      const form = document.getElementById("contact-form");
-      const submitEvent = new Event("submit", {
-        bubbles: true,
-        cancelable: true,
-      });
+      // Close modal
+      modal.style.display = "none";
 
-      // Remove our preventDefault listener temporarily
-      form.removeEventListener("submit", arguments.callee);
+      // Trigger form submission - the form-handler-endo.js will handle it
+      setTimeout(() => {
+        const form = document.getElementById("contact-form");
+        const submitEvent = new Event("submit", {
+          bubbles: true,
+          cancelable: true,
+        });
+        form.dispatchEvent(submitEvent);
 
-      // Let form-handler-endo.js handle the submission
-      if (form.dispatchEvent(submitEvent)) {
-        // If not prevented by form-handler, submit normally
+        // Reset button after a delay
         setTimeout(() => {
-          form.submit();
-        }, 100);
-      }
+          confirmSubmit.disabled = false;
+          confirmSubmit.innerHTML = "✓ Confirmar e Enviar";
+        }, 3000);
+      }, 100);
     });
   }
 
@@ -745,8 +738,8 @@ function showReviewModal() {
   // Section 4: Informações Médicas
   html += '<div class="review-section">';
   html += "<h3>💙 Informações Médicas</h3>";
-  html += buildReviewItem("Altura", formData.get("altura") + " m");
-  html += buildReviewItem("Peso", formData.get("peso") + " kg");
+  html += buildReviewItem("Altura", formData.get("altura"));
+  html += buildReviewItem("Peso", formData.get("peso"));
   html += buildReviewItem("IMC", formData.get("imc"));
   html += buildReviewItem(
     "Primeira Menstruação",
