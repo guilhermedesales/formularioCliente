@@ -338,14 +338,10 @@ ${gravidezBlock}%0A
         ? ` (Parou há: ${parouFumar})`
         : ""
     }%0A
-- Intolerância alimentar: ${intolerancia}${
-      intolerancia.toLowerCase() === "sim"
-        ? ` (Descrição: ${descIntolerancia})`
-        : ""
+- Intolerância alimentar: ${
+      intolerancia.toLowerCase() === "sim" ? descIntolerancia : "Não"
     }%0A
-- Hábito de café: ${cafe}${
-      cafe.toLowerCase() === "sim" ? ` (${qtdCafe} vezes ao dia)` : ""
-    }%0A
+- Hábito de café: ${cafe.toLowerCase() === "sim" ? qtdCafe : "Não"}%0A
 - Uso de medicação: ${medicacao}%0A
 - Medicamentos utilizados anteriormente: ${medicacaoAntes}
 
